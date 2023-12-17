@@ -31,8 +31,7 @@ const DropDownUser = () => {
           <DialogTrigger>
             <Button variant="ghost">Login</Button>
           </DialogTrigger>
-          <DialogPortal>
-            
+          <DialogPortal>  
             <DialogContent className="sm:max-w-[425px] border-white">
               <DialogHeader>
                 <DialogTitle className="text-Primary text-xl w-full text-center">

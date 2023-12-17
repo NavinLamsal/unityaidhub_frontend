@@ -41,11 +41,11 @@ const Navbar = () => {
   }, [lastScrollY]);
 
   return (
-    <>
-    <header
+    
+    <nav
       className={`w-full h-12 md:h-20 bg-white dark:bg-darkPrimary flex items-center z-20 sticky top-0 transition-transform duration-300 ${show}`}
     >
-      <div className="h-16 w-full flex justify-between items-center">
+      <div className=" container h-16 w-full flex justify-between items-center">
         <Link href="/">
           <Image
             src="/Logo/landscape.png"
@@ -65,7 +65,6 @@ const Navbar = () => {
           />
         )}
         <DropDownUser/>
-        <div className="flex items-center gap-2 text-black dark:text-white">
           {/* hamburger menu  */}
           <div
             className="w-8 md:w-12 h-8 md:h-12 rounded-xs flex md:hidden justify-center items-center hover:bg-lime-400 cursor-pointer relative
@@ -82,10 +81,10 @@ const Navbar = () => {
                   }}/>
             )}
           </div>
-        </div>
+        
       </div>
-    </header>
-    </>
+    </nav>
+    
   );
 };
 
