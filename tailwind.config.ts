@@ -15,6 +15,13 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+    colors:{
+        Primary: '#44f249',
+        Secondary: '#84ff7b',
+        white:'#ffffff',
+        darkPrimary:'#2E3144',
+        red:'#8B0000'
+      },
     extend: {
       keyframes: {
         "accordion-down": {
