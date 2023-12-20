@@ -6,7 +6,7 @@ export default function Home() {
     <main>
       <HeroSection/>
       <div className='h-[200vh]'>
-
+          
       </div>
     </main>
   )
