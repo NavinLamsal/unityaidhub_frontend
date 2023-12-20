@@ -8,6 +8,7 @@ import { User } from "lucide-react";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogOverlay,
   DialogPortal,
@@ -15,6 +16,12 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Button } from "../ui/button";
+import Login from "../Form/Login";
+// import { Register } from "../Register/register";
+import { FaGoogle, FaFacebookF } from "react-icons/fa6";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import Link from "next/link";
 
 const DropDownUser = () => {
   const [loginOpen, setLoginOpen] = useState(false);
@@ -27,44 +34,51 @@ const DropDownUser = () => {
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-40 flex justify-between divide-x-2">
-        <Dialog open={loginOpen} onOpenChange={setLoginOpen}>
-          <DialogTrigger>
-            <Button variant="ghost">Login</Button>
-          </DialogTrigger>
-          <DialogPortal>  
-            <DialogContent className="sm:max-w-[425px] border-white">
-              <DialogHeader>
-                <DialogTitle className="text-Primary text-xl w-full text-center">
-                  Login
-                </DialogTitle>
-              </DialogHeader>
-              <div>
-                <h1>Login Form</h1>
-                <Button
-                  variant="link"
-                  onClick={() => {
-                    setRegisterOpen(true);
-                    setLoginOpen(false);
-                  }}
-                >
-                  Register
-                </Button>
-              </div>
-            </DialogContent>
-          </DialogPortal>
-        </Dialog>
+        {/* login  */}
+        <Link href='/signin'><Button variant="ghost">Login</Button></Link>
+
+        {/* register  */}
         <Dialog open={registerOpen} onOpenChange={setRegisterOpen}>
           <DialogTrigger>
             <Button variant="ghost">Register</Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[425px]">
+          <DialogContent className="sm:max-w-lg grid gap-4">
             <DialogHeader>
               <DialogTitle className="text-Primary text-xl w-full text-center">
-                Register
+              Create an account
               </DialogTitle>
             </DialogHeader>
+            <div className="grid grid-cols-2 gap-6">
+              <Button variant="outline">
+              <FaFacebookF className="mr-2 h-4 w-4"/>
+                
+                Facebook
+              </Button>
+              <Button variant="outline">
+                <FaGoogle className="mr-2 h-4 w-4" />
+                Google
+              </Button>
+            </div>
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-darkPrimary px-2 pb-2 pt-3 text-muted-foreground text-white ">
+                  Or continue with
+                </span>
+              </div>
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" type="email" placeholder="m@example.com" />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="password">Password</Label>
+              <Input id="password" type="password" />
+            </div>
+            <Button className="w-full">Create account</Button>
             <div>
-              <h1>Register Form</h1>
               <Button
                 variant="link"
                 onClick={() => {

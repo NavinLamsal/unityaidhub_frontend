@@ -301,7 +301,6 @@ const Footer = () => {
       </div>
       <div className=" border-t-2 border-darkPrimary/30 dark:border-white/30 flex items-center p-4 w-full">
          <p className=" w-full text-center">Copyright &copy; 2023 Unity Aid Hub</p>
-
       </div>
     </footer>
   );
