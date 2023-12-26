@@ -3,6 +3,49 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+const images = [
+  {
+    link: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg',
+    id: 1
+  },
+  {
+    link: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg',
+    id: 1
+  },
+  {
+    link: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg',
+    id: 1
+  },
+  {
+    link: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg',
+    id: 1
+  },
+  {
+    link: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg',
+    id: 1
+  },
+  {
+    link: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg',
+    id: 1
+  },
+  {
+    link: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg',
+    id: 1
+  },
+]
+const video = [
+  {
+    id: 10,
+    link: 'https://www.w3schools.com/tags/movie.mp4',
+  }
+]
+
+type assets = {
+  id: number,
+  link: string,
+  type: string
+}
+
 const Video = ({ src, poster, ...props }: any) => {
   const [playing, setPlaying] = useState(false);
 
@@ -25,169 +68,108 @@ const Video = ({ src, poster, ...props }: any) => {
 };
 
 const Carousel = () => {
-  function handlePrevious(): void {
-    throw new Error("Function not implemented.");
-  }
 
-  // const [selectedMedia, setSelectedMedia] = useState();
-  // const [currentIndex, setCurrentIndex] = useState(0);
+  const carouselassets = [...video.map(video => ({ ...video, type: 'video' })), ...images.map(image => ({ ...image, type: 'image' }))];
+  const [selectedMedia, setSelectedMedia] = useState(carouselassets[0]);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // const handleMediaClick = (media, index) => {
-  //   setSelectedMedia(media);
-  //   setCurrentIndex(index);
-  // };
+  const handleMediaClick = (media: assets, index: number) => {
+    setSelectedMedia(media);
+    setCurrentIndex(index);
+  };
 
-  // const handleNextClick = () => {
-  //   const nextIndex = (currentIndex + 1) % smallMedia.length;
-  //   setSelectedMedia(smallMedia[nextIndex]);
-  //   setCurrentIndex(nextIndex);
-  // };
+  const handleNextClick = () => {
+    const nextIndex = (currentIndex + 1) % carouselassets.length;
+    setSelectedMedia(carouselassets[nextIndex]);
+    setCurrentIndex(nextIndex);
+  };
 
-  // const handlePrevClick = () => {
-  //   const prevIndex = (currentIndex - 1 + smallMedia.length) % smallMedia.length;
-  //   setSelectedMedia(smallMedia[prevIndex]);
-  //   setCurrentIndex(prevIndex);
-  // };
+  const handlePrevClick = () => {
+    const prevIndex = (currentIndex - 1 + carouselassets.length) % carouselassets.length;
+    setSelectedMedia(carouselassets[prevIndex]);
+    setCurrentIndex(prevIndex);
+  };
 
   return (
-    // <div>
-    //   <div className="mb-4 relative">
-    //     {/* Big Image/Video */}
-    //     {selectedMedia && (
-    //       <div>
-    //         {selectedMedia.type === 'image' ? (
-    //           <Image src={selectedMedia.url} alt="Main" className="w-full" width={500} height={500} quality={100} />
-    //         ) : (
-    //           <Video src={selectedMedia.url} poster={selectedMedia.thumbnail} />
-    //         )}
+    <div className="grid lg:grid-cols-12 gap-4">
+      <div className="lg:col-span-10 h-72 bg-Secondary/20">
+        {selectedMedia && (
+          <>
+            {selectedMedia.type === 'image' ? (
+              <Image
+                src={selectedMedia.link}
+                width={1024}
+                height={1024}
+                quality={100}
+                alt="big image"
+                className=" h-72 object-contain"
 
-    //         <button
-    //           className="absolute left-0 top-1/2 transform -translate-y-1/2"
-    //           onClick={handlePrevClick}
-    //         >
-    //           Previous
-    //         </button>
-    //         <button
-    //           className="absolute right-0 top-1/2 transform -translate-y-1/2"
-    //           onClick={handleNextClick}
-    //         >
-    //           Next
-    //         </button>
-    //       </div>
-    //     )}
-    //   </div>
-
-    //   <div className="mb-4">
-    //     {/* Small Images/Videos Carousel */}
-    //     <div className="flex overflow-x-scroll">
-    //       {smallMedia.map((media, index) => (
-    //         <div
-    //           key={index}
-    //           className={`mr-2 cursor-pointer ${index === currentIndex ? 'border-2 border-blue-500' : ''}`}
-    //           onClick={() => handleMediaClick(media, index)}
-    //         >
-    //           {media.type === 'image' ? (
-    //             <Image src={media.url} alt={`Small ${index}`} className="w-1/5" width={36} height={36} quality={80} />
-    //           ) : (
-    //             <Image src={media.thumbnail} alt={`Small Video ${index}`} className="w-1/5" width={36} height={36}  quality={80}/>
-    //           )}
-    //         </div>
-    //       ))}
-    //     </div>
-    //   </div>
-    // </div>
-
-    <div className="grid md:grid-cols-12 gap-4">
-      <div className="md:col-span-10 h-72 bg-Secondary/20">
-        {/* <Image
-          src=" http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg"
-          width={1024}
-          height={1024}
-          quality={100}
-          alt="big image"
-          className=" h-72 object-contain"
-        /> */}
-        <Video src={`https://www.w3schools.com/tags/movie.mp4`} />
-        <div></div>
+              />
+            ) : (
+              <Video src={selectedMedia.link} />
+              // <Video src={selectedMedia.url} poster={selectedMedia.thumbnail} />
+            )}
+          </>)}
       </div>
-      <div className="md:col-span-2 ">
+      <div className="lg:col-span-2 ">
+        {/* row display  */}
         <div className="flex items-center gap-4">
-        <div
+          <div
             className="hover:text-Primary bg-darkPrimary/20 hover:bg-darkPrimary/40 text-white p-1 cursor-pointer lg:hidden inline-block"
-            onClick={handlePrevious}
+            onClick={handlePrevClick}
           >
             <ChevronLeft className="h-10 w-10  " />
           </div>
-        <div className="flex md:flex-col flex-row gap-2 h-20 md:h-56 justify-start items-center overflow-auto w-full">
-          
-          <Image
-            src=" http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg"
-            width={250}
-            height={250}
-            quality={60}
-            alt="small"
-            className="h-16 w-16 object-cover"
-          />
-          <Image
-            src=" http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg"
-            width={250}
-            height={250}
-            quality={60}
-            alt="small"
-            className="h-16 w-16 object-cover"
-          />
-          <Image
-            src=" http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg"
-            width={250}
-            height={250}
-            quality={60}
-            alt="small"
-            className="h-16 w-16 object-cover"
-          />
-          <Image
-            src=" http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg"
-            width={250}
-            height={250}
-            quality={60}
-            alt="small"
-            className="h-16 w-16 object-cover"
-          />
-          <Image
-            src=" http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg"
-            width={250}
-            height={250}
-            quality={60}
-            alt="small"
-            className="h-16 w-16 object-cover"
-          />
-          <video
-            src=" https://www.w3schools.com/tags/movie.mp4"
-            width={250}
-            height={250}
-            // quality={60}
-            // alt="small"
-            className="h-16 w-16 object-cover"
-          />
-        </div>
-        <div
+
+          <div className="flex lg:flex-col flex-row gap-2 h-20 lg:h-56 justify-start items-center overflow-auto w-full">
+            {carouselassets && carouselassets.map((asset, index) => (
+              <>
+                {asset.type === 'image' ? (
+                  <Image
+                    src={asset.link}
+                    width={250}
+                    height={250}
+                    quality={60}
+                    alt="small"
+                    className="h-16 w-16 object-cover"
+                    onClick={() => handleMediaClick(asset, index)}
+                  />) : (
+                  <video
+                    src={asset.link}
+                    width={250}
+                    height={250}
+                    // quality={60}
+                    // alt="small"
+                    className="h-16 w-16 object-cover"
+                    onClick={() => handleMediaClick(asset, index)}
+                  />)}
+              </>
+            ))
+
+            }
+          </div>
+
+          <div
             className="hover:text-Primary bg-darkPrimary/20 hover:bg-darkPrimary/40 text-white p-1 cursor-pointer lg:hidden inline-block"
-            onClick={handlePrevious}
+            onClick={handleNextClick}
           >
             <ChevronRight className="h-10 w-10  " />
           </div>
         </div>
+
+           {/* col navigator   */}
         <div className=" hidden lg:flex gap-2 justify-between items-center mt-5">
           <div
             className="hover:text-Primary bg-darkPrimary/20 hover:bg-darkPrimary/40 text-white p-1 cursor-pointer"
-            onClick={handlePrevious}
+            onClick={handlePrevClick}
           >
             <ChevronLeft className="h-10 w-10  " />
           </div>
           <div
             className="hover:text-Primary bg-darkPrimary/20 hover:bg-darkPrimary/40 text-white p-1 cursor-pointer"
-            onClick={handlePrevious}
+            onClick={handleNextClick}
           >
-            <ChevronRight className="h-10 w-10  " />
+            <ChevronRight className="h-10 w-10 " />
           </div>
         </div>
       </div>
