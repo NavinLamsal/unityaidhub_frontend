@@ -3,6 +3,7 @@ import { PiSirenFill } from "react-icons/pi";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import Carousel from '@/components/detailpage/Carousel'
 import DonateCard from "@/components/detailpage/DonateCard";
+import Tabcollections from "@/components/detailpage/Tabcollections";
 
 
 const PostDetailPage = () => {
@@ -30,10 +31,15 @@ const PostDetailPage = () => {
         <div className="flex md:flex-row flex-col gap-3 mt-5">
           <div className="md:w-7/12 lg:w-8/12">
             <Carousel />
+            <div className=" flex md:hidden my-4">
+            <DonateCard />
+            </div>
+            <Tabcollections/>
           </div>
-          <div className="md:w-5/12 lg:w-4/12">
+          <div className="hidden md:block md:w-5/12 lg:w-4/12">
             <DonateCard />
           </div>
+          
 
         </div>
       </div>
