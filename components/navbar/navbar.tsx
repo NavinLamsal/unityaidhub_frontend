@@ -1,11 +1,12 @@
-import { usePathname } from 'next/navigation';
-import React, { useState } from 'react';
-import DropMenu from './dropMenu';
-import Link from 'next/link';
-import Wrapper from '../ui/wrapper';
-import { Button } from '../ui/button';
-import { LogIn, Menu, PenSquare, XIcon } from 'lucide-react';
-
+import { usePathname } from "next/navigation";
+import React, { useState } from "react";
+import DropMenu from "./dropMenu";
+import Link from "next/link";
+import Wrapper from "../ui/wrapper";
+import { Button } from "../ui/button";
+import { LogIn, Menu, Moon, PenSquare, Sun, XIcon } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { useTheme } from "next-themes";
 
 interface NavLink {
   href?: string;
@@ -15,29 +16,30 @@ interface NavLink {
 }
 
 const Navbar = () => {
-  const pathname = usePathname()
+  const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { setTheme } = useTheme()
 
   const navLinks = [
-    { href: '/', title: 'Home' },
-    { href: '/quizset', title: 'Quiz' },
-    { href: '/examset', title: 'Exam' },
-    { title: 'Category', menulist: ['hello', 'hello2'], isDropDown: true },
-    { href: '/gorkhapatra', title: 'Gorkhapatra' },
-    { href: '/notice', title: 'Notices' },
-    { href: '/forum', title: 'Forum' },
+    { href: "/", title: "Home" },
+    { href: "/quizset", title: "Quiz" },
+    { href: "/examset", title: "Exam" },
+    { title: "Category", menulist: ["hello", "hello2"], isDropDown: true },
+    { href: "/gorkhapatra", title: "Gorkhapatra" },
+    { href: "/notice", title: "Notices" },
+    { href: "/forum", title: "Forum" },
   ];
 
-  const renderNavLink = (link:NavLink) => {
+  const renderNavLink = (link: NavLink) => {
     if (link.isDropDown) {
       return <DropMenu title={link.title} menulist={link.menulist} />;
     }
 
     return (
       <Link
-        href={link.href?? "s"}
+        href={link.href ?? "s"}
         className={`hover:text-primary ${
-          pathname === link.href ? 'text-primary' : 'text-black'
+          pathname === link.href ? "text-primary" : "text-black"
         }`}
       >
         {link.title}
@@ -52,12 +54,25 @@ const Navbar = () => {
           <Link href="/" className="w-max shrink-0">
             Logo
           </Link>
+          
 
           <div className="hidden md:flex gap-4 text-base lg:text-lg font-normal items-center">
             {navLinks.map((link, index) => (
               <React.Fragment key={index}>{renderNavLink(link)}</React.Fragment>
             ))}
           </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+              <span className="sr-only">Toggle theme</span>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={()=>setTheme("dark")}>Dark</DropdownMenuItem>
+              <DropdownMenuItem onClick={()=>setTheme("light")}>Light</DropdownMenuItem>
+              <DropdownMenuItem onClick={()=>setTheme("system")}>System</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
 
           <div className="flex w-full justify-end gap-1.5">
             {/* {session ? (
@@ -66,22 +81,24 @@ const Navbar = () => {
                 <DropdownUser />
               </div>
             ) : ( */}
-              <div className="flex gap-3 lg:text-lg">
-                <Button
-                  variant="default_outline"
-                  className="flex gap-1 items-center"
-                  // onClick={() => signIn()}
-                >
-                  <LogIn className={`w-[18px] md:w-[20px] xl:w-[22px] `} />
-                  <span className="hidden sm:flex md:hidden lg:flex">Login</span>
+            <div className="flex gap-3 lg:text-lg">
+              <Button
+                // variant="default_outline"
+                className="flex gap-1 items-center"
+                // onClick={() => signIn()}
+              >
+                <LogIn className={`w-[18px] md:w-[20px] xl:w-[22px] `} />
+                <span className="hidden sm:flex md:hidden lg:flex">Login</span>
+              </Button>
+              <Link href="/auth/register">
+                <Button variant="outline" className="flex  gap-1 items-center">
+                  <PenSquare className={`w-[18px] md:w-[20px] xl:w-[22px] `} />
+                  <span className="hidden sm:flex md:hidden lg:flex">
+                    Register
+                  </span>
                 </Button>
-                <Link href="/auth/register">
-                  <Button variant="outline" className="flex  gap-1 items-center">
-                    <PenSquare className={`w-[18px] md:w-[20px] xl:w-[22px] `} />
-                    <span className="hidden sm:flex md:hidden lg:flex">Register</span>
-                  </Button>
-                </Link>
-              </div>
+              </Link>
+            </div>
             {/* )} */}
             {menuOpen ? (
               <div
@@ -108,10 +125,10 @@ const Navbar = () => {
             {navLinks.map((link, index) => (
               <Link
                 key={index}
-                href={'/'}
+                href={"/"}
                 // href={link.href}
                 className={`w-full border-b-2 border-primary py-2 text-center ${
-                  pathname === link.href ? 'text-primary' : 'text-black'
+                  pathname === link.href ? "text-primary" : "text-black"
                 }`}
                 onClick={() => setMenuOpen(false)}
               >

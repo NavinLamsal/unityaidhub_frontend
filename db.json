@@ -1,0 +1,110 @@
+{
+    "comments": [
+        {
+          "id": "clhubp5rk0008bug8wplt65415174s1",
+          "content": "It's Homo Sapiens.",
+          "image": null,
+          "creator_name": "subscribe subscribe",
+          "creator_profile": null,
+          "userId": "clhubp5rk0008bug8wplt1000s1",
+          "postId": "clhubp5rk0008bug8wplt8002s1",
+          "createdAt": "2023-12-10T06:52:53.416Z",
+          "updatedAt": "2023-12-10T06:52:53.416Z",
+          "replies": [
+            {
+              "id": "reply1",
+              "content": "I agree!",
+              "creator_name": "another_user",
+              "userId": "clhubp5rk0008bug8wplt1001s1",
+              "createdAt": "2023-12-10T07:00:00.000Z",
+              "updatedAt": "2023-12-10T07:00:00.000Z",
+              "reactions": [
+                {
+                  "userId": "user1",
+                  "reactionType": "like",
+                  "createdAt": "2023-12-10T07:05:00.000Z"
+                }
+              ]
+            },
+            {
+              "id": "reply2",
+              "content": "No, it's Neanderthals!",
+              "creator_name": "third_user",
+              "userId": "clhubp5rk0008bug8wplt1002s1",
+              "createdAt": "2023-12-10T07:05:00.000Z",
+              "updatedAt": "2023-12-10T07:05:00.000Z",
+              "replies": [
+                {
+                  "id": "nested_reply1",
+                  "content": "Interesting point!",
+                  "creator_name": "nested_user",
+                  "userId": "clhubp5rk0008bug8wplt1003s1",
+                  "createdAt": "2023-12-10T07:10:00.000Z",
+                  "updatedAt": "2023-12-10T07:10:00.000Z",
+                  "reactions": [
+                    {
+                      "userId": "user2",
+                      "reactionType": "love",
+                      "createdAt": "2023-12-10T07:15:00.000Z"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "reactions": [
+            {
+              "userId": "user3",
+              "reactionType": "like",
+              "createdAt": "2023-12-10T07:20:00.000Z"
+            },
+            {
+              "userId": "user4",
+              "reactionType": "love",
+              "createdAt": "2023-12-10T07:25:00.000Z"
+            }
+          ]
+        },
+        {
+          "id": "clhubp5rk0008bug8wplt654158574s1",
+          "content": "It's Homo Sapiens.",
+          "image": null,
+          "creator_name": "subscribe subscribe",
+          "creator_profile": null,
+          "userId": "clhubp5rk0008bug8wplt1000s1",
+          "postId": "clhubp5rk0008bug8wplt8002s1",
+          "createdAt": "2023-12-10T06:52:53.417Z",
+          "updatedAt": "2023-12-10T06:52:53.417Z",
+          "replies": [
+            {
+              "id": "reply3",
+              "content": "Interesting perspective!",
+              "creator_name": "new_user",
+              "userId": "clhubp5rk0008bug8wplt1004s1",
+              "createdAt": "2023-12-10T07:30:00.000Z",
+              "updatedAt": "2023-12-10T07:30:00.000Z",
+              "reactions": [
+                {
+                  "userId": "user5",
+                  "reactionType": "like",
+                  "createdAt": "2023-12-10T07:35:00.000Z"
+                }
+              ]
+            }
+          ],
+          "reactions": [
+            {
+              "userId": "user6",
+              "reactionType": "like",
+              "createdAt": "2023-12-10T07:40:00.000Z"
+            },
+            {
+              "userId": "user7",
+              "reactionType": "love",
+              "createdAt": "2023-12-10T07:45:00.000Z"
+            }
+          ]
+        }
+      ]
+      
+}

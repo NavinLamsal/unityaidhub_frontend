@@ -39,8 +39,6 @@ const PostDetailPage = () => {
           <div className="hidden md:block md:w-5/12 lg:w-4/12">
             <DonateCard />
           </div>
-          
-
         </div>
       </div>
     </div>
