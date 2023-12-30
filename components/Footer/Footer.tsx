@@ -53,7 +53,7 @@ const Resources = [
 
 const Footer = () => {
   return (
-    <footer className="bg-Secondary/25 dark:bg-darkPrimary/60 text-darkPrimary dark:text-white">
+    <footer className="bg-Secondary/30 dark:bg-zinc-700 text-darkPrimary dark:text-white">
       <div className=" container lg:hidden flex flex-col items-start ">
         <div className="grid md:grid-cols-2 gap-4 my-4 w-full">
           <div className=" flex flex-col gap-4">
@@ -110,7 +110,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="bg-Secondary/70 dark:bg-darkPrimary/">
+      <div className="bg-Secondary/70 dark:bg-zinc-900">
         <div className="container lg:hidden py-4">
           <div className="block md:hidden border-b-2 border-darkPrimary/30 dark:border-white/30 pb-4 mb-2">
             <Image
@@ -119,20 +119,36 @@ const Footer = () => {
               width={750}
               height={750}
               quality={100}
-              className="h-16 w-auto"
+              className="h-16 w-auto dark:hidden"
+            />
+            <Image
+              src={`/Logo/landscapewhite.png`}
+              alt="logo"
+              width={750}
+              height={750}
+              quality={100}
+              className="h-16 w-auto hidden dark:block"
             />
           </div>
           <div className="flex flex-col-reverse md:grid md:grid-cols-5">
             <div className="flex flex-col items-start gap-4 md:col-span-2">
               <div className="hidden md:block">
-                <Image
-                  src={`/Logo/landscape.png`}
-                  alt="logo"
-                  width={750}
-                  height={750}
-                  quality={100}
-                  className="h-20 w-auto"
-                />
+              <Image
+              src={`/Logo/landscape.png`}
+              alt="logo"
+              width={750}
+              height={750}
+              quality={100}
+              className="h-16 w-auto dark:hidden"
+            />
+            <Image
+              src={`/Logo/landscapewhite.png`}
+              alt="logo"
+              width={750}
+              height={750}
+              quality={100}
+              className="h-16 w-auto hidden dark:block"
+            />
               </div>
 
               <div className="flex flex-row flex-1  gap-1">

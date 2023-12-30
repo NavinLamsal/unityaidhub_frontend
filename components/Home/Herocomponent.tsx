@@ -38,7 +38,7 @@ function HeroSection() {
               change.
             </p>
             <Link href="/" >
-            <Button className="rounded-full my-5 text-2xl px-8 py-8"> Start a Campaing</Button>
+            <Button variant="default_outline" className="rounded-full my-5 text-2xl px-8 py-8"> Start a Campaing</Button>
             </Link>
             
           </div>

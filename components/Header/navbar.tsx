@@ -1,15 +1,14 @@
 'use client'
 import React, { useState, useEffect } from "react";
-// import Wrapper from "./Wrapper";
 import Link from "next/link";
 import Menu from "./Menu";
 import Image from "next/image";
-// import { Icon } from "@iconify/react";
 import MenuMobile from "./MenuMobile";
-import { LucideMenu, X } from "lucide-react";
+import { LucideMenu, Moon, Sun, X } from "lucide-react";
 import DropDownUser from "./DropDownUser";
-// import { fetchDataFromApi } from "@/utils/api";
-// import { useSelector } from "react-redux";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { useTheme } from "next-themes";
+
 
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -17,6 +16,7 @@ const Navbar = () => {
   const [show, setShow] = useState("translate-y-0");
   const [lastScrollY, setLastScrollY] = useState(0);
   const [categories,setCategories] =useState(null);
+  const { setTheme } = useTheme()
 
 //   const {cartItems}= useSelector((state => state.cart))
 
@@ -48,23 +48,39 @@ const Navbar = () => {
       <div className=" container h-16 w-full flex justify-between items-center">
         <Link href="/">
           <Image
-            src="/Logo/landscape.png"
-            alt="logo"
-            width={500}
-            height={300}
-            className="w-36 md:w-52"
-          />
+              src={`/Logo/landscape.png`}
+              alt="logo"
+              width={750}
+              height={750}
+              quality={100}
+              className="h-16 w-auto dark:hidden"
+            />
+            <Image
+              src={`/Logo/landscapewhite.png`}
+              alt="logo"
+              width={750}
+              height={750}
+              quality={100}
+              className="h-16 w-auto hidden dark:block"
+            />
         </Link>
         <Menu showCatMenu={showCatMenu} setShowCatMenu={setShowCatMenu} categories={categories} />
-        {mobileMenu && (
-          <MenuMobile
-            showCatMenu={showCatMenu}
-            setShowCatMenu={setShowCatMenu}
-            setMobileMenu={setMobileMenu}
-            categories={categories}
-          />
-        )}
+        <div className="flex gap-4 items-center">
+        <DropdownMenu>
+            <DropdownMenuTrigger className="p-2 bg-zinc-100 dark:bg-zinc-950/90 drop-shadow-sm hover:bg-zinc-200 dark:hover:bg-zinc-950 rounded-sm flex ">
+              <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-0 transition-all dark:-rotate-90 dark:scale-100" />
+              <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-270 scale-100 transition-all dark:rotate-0 dark:scale-0" />
+              <span className="sr-only">Toggle theme</span>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={()=>setTheme("dark")}>Dark</DropdownMenuItem>
+              <DropdownMenuItem onClick={()=>setTheme("light")}>Light</DropdownMenuItem>
+              <DropdownMenuItem onClick={()=>setTheme("system")}>System</DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
         <DropDownUser/>
+
+        </div>
           {/* hamburger menu  */}
           <div
             className="w-8 md:w-12 h-8 md:h-12 rounded-xs flex md:hidden justify-center items-center hover:bg-lime-400 cursor-pointer relative
@@ -89,3 +105,12 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+// {mobileMenu && (
+//   <MenuMobile
+//     showCatMenu={showCatMenu}
+//     setShowCatMenu={setShowCatMenu}
+//     setMobileMenu={setMobileMenu}
+//     categories={categories}
+//   />
+// )}

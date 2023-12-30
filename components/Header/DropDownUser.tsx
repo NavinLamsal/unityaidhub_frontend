@@ -27,6 +27,7 @@ const DropDownUser = () => {
   const [loginOpen, setLoginOpen] = useState(false);
   const [registerOpen, setRegisterOpen] = useState(false);
   return (
+    
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div className="p-2 border-4 flex items-center border-Primary rounded-full cursor-pointer">
