@@ -9,7 +9,7 @@ interface MenuType{
     subMenu?: any[] 
 }
 
-const data:MenuType[] = [
+export const data:MenuType[] = [
   { id: 1, name: "Home", url: "/" },
   { id: 2, name: "Browse a Campaign", url: "/browse-a-campaign" },
   { id: 2, name: "Start a campaigning", url: "/start-a-campaigning"},
@@ -17,7 +17,7 @@ const data:MenuType[] = [
 
 const Menu = ({ showCatMenu, setShowCatMenu, categories }:any) => {
   return (
-    <ul className="hidden md:flex items-center gap-8 font-medium text-black dark:text-white ">
+    <ul className="hidden min-[900px]:flex items-center gap-8 font-medium text-black dark:text-white ">
       {data.map((items) => {
         return (
           <React.Fragment key={items.id}>

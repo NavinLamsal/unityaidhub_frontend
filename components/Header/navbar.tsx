@@ -8,6 +8,7 @@ import { LucideMenu, Moon, Sun, X } from "lucide-react";
 import DropDownUser from "./DropDownUser";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { useTheme } from "next-themes";
+import MobileMenu from "./MobileMenu";
 
 
 const Navbar = () => {
@@ -43,7 +44,7 @@ const Navbar = () => {
   return (
     
     <nav
-      className={`w-full h-12 md:h-20 bg-white dark:bg-darkPrimary flex items-center z-20 sticky top-0 transition-transform duration-300 ${show}`}
+      className={`w-full h-20 md:h-20 bg-white dark:bg-darkPrimary flex items-center z-20 sticky top-0 transition-transform duration-300 ${show}`}
     >
       <div className=" container h-16 w-full flex justify-between items-center">
         <Link href="/">
@@ -66,6 +67,7 @@ const Navbar = () => {
         </Link>
         <Menu showCatMenu={showCatMenu} setShowCatMenu={setShowCatMenu} categories={categories} />
         <div className="flex gap-4 items-center">
+          <div className="hidden min-[900px]:inline-block">
         <DropdownMenu>
             <DropdownMenuTrigger className="p-2 bg-zinc-100 dark:bg-zinc-950/90 drop-shadow-sm hover:bg-zinc-200 dark:hover:bg-zinc-950 rounded-sm flex ">
               <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-0 transition-all dark:-rotate-90 dark:scale-100" />
@@ -78,25 +80,13 @@ const Navbar = () => {
               <DropdownMenuItem onClick={()=>setTheme("system")}>System</DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
+          </div>
         <DropDownUser/>
+        <MobileMenu/>
+          {/* hamburger menu  */}
+          
 
         </div>
-          {/* hamburger menu  */}
-          <div
-            className="w-8 md:w-12 h-8 md:h-12 rounded-xs flex md:hidden justify-center items-center hover:bg-lime-400 cursor-pointer relative
-            "
-          >
-            {mobileMenu ? (
-                <X onClick={() => {
-                    setMobileMenu(false);
-                  }}/>
-              
-            ) : (
-                <LucideMenu onClick={() => {
-                    setMobileMenu(true);
-                  }}/>
-            )}
-          </div>
         
       </div>
     </nav>
