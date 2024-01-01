@@ -105,6 +105,72 @@
             }
           ]
         }
+      ],
+
+      "categories":[
+        {
+          "name":"Health",
+          "blackicons": "/category/Health.png",
+          "whiteicons":"/category/white/Health.png",
+          "primaryicons":"/category/primary/Health.png",
+          "id":"201"
+        },
+        {
+          "name":"Startups",
+          "blackicons": "/category/startups.png",
+          "whiteicons":"/category/white/startups.png",
+          "primaryicons":"/category/primary/startups.png",
+          "id":"202"
+        },
+        {
+          "name":"Animal",
+          "blackicons": "/category/animal.png",
+          "whiteicons":"/category/white/animal.png",
+          "primaryicons":"/category/primary/animal.png",
+          "id":"203"
+        },
+        {
+          "name":"Environment",
+          "blackicons": "/category/environment.png",
+          "whiteicons":"/category/white/environment.png",
+          "primaryicons":"/category/primary/environment.png",
+          "id":"204"
+        },
+        {
+          "name":"Non Profits",
+          "blackicons": "/category/nonprofits.png",
+          "whiteicons":"/category/white/nonprofit.png",
+          "primaryicons":"/category/primary/nonprofit.png",
+          "id":"205"
+        },
+        {
+          "name":"Memorial",
+          "blackicons": "/category/Memorial.png",
+          "whiteicons":"/category/white/Memorial.png",
+          "primaryicons":"/category/primary/Memorial.png",
+          "id":"206"
+        },
+        {
+          "name":"Children",
+          "blackicons": "/category/children.png",
+          "whiteicons":"/category/white/children.png",
+          "primaryicons":"/category/primary/children.png",
+          "id":"207"
+        },
+        {
+          "name":"Education",
+          "blackicons": "/category/education.png",
+          "whiteicons":"/category/white/education.png",
+          "primaryicons":"/category/primary/education.png",
+          "id":"208"
+        },
+        {
+          "name":"Other",
+          "blackicons": "/category/other.png",
+          "whiteicons":"/category/white/other.png",
+          "primaryicons":"/category/primary/other.png",
+          "id":"209"
+        }
       ]
       
 }
