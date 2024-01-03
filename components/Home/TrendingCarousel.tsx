@@ -1,6 +1,5 @@
 import React from 'react'
 import Carousel from '../ui/carousel';
-// import CampaingCard from '../Card/CampaingCard';
 import FundraisingCard from '../Card/fundraisingCard';
 
 const TrendingCarousel = () => {

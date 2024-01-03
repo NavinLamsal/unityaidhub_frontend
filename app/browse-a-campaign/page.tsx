@@ -1,5 +1,6 @@
-import FundraisingCard from "@/components/Card/fundraisingCard";
-import React from "react";
+
+import FundraisingCard from '@/components/Card/fundraisingCard'
+import React from 'react'
 
 import { Metadata } from "next";
 import Image from "next/image";
