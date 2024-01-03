@@ -68,7 +68,7 @@ const ButtonGroup = ({ next, previous, goToSlide, ...rest }: any) => {
 
 const RelatedProducts = () => {
   return (
-    <div className="container max-[700px]:translate-y-5 mb-10">
+    <div className="container max-[700px]:translate-y-5 mb-10 mx-auto">
       <div className="flex relative flex-col-reverse justify-center max-w-7xl  mb-3 ">
         <Carousel
           ssr={true}
