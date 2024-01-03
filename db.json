@@ -1,0 +1,176 @@
+{
+    "comments": [
+        {
+          "id": "clhubp5rk0008bug8wplt65415174s1",
+          "content": "It's Homo Sapiens.",
+          "image": null,
+          "creator_name": "subscribe subscribe",
+          "creator_profile": null,
+          "userId": "clhubp5rk0008bug8wplt1000s1",
+          "postId": "clhubp5rk0008bug8wplt8002s1",
+          "createdAt": "2023-12-10T06:52:53.416Z",
+          "updatedAt": "2023-12-10T06:52:53.416Z",
+          "replies": [
+            {
+              "id": "reply1",
+              "content": "I agree!",
+              "creator_name": "another_user",
+              "userId": "clhubp5rk0008bug8wplt1001s1",
+              "createdAt": "2023-12-10T07:00:00.000Z",
+              "updatedAt": "2023-12-10T07:00:00.000Z",
+              "reactions": [
+                {
+                  "userId": "user1",
+                  "reactionType": "like",
+                  "createdAt": "2023-12-10T07:05:00.000Z"
+                }
+              ]
+            },
+            {
+              "id": "reply2",
+              "content": "No, it's Neanderthals!",
+              "creator_name": "third_user",
+              "userId": "clhubp5rk0008bug8wplt1002s1",
+              "createdAt": "2023-12-10T07:05:00.000Z",
+              "updatedAt": "2023-12-10T07:05:00.000Z",
+              "replies": [
+                {
+                  "id": "nested_reply1",
+                  "content": "Interesting point!",
+                  "creator_name": "nested_user",
+                  "userId": "clhubp5rk0008bug8wplt1003s1",
+                  "createdAt": "2023-12-10T07:10:00.000Z",
+                  "updatedAt": "2023-12-10T07:10:00.000Z",
+                  "reactions": [
+                    {
+                      "userId": "user2",
+                      "reactionType": "love",
+                      "createdAt": "2023-12-10T07:15:00.000Z"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "reactions": [
+            {
+              "userId": "user3",
+              "reactionType": "like",
+              "createdAt": "2023-12-10T07:20:00.000Z"
+            },
+            {
+              "userId": "user4",
+              "reactionType": "love",
+              "createdAt": "2023-12-10T07:25:00.000Z"
+            }
+          ]
+        },
+        {
+          "id": "clhubp5rk0008bug8wplt654158574s1",
+          "content": "It's Homo Sapiens.",
+          "image": null,
+          "creator_name": "subscribe subscribe",
+          "creator_profile": null,
+          "userId": "clhubp5rk0008bug8wplt1000s1",
+          "postId": "clhubp5rk0008bug8wplt8002s1",
+          "createdAt": "2023-12-10T06:52:53.417Z",
+          "updatedAt": "2023-12-10T06:52:53.417Z",
+          "replies": [
+            {
+              "id": "reply3",
+              "content": "Interesting perspective!",
+              "creator_name": "new_user",
+              "userId": "clhubp5rk0008bug8wplt1004s1",
+              "createdAt": "2023-12-10T07:30:00.000Z",
+              "updatedAt": "2023-12-10T07:30:00.000Z",
+              "reactions": [
+                {
+                  "userId": "user5",
+                  "reactionType": "like",
+                  "createdAt": "2023-12-10T07:35:00.000Z"
+                }
+              ]
+            }
+          ],
+          "reactions": [
+            {
+              "userId": "user6",
+              "reactionType": "like",
+              "createdAt": "2023-12-10T07:40:00.000Z"
+            },
+            {
+              "userId": "user7",
+              "reactionType": "love",
+              "createdAt": "2023-12-10T07:45:00.000Z"
+            }
+          ]
+        }
+      ],
+
+      "categories":[
+        {
+          "name":"Health",
+          "blackicons": "/category/Health.png",
+          "whiteicons":"/category/white/Health.png",
+          "primaryicons":"/category/primary/Health.png",
+          "id":"201"
+        },
+        {
+          "name":"Startups",
+          "blackicons": "/category/startups.png",
+          "whiteicons":"/category/white/startups.png",
+          "primaryicons":"/category/primary/startups.png",
+          "id":"202"
+        },
+        {
+          "name":"Animal",
+          "blackicons": "/category/animal.png",
+          "whiteicons":"/category/white/animal.png",
+          "primaryicons":"/category/primary/animal.png",
+          "id":"203"
+        },
+        {
+          "name":"Environment",
+          "blackicons": "/category/environment.png",
+          "whiteicons":"/category/white/environment.png",
+          "primaryicons":"/category/primary/environment.png",
+          "id":"204"
+        },
+        {
+          "name":"Non Profits",
+          "blackicons": "/category/nonprofits.png",
+          "whiteicons":"/category/white/nonprofit.png",
+          "primaryicons":"/category/primary/nonprofit.png",
+          "id":"205"
+        },
+        {
+          "name":"Memorial",
+          "blackicons": "/category/Memorial.png",
+          "whiteicons":"/category/white/Memorial.png",
+          "primaryicons":"/category/primary/Memorial.png",
+          "id":"206"
+        },
+        {
+          "name":"Children",
+          "blackicons": "/category/children.png",
+          "whiteicons":"/category/white/children.png",
+          "primaryicons":"/category/primary/children.png",
+          "id":"207"
+        },
+        {
+          "name":"Education",
+          "blackicons": "/category/education.png",
+          "whiteicons":"/category/white/education.png",
+          "primaryicons":"/category/primary/education.png",
+          "id":"208"
+        },
+        {
+          "name":"Other",
+          "blackicons": "/category/other.png",
+          "whiteicons":"/category/white/other.png",
+          "primaryicons":"/category/primary/other.png",
+          "id":"209"
+        }
+      ]
+      
+}

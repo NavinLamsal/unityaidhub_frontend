@@ -1,13 +1,14 @@
+import Categories from '@/components/Home/Categories'
 import HeroSection from '@/components/Home/Herocomponent'
-import Image from 'next/image'
+import Trendings from '@/components/Home/Trendings'
+
 
 export default function Home() {
   return (
     <main>
       <HeroSection/>
-      <div className='h-[200vh]'>
-          
-      </div>
+      <Categories/>
+      <Trendings />
     </main>
   )
 }

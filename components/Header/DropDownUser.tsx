@@ -27,10 +27,11 @@ const DropDownUser = () => {
   const [loginOpen, setLoginOpen] = useState(false);
   const [registerOpen, setRegisterOpen] = useState(false);
   return (
-    <DropdownMenu>
+    <div className="hidden min-[900px]:inline-block">
+    <DropdownMenu >
       <DropdownMenuTrigger asChild>
         <div className="p-2 border-4 flex items-center border-Primary rounded-full cursor-pointer">
-          <User size={32} className="text-Primary" />
+          <User className="text-Primary md:h-7 md:w-7 h-5 w-5 " />
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-40 flex justify-between divide-x-2">
@@ -93,6 +94,8 @@ const DropDownUser = () => {
         </Dialog>
       </DropdownMenuContent>
     </DropdownMenu>
+
+    </div>
   );
 };
 

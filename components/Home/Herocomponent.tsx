@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Search } from "lucide-react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { Input } from "../ui/input";
 
 function HeroSection() {
   return (
@@ -15,9 +16,9 @@ function HeroSection() {
               Beyond Borders: Healing Hands, Shared Dreams
             </h1>
             <form action="" className="w-full mt-12">
-              <div className="relative flex pr-1 rounded-full bg-white border border-yellow-200 shadow-md md:pr-2 ">
+              <div className="relative flex  rounded-full bg-white border border-yellow-200 shadow-md  ">
                 <button
-                  className="p-3 rounded-l-full bg-Primary block md:p-4"
+                  className="p-3 rounded-l-full bg-Primary dark:bg-darkPrimary block md:p-4"
                   name="search"
                 >
                   <div>
@@ -26,7 +27,7 @@ function HeroSection() {
                 </button>
                 <input
                   placeholder="Search for Change, Donate for Hope"
-                  className="w-full p-4 rounded-full"
+                  className="w-full h-full p-4 rounded-r-full   border border-zinc-200 bg-white  placeholder:text-zinc-500 focus-visible:outline-none  focus-visible:ring-zinc-950 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50 dark:border-zinc-800 dark:bg-zinc-950  dark:placeholder:text-zinc-400 dark:focus-visible:ring-border-zinc-800"
                   type="text"
                 />
               </div>
@@ -37,7 +38,7 @@ function HeroSection() {
               change.
             </p>
             <Link href="/" >
-            <Button className="rounded-full my-5 text-2xl px-8 py-8"> Start a Campaing</Button>
+            <Button variant="default_outline" className="rounded-full my-5 text-2xl px-8 py-8"> Start a Campaing</Button>
             </Link>
             
           </div>
