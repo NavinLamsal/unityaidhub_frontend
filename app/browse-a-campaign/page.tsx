@@ -1,6 +1,5 @@
-
-import FundraisingCard from '@/components/Card/fundraisingCard'
-import React from 'react'
+import FundraisingCard from "@/components/Card/fundraisingCard";
+import React from "react";
 
 import { Metadata } from "next";
 import Image from "next/image";
@@ -17,63 +16,76 @@ import { Sidebar } from "@/components/categorypage/sidebar";
 export default function Page() {
   return (
     <>
-      <div className="md:hidden">
-        <Image
-          src="/examples/music-light.png"
-          width={1280}
-          height={1114}
-          alt="Music"
-          className="block dark:hidden"
-        />
-        <Image
-          src="/examples/music-dark.png"
-          width={1280}
-          height={1114}
-          alt="Music"
-          className="hidden dark:block"
-        />
+      <div className=" max-w-[1500px] mx-auto relative pt-12 pb-20 md:pt-12 md:pb-20 xl:pt-12 xl:pb-24 bg-gradient-to-r from-Secondary/[0.9] to-Secondary/[0.4]">
+        <div className="container">
+          <div className="absolute right-4 bottom-0 h-[130px] w-[150px] opacity-95 sm:h-[170px] sm:w-[180px] md:h-[170px] md:w-[180px] lg:h-[220px] lg:w-[220px] xl:h-[220px] xl:w-[220px]">
+            <Image
+              src={`/HumanitarianHelpbro.png`}
+              alt="Man_In_Whiteshirt"
+              className="object-cover object-center"
+              fill
+              sizes=""
+            />
+          </div>
+          <div className="grid text-zinc-950">
+            <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl  font-bold tracking-wider">
+              Browse a Campaign
+            </h1>
+            <p className="text-xs sm:text-sm md:text-base lg:text-lg  font-normal tracking-wider">
+              {
+                "Life is Short journey, Enjoy it by shareing and carig with each other."
+              }
+            </p>
+          </div>
+        </div>
       </div>
-      <div className="hidden md:block">
-        {/* <Menu /> */}
-        <div className="border-t">
+    
+    <div className="container">
+      {/* {* <Image
+        //   src="/examples/music-light.png"
+        //   width={1280}
+        //   height={1114}
+        //   alt="Music"
+        //   className="block dark:hidden"
+        // />
+        // <Image
+        //   src="/examples/music-dark.png"
+        //   width={1280}
+        //   height={1114}
+        //   alt="Music"
+        //   className="hidden dark:block"
+        // /> *} */}
+
+      <div className="block">
+        <div className="">
           <div className="bg-background">
             <div className="grid lg:grid-cols-5">
               <Sidebar className="hidden lg:block" />
-              <div className="col-span-3 lg:col-span-4 lg:border-l">
+              <div className="col-span-3 lg:col-span-4 lg:border-l border-zinc-300">
                 <div className="h-full px-4 py-6 lg:px-8">
-                  <Tabs defaultValue="music" className="h-full space-y-6">
+                  <div className="h-full space-y-6">
                     <div className="space-between flex items-center">
-                      <TabsList>
-                        <TabsTrigger value="music" className="relative">
-                          Music
-                        </TabsTrigger>
-                        <TabsTrigger value="podcasts">Podcasts</TabsTrigger>
-                        <TabsTrigger value="live" disabled>
-                          Live
-                        </TabsTrigger>
-                      </TabsList>
-                      <div className="ml-auto mr-4">
+                      <div className="flex lg:hidden">
+                        category for screen below md
+                      </div>
+                      <div className="ml-auto mr-4 hidden sm:block">
                         <Button>
                           {/* <PlusCircledIcon className="mr-2 h-4 w-4" /> */}
-                          Add music
+                          Create Campaign
                         </Button>
                       </div>
                     </div>
-                    <TabsContent
-                      value="music"
-                      className="border-none p-0 outline-none"
-                    >
+                    <div className="border-none p-0 outline-none">
                       <div className="flex items-center justify-between">
                         <div className="space-y-1">
                           <h2 className="text-2xl font-semibold tracking-tight">
-                            Listen Now
+                            Donate Now
                           </h2>
                           <p className="text-sm text-muted-foreground">
-                            Top picks for you. Updated daily.
+                            Need help urgently.
                           </p>
                         </div>
                       </div>
-                      {/* <Separator className="my-4" /> */}
                       <div className="relative">
                         {/* <ScrollArea>
                           <div className="flex space-x-4 pb-4">
@@ -93,13 +105,13 @@ export default function Page() {
                       </div>
                       <div className="mt-6 space-y-1">
                         <h2 className="text-2xl font-semibold tracking-tight">
-                          Made for You
+                          Picked for You
                         </h2>
                         <p className="text-sm text-muted-foreground">
-                          Your personal playlists. Updated daily.
+                          Always help people in need.
                         </p>
                       </div>
-                      {/* <Separator className="my-4" /> */}
+
                       <div className="relative">
                         {/* <ScrollArea>
                           <div className="flex space-x-4 pb-4">
@@ -117,31 +129,15 @@ export default function Page() {
                           <ScrollBar orientation="horizontal" />
                         </ScrollArea> */}
                       </div>
-                    </TabsContent>
-                    <TabsContent
-                      value="podcasts"
-                      className="h-full flex-col border-none p-0 data-[state=active]:flex"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="space-y-1">
-                          <h2 className="text-2xl font-semibold tracking-tight">
-                            New Episodes
-                          </h2>
-                          <p className="text-sm text-muted-foreground">
-                            Your favorite podcasts. Updated daily.
-                          </p>
-                        </div>
-                      </div>
-                      {/* <Separator className="my-4" /> */}
-                      {/* <PodcastEmptyPlaceholder /> */}
-                    </TabsContent>
-                  </Tabs>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
     </>
   );
 }
