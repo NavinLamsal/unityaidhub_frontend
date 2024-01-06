@@ -27,7 +27,7 @@ export default function Page() {
               sizes=""
             />
           </div>
-          <div className="grid text-zinc-950">
+          <div className="grid text-zinc-950 dark:text-zinc-50">
             <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl  font-bold tracking-wider">
               Browse a Campaign
             </h1>
@@ -39,23 +39,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-    
     <div className="container">
-      {/* {* <Image
-        //   src="/examples/music-light.png"
-        //   width={1280}
-        //   height={1114}
-        //   alt="Music"
-        //   className="block dark:hidden"
-        // />
-        // <Image
-        //   src="/examples/music-dark.png"
-        //   width={1280}
-        //   height={1114}
-        //   alt="Music"
-        //   className="hidden dark:block"
-        // /> *} */}
-
       <div className="block">
         <div className="">
           <div className="bg-background">
