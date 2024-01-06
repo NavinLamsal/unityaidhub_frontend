@@ -95,12 +95,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-// {mobileMenu && (
-//   <MenuMobile
-//     showCatMenu={showCatMenu}
-//     setShowCatMenu={setShowCatMenu}
-//     setMobileMenu={setMobileMenu}
-//     categories={categories}
-//   />
-// )}
