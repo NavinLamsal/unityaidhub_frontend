@@ -47,7 +47,7 @@ const CampaingnContentform = () => {
       formData.append(image.name,image)
     })
     setUploading(true);
-    await fetch('http://localhost:8000/upload', {
+    await fetch('/api/upload', {
       method: 'POST',
       body: formData,
     });

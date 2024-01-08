@@ -1,4 +1,5 @@
 import CampaingnContentform from "@/components/CampaignForm/CampaingnContentform";
+import DocumentUpload from "@/components/CampaignForm/DocumentsForm";
 import Fundraisingfor from "@/components/CampaignForm/Fundraisingfor";
 import ChooseCategory from "@/components/CampaignForm/chooseCategory";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
@@ -28,6 +29,7 @@ const page = () => {
       <ScrollArea className="h-[90%] w-full md:place-self-start">
 			{/* <ChooseCategory /> */}
       {/* <Fundraisingfor/> */}
+      {/* <DocumentUpload/> */}
       <CampaingnContentform/>
       <ScrollBar orientation="vertical" />
       </ScrollArea>
