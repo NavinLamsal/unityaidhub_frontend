@@ -1,4 +1,3 @@
-// components/RichTextEditor.tsx
 import React, { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
@@ -14,12 +13,13 @@ const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 const RichTextEditor: React.FC<RichTextEditorProps> = ({ value, onChange, className, placeholder }) => {
   useEffect(() => {
-    const Quill = require('quill'); // Ensure Quill is loaded on the client side
-    // Additional configurations or adjustments if needed
+    const Quill = require('quill'); 
+   
   }, []);
 
   return (
     <ReactQuill
+    
       theme="snow"
       value={value}
       onChange={onChange}

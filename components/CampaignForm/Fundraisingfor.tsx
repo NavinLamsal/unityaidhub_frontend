@@ -1,5 +1,4 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import {
   Form,
   FormControl,
@@ -20,17 +19,12 @@ const formSchema = z.object({
   benificiary_type: z.string({
     required_error: "Please select a benificiary.",
   }),
-  // country: z.string({
-  //   required_error: "Please select a country.",
-  // }),
+
 });
 
 const Fundraisingfor = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    // defaultValues: {
-    //   benificiary_type: "",
-    // },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
@@ -119,7 +113,7 @@ const Fundraisingfor = () => {
             )}
           />
 
-          <Button type="submit">Next</Button>
+         
         </form>
       </Form>
     </div>

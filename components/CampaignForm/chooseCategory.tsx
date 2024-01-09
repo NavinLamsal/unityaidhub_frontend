@@ -66,11 +66,6 @@ const ChooseCategory = () => {
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
-        // defaultValues: {
-        //   category: "",
-        //   country:"",
-        //   target_fund:""
-        // },
       })
 
       function onSubmit(values: z.infer<typeof formSchema>) {
@@ -186,7 +181,6 @@ const ChooseCategory = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Next</Button>
       </form>
     </Form>
     </div>
