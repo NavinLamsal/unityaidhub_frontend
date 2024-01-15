@@ -10,11 +10,17 @@ const CustomFileSelector = (props:Props) => {
     {...props}
     type = "file"
     multiple
-    className={classNames({"file:bg-violet-50 file:text-violet-500 hover:file:bg-violet-100": true,
-    "file:rounded-lg file:rounded-tr-none file:rounded-br-none": true,
-    "file:px-4 file:py-2 file:mr-4 file:border-none": true,
-    "hover:cursor-pointer border rounded-lg text-gray-400": true,
-  })}
+    className={classNames({
+      'rounded-lg': true,
+      'rounded-tr-none': true,
+      'rounded-br-none': true,
+      'border-none': true,
+      'hover:cursor-pointer': true,
+      'border': true,
+      'text-gray-400': true,
+      
+    })}
+    style={{ margin: 0, padding:0}}
 
     />
   )
