@@ -1,36 +1,36 @@
 'use client'
 import React from "react";
 import { Input } from "../ui/input";
+import { PasswordInput } from "../ui/passwordInput";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import * as z from "zod";
+import { Button } from "../ui/button";
+import { Checkbox } from "../ui/checkbox";
+import { loginvalidation } from "@/lib/Validation/LoginValidation";
 
 
 interface IFormInput {
   email: string;
   password: string;
 }
-
-const formSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8)
-})
  
 const Login = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema)
+  const form = useForm<z.infer<typeof loginvalidation>>({
+    mode: "onBlur",
+    resolver: zodResolver(loginvalidation)
   })
 
-  function onSubmit(values:z.infer<typeof formSchema>) {
+  function onSubmit(values:z.infer<typeof loginvalidation>) {
     console.log(values)
   }
 
   return (
-    <div className="container max-w-xs">
-      <div className="flex flex-col">
+
+      <div className=" w-full">
         <Form {...form }>
-          <form onSubmit={form.handleSubmit(onSubmit)}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-3">
           <FormField
             name="email"
             control={form.control}
@@ -51,17 +51,12 @@ const Login = () => {
                   type="email"
                   id="email"
                   placeholder="Email Address"
-                  // aria-invalid={errors.email ? "true" : "false"}
+                 
                   {...field}
                 />
                   </FormControl>
                 </FormItem>
                 <FormMessage />
-                {/* {errors.email && (
-                  <span role="alert" style={{ color: "red" }}>
-                    {errors.email.message}
-                  </span>
-                )} */}
               </>
             )}
           />
@@ -74,33 +69,30 @@ const Login = () => {
             render={({ field }) => (
               <>
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>Password</FormLabel>
                   <FormControl>
-                <Input
-                  type="password"
+                <PasswordInput
                   id="password"
                   placeholder="1 Uppercase 1 charater 1 Numeric"
-                  // aria-invalid={errors.email ? "true" : "false"}
+                
                   {...field}
                 />
                   </FormControl>
                 </FormItem>
                 <FormMessage />
-                {/* {errors.email && (
-                  <span role="alert" style={{ color: "red" }}>
-                    {errors.email.message}
-                  </span>
-                )} */}
+               
               </>
             )}
           />
+          
+          <Button variant="default_outline" type="submit">Sign In</Button>
 
           </form>
     
 
         </Form>
       </div>
-    </div>
+
   );
 };
 
