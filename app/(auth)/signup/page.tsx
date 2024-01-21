@@ -1,22 +1,46 @@
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogOverlay, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import React from "react";
+import { FaFacebookF, FaGoogle } from "react-icons/fa6";
+import Image from "next/image";
+import Link from "next/link";
+import RegisterForm from "@/components/Form/RegisterForm";
 
 const Page = () => {
   return (
+    <>
     <div className="w-full h-screen overflow-hidden">
-    <div className={`fixed top-0 left-0 w-full h-screen  text-white`}>
-
-    <div className="absolute top-0 ">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path
-          fill="#44f249"
-          fill-opacity="1"
-          d="M0,224L40,202.7C80,181,160,139,240,106.7C320,75,400,53,480,64C560,75,640,117,720,144C800,171,880,181,960,176C1040,171,1120,149,1200,128C1280,107,1360,85,1400,74.7L1440,64L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"
-        ></path>
-      </svg>
-      </div>
-    </div>
+     <Image src={`/hands.jpg`} alt={'hands'} width={1024} height={1024} quality={100} className="h-full w-full object-cover"/> 
 
     </div>
+    <Dialog open={true} > 
+          <DialogContent className="sm:max-w-sm grid gap-4">
+            <DialogHeader>
+              <DialogTitle className="text-Primary text-xl w-full text-center">
+              <Link href={'/'}>
+                <Image src={`/Logo/portrait.png`} alt={"unity aid hub logo"} width={100} height={100} quality={100} className="h-16 w-16 mx-auto block dark:hidden"/>
+                <Image src={`/Logo/portraitwhite.png`} alt={"unity aid hub logo"} width={100} height={100} quality={100} className="h-16 w-16 mx-auto hidden dark:block"/>
+               
+               </Link>
+              Create an account
+              </DialogTitle>
+            </DialogHeader>
+            
+
+            <RegisterForm/>
+            <div className="justify-center mx-auto">
+              <p>Already have an Account ? <Link href={'/signin'}><Button variant="link" className="px-0 m-0 text-Primary">Sign in</Button></Link></p>
+             
+            </div>
+          </DialogContent>
+
+         
+    </Dialog>
+    
+    </>
+
+
+
   );
 };
 

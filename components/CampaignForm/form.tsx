@@ -107,7 +107,7 @@ export default function PostForm({ countries }: { countries: string[] }) {
     }
 
     return (
-        <section className='md:absolute inset-0 flex flex-col justify-between md:p-24 p-4'>
+        <section className='md:absolute inset-0 flex flex-col justify-between md:p-24 md:px-4'>
             {/* steps */}
             <nav aria-label='Progress'>
                 <ol role='list' className='space-y-4 hidden md:flex md:space-x-8 md:space-y-0'>
@@ -144,7 +144,7 @@ export default function PostForm({ countries }: { countries: string[] }) {
                         </li>
                     ))}
                 </ol>
-                <div className="flex md:hidden  items-center justify-between bg-gray-200 py-4 rounded-lg">
+                <div className="flex md:hidden  items-center justify-between bg-gray-200  pt-1 rounded-lg">
                     {steps.map((step, index) => (
                         <div className={`${currentStep === index ? 'flex gap-2':'hidden'} w-full gap-1 items-center 
                         ${submittedSteps.includes(index)? 'border-Primary':'border-zinc-950 dark:border-zinc-50'}  py-2 pl-4 transition-colors border-b-4 pb-4 bg-zinc-800 `} key={step.id}>
@@ -160,7 +160,7 @@ export default function PostForm({ countries }: { countries: string[] }) {
 
             {/* Form */}
             <Form {...form} >
-                <form className='mt-5 py-4 md:py-12 max-w-lg mx-auto' onSubmit={form.handleSubmit(processForm)}>
+                <form className=' px-4 mt-5 py-4 md:py-8 max-w-lg md:mx-auto' onSubmit={form.handleSubmit(processForm)}>
                     {currentStep === 0 && (
                         <motion.div
                             initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
@@ -411,7 +411,7 @@ export default function PostForm({ countries }: { countries: string[] }) {
                                         <FormDescription className="text-sm">
                                             Describe about benificiary for your campaign
                                         </FormDescription>
-                                        <RichTextEditor {...field} className="bg-white dark:bg-zinc-950 rounded-md h-40" placeholder="Explain about benificiary..." />
+                                        <RichTextEditor {...field} className="bg-white dark:bg-zinc-950 rounded-md " placeholder="Explain about benificiary..." />
                                         <FormMessage />
                                     </FormItem>
                                 )}
@@ -437,7 +437,7 @@ export default function PostForm({ countries }: { countries: string[] }) {
                                 control={form.control}
                                 name="document"
                                 render={({ field }) => (
-                                    <FormItem className='flex flex-col gap-2 mb-3'>
+                                    <FormItem className='flex flex-col gap-2 mb-3 '>
                                         <FormLabel className="">Upload the Documents</FormLabel>
                                         <FormDescription className="">
                                             Choose a suitable Title for your campaign
@@ -507,7 +507,7 @@ export default function PostForm({ countries }: { countries: string[] }) {
             </Form>
 
             {/* Navigation */}
-            <div className='mt-8 pt-5'>
+            <div className='my-3 px-4'>
                 <div className='flex justify-between'>
                     <Button
                         type='button'
@@ -536,6 +536,7 @@ export default function PostForm({ countries }: { countries: string[] }) {
                         disabled={currentStep === steps.length - 1}
 
                     >
+                        Next
                         <svg
                             xmlns='http://www.w3.org/2000/svg'
                             fill='none'
@@ -550,6 +551,7 @@ export default function PostForm({ countries }: { countries: string[] }) {
                                 d='M8.25 4.5l7.5 7.5-7.5 7.5'
                             />
                         </svg>
+                        
                     </Button>
                 </div>
             </div>

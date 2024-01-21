@@ -48,20 +48,20 @@ function CampaignForm({ countries }: { countries: string[] }) {
     }
 
     async function Handlenext(fieldsToValidate: string[]) {
-      
+
         fieldsToValidate.forEach(fieldName => {
-          form.trigger(fieldName as keyof z.infer<typeof createPostvalidation> );
+            form.trigger(fieldName as keyof z.infer<typeof createPostvalidation>);
         });
-      
-      
+
+
         const hasErrors = fieldsToValidate.some(fieldName => form.formState.errors[fieldName as keyof z.infer<typeof createPostvalidation>] !== undefined);
         console.log(hasErrors)
 
         // If there are no errors, increment to the next step
         if (!hasErrors && currentStep < 4) {
-          setCurrentStep(currentStep + 1);
+            setCurrentStep(currentStep + 1);
         }
-      }
+    }
 
     async function Handleprev() {
 
@@ -187,7 +187,7 @@ function CampaignForm({ countries }: { countries: string[] }) {
                         <div className="md:pb-14 pb-2 px-4 pt-2 md:h-[20%] w-full border-t-2 border-Primary dark:border-zinc-50  bg-white dark:bg-zinc-950 rounded-t-3xl">
                             <div className="flex w-full justify-end mb-2 mt-2 md:mb-5">
                                 {/* <Button variant="outline" onClick={Handleprev}>Previous</Button> */}
-                                <Button variant="default_outline" onClick={()=>Handlenext(['category', 'country', 'target_fund'])} >Next</Button>
+                                <Button variant="default_outline" onClick={() => Handlenext(['category', 'country', 'target_fund'])} >Next</Button>
                             </div>
                         </div>
                     </div>
@@ -277,7 +277,7 @@ function CampaignForm({ countries }: { countries: string[] }) {
                         <div className="md:pb-14 pb-2 px-4 pt-2 md:h-[20%] w-full border-t-2 border-Primary dark:border-zinc-50  bg-white dark:bg-zinc-950 rounded-t-3xl">
                             <div className="flex w-full justify-end mb-2 mt-2 md:mb-5">
                                 <Button variant="outline" onClick={Handleprev}>Previous</Button>
-                                <Button variant="default_outline" onClick={()=>Handlenext(['benificiary_type'])} >Next</Button>
+                                <Button variant="default_outline" onClick={() => Handlenext(['benificiary_type'])} >Next</Button>
                             </div>
                         </div>
                     </div>
@@ -319,7 +319,7 @@ function CampaignForm({ countries }: { countries: string[] }) {
                         <div className="md:pb-14 pb-2 px-4 pt-2 md:h-[20%] w-full border-t-2 border-Primary dark:border-zinc-50  bg-white dark:bg-zinc-950 rounded-t-3xl">
                             <div className="flex w-full justify-end mb-2 mt-2 md:mb-5">
                                 <Button variant="outline" onClick={Handleprev}>Previous</Button>
-                                <Button variant="default_outline" onClick={()=>Handlenext(['postTitle','postDescription'])} >Next</Button>
+                                <Button variant="default_outline" onClick={() => Handlenext(['postTitle', 'postDescription'])} >Next</Button>
                             </div>
                         </div>
                     </div>
