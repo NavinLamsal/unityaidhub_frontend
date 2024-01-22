@@ -66,6 +66,7 @@ const Navbar = () => {
             />
         </Link>
         <Menu showCatMenu={showCatMenu} setShowCatMenu={setShowCatMenu} categories={categories} />
+        
         <div className="flex gap-4 items-center">
           <div className="hidden min-[900px]:inline-block">
         <DropdownMenu>
@@ -82,6 +83,7 @@ const Navbar = () => {
         </DropdownMenu>
           </div>
         <DropDownUser/>
+        
         <MobileMenu/>
          
           
