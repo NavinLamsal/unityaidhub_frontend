@@ -2,10 +2,12 @@ import React from "react";
 import Image from "next/image";
 import { FaLocationDot } from "react-icons/fa6";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 const FundraisingCard = () => {
   return (
-    <div className="bg-zinc-50 max-w-[300px] flex flex-col flex-shrink m-4 pb-2 dark:bg-zinc-700 cursor-pointer rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-900 shadow-lg drop-shadow-lg  ">
+  
+    <Link href={'/browse-a-campaign/detailpage'} className="bg-zinc-50 max-w-[300px] flex flex-col flex-shrink m-4 pb-2 dark:bg-zinc-700 cursor-pointer rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-900 shadow-lg drop-shadow-lg  ">
       <div className="relative rounded-t-md overflow-hidden">
         <Image
           src={"/samplecardimage.jpg"}
@@ -61,7 +63,7 @@ const FundraisingCard = () => {
           Share
         </Button>
       </div>
-    </div>
+    </Link>
   );
 };
 
