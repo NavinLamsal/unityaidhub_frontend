@@ -10,6 +10,9 @@ export const createPostvalidation = z.object({
   target_fund: z.string({
     required_error: "Invalid Fund.",
   }),
+  post_type: z.string({
+    required_error: "Select the Type for the Campaign",
+  }),
   benificiary_type: z.string({
     required_error: "Please select a benificiary.",
   }),
