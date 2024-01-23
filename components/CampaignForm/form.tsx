@@ -28,6 +28,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/card-radio-group";
 import { Check, CheckCircle2, CheckIcon, ChevronsUpDown } from "lucide-react";
 import CustomFileSelector from "@/components/CampaignForm/CustomFileSelector";
 import { Checkbox } from '../ui/checkbox';
+import { CurrencyInput } from '../ui/currencyInput';
 
 
 type Inputs = z.infer<typeof createPostvalidation>
@@ -36,7 +37,7 @@ const steps = [
     {
         id: '1',
         name: 'Category & Funding Details',
-        fields: ['category', 'country', 'target_fund']
+        fields: ['category', 'country', 'target_fund', 'post_type']
     },
     {
         id: '2',
@@ -146,8 +147,8 @@ export default function PostForm({ countries }: { countries: string[] }) {
                 </ol>
                 <div className="flex md:hidden  items-center justify-between bg-gray-200  pt-1 rounded-lg">
                     {steps.map((step, index) => (
-                        <div className={`${currentStep === index ? 'flex gap-2':'hidden'} w-full gap-1 items-center 
-                        ${submittedSteps.includes(index)? 'border-Primary':'border-zinc-950 dark:border-zinc-50'}  py-2 pl-4 transition-colors border-b-4 pb-4 bg-zinc-800 `} key={step.id}>
+                        <div className={`${currentStep === index ? 'flex gap-2' : 'hidden'} w-full gap-1 items-center 
+                        ${submittedSteps.includes(index) ? 'border-Primary' : 'border-zinc-950 dark:border-zinc-50'}  py-2 pl-4 transition-colors border-b-4 pb-4 bg-zinc-800 `} key={step.id}>
                             <Button variant={'outline'} className='disabled rounded-full border-Primary text-Primary dark:border-Primary hover:bg-transparent  hover:text-Primary'>
                                 {step.id} of {steps.length}
                             </Button>
@@ -160,124 +161,159 @@ export default function PostForm({ countries }: { countries: string[] }) {
 
             {/* Form */}
             <Form {...form} >
-                <form className=' px-4 mt-5 py-4 md:py-8 max-w-lg md:mx-auto' onSubmit={form.handleSubmit(processForm)}>
+                <form className=' px-4 mt-5 py-4 md:py-0 md:mt-0  md:mx-auto' onSubmit={form.handleSubmit(processForm)}>
                     {currentStep === 0 && (
                         <motion.div
-                            initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
+                            initial={{ x: 0, opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
                             transition={{ duration: 0.3, ease: 'easeInOut' }}
-                            
+
                         >
-                            <h2 className='text-base font-semibold leading-7 text-gray-900 hidden md:block'>
+                            {/* <h2 className='text-base font-semibold leading-7 text-gray-900 hidden md:block'>
                                 Category & Funding Details
                             </h2>
                             <p className='mt-1 text-sm leading-6 text-gray-600 hidden md:block'>
                                 Choose your campaign category and other details.
-                            </p>
-                            <FormField
-                                control={form.control}
-                                name="category"
-                                render={({ field }) => (
-                                    <FormItem className='flex flex-col gap-2 mb-3'>
-                                        <FormLabel>Select a Category</FormLabel>
-                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                            <FormControl>
-                                                <SelectTrigger>
-                                                    <SelectValue placeholder="Choose Category" />
-                                                </SelectTrigger>
-                                            </FormControl>
-                                            <SelectContent>
-                                                {categories.map((cat) => (
-                                                    <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
-                                                ))}
+                            </p> */}
+                            <div className='grid md:grid-cols-2 gap-3'>
 
-                                            </SelectContent>
-                                        </Select>
-                                        <FormDescription>
-                                            Choose a suitable category for your campaign
-                                        </FormDescription>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                control={form.control}
-                                name="country"
-                                render={({ field }) => (
-                                    <FormItem className="flex flex-col gap-2 mb-3">
-                                        <FormLabel >Country</FormLabel>
-                                        <Popover>
-                                            <PopoverTrigger asChild className="w-full ">
+                                <FormField
+                                    control={form.control}
+                                    name="category"
+                                    render={({ field }) => (
+                                        <FormItem className='flex flex-col gap-2 mb-3'>
+                                            <FormLabel>Select a Category</FormLabel>
+                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                 <FormControl>
-                                                    <Button
-                                                        variant="outline"
-                                                        role="combobox"
-                                                        className={cn(
-                                                            "justify-between w-full border-zinc-950 dark:border-zinc-50",
-                                                            !field.value && "text-muted-foreground"
-                                                        )}
-                                                    >
-                                                        {field.value
-                                                            ? countries?.find(
-                                                                (co: any) => co === field.value
-                                                            )
-                                                            : "Select Country"}
-                                                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                                    </Button>
+                                                    <SelectTrigger>
+                                                        <SelectValue placeholder="Choose Category" />
+                                                    </SelectTrigger>
                                                 </FormControl>
-                                            </PopoverTrigger>
-                                            <PopoverContent className="p-0 ">
-                                                <ScrollArea className="h-72 ">
-                                                    <Command >
-                                                        <CommandInput placeholder="Select Country" />
-                                                        <CommandEmpty>Country not found.</CommandEmpty>
-                                                        <CommandGroup>
-                                                            {countries?.map((co: any) => (
-                                                                <CommandItem
-                                                                    value={co}
-                                                                    key={co}
-                                                                    onSelect={() => {
-                                                                        form.setValue("country", co)
-                                                                    }}
-                                                                >
-                                                                    <Check
-                                                                        className={cn(
-                                                                            "mr-2 h-4 w-4",
-                                                                            co === field.value
-                                                                                ? "opacity-100"
-                                                                                : "opacity-0"
-                                                                        )}
-                                                                    />
-                                                                    {co}
-                                                                </CommandItem>
-                                                            ))}
-                                                        </CommandGroup>
-                                                    </Command>
+                                                <SelectContent side='bottom' className='max-h-48'>
+                                                    {categories.map((cat) => (
+                                                        <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
+                                                    ))}
 
-                                                </ScrollArea>
-                                            </PopoverContent>
-                                        </Popover>
-                                        <FormDescription >
-                                            This country will be used to dispaly where benificiary belongs to
-                                        </FormDescription>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                control={form.control}
-                                name="target_fund"
-                                render={({ field }) => (
-                                    <FormItem className="flex flex-col gap-2 mb-3">
-                                        <FormLabel >Target Funding</FormLabel>
-                                        <Input type="text" {...field} />
-                                        <FormDescription >
-                                            How much do you expect to raise
-                                        </FormDescription>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
+                                                </SelectContent>
+                                            </Select>
+                                            <FormDescription>
+                                                Choose a suitable category for your campaign
+                                            </FormDescription>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="country"
+                                    render={({ field }) => (
+                                        <FormItem className="flex flex-col gap-2 mb-3">
+                                            <FormLabel >Country</FormLabel>
+                                            <Popover>
+                                                <PopoverTrigger asChild className="w-full ">
+                                                    <FormControl>
+                                                        <Button
+                                                            variant="outline"
+                                                            role="combobox"
+                                                            className={cn(
+                                                                "justify-between w-full border-zinc-950 dark:border-zinc-50",
+                                                                !field.value && "text-muted-foreground"
+                                                            )}
+                                                        >
+                                                            {field.value
+                                                                ? countries?.find(
+                                                                    (co: any) => co === field.value
+                                                                )
+                                                                : "Select Country"}
+                                                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                                        </Button>
+                                                    </FormControl>
+                                                </PopoverTrigger>
+                                                <PopoverContent align='end' className="p-1 w-full max-h-60">
+                                                    <ScrollArea className=" max-h-56 ">
+                                                        <Command >
+                                                            <CommandInput placeholder="Select Country" />
+                                                            <CommandEmpty>Country not found.</CommandEmpty>
+                                                            <CommandGroup>
+                                                                {countries?.map((co: any) => (
+                                                                    <CommandItem
+                                                                        value={co}
+                                                                        key={co}
+                                                                        onSelect={() => {
+                                                                            form.setValue("country", co)
+                                                                        }}
+                                                                    >
+                                                                        <Check
+                                                                            className={cn(
+                                                                                "mr-2 h-4 w-4",
+                                                                                co === field.value
+                                                                                    ? "opacity-100"
+                                                                                    : "opacity-0"
+                                                                            )}
+                                                                        />
+                                                                        {co}
+                                                                    </CommandItem>
+                                                                ))}
+                                                            </CommandGroup>
+                                                        </Command>
+
+                                                    </ScrollArea>
+                                                </PopoverContent>
+                                            </Popover>
+                                            <FormDescription >
+                                                This country will be used to dispaly where benificiary belongs to
+                                            </FormDescription>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="target_fund"
+                                    defaultValue={'0'}
+                                    render={({ field }) => (
+                                        <FormItem className="flex flex-col gap-2 mb-3">
+                                            <FormLabel >Target Funding</FormLabel>
+
+                                            <CurrencyInput
+                                                {...field}
+                                                currencyCode="NPR"
+                                                onInputChange={(value) => form.setValue('target_fund', value)}
+                                            />
+
+                                            {/* <Input type="text" {...field} /> */}
+                                            <FormDescription >
+                                                How much do you expect to raise
+                                            </FormDescription>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="post_type"
+                                    render={({ field }) => (
+                                        <FormItem className="flex flex-col gap-2 mb-3">
+                                            <FormLabel >Post Type</FormLabel>
+                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                <FormControl>
+                                                    <SelectTrigger>
+                                                        <SelectValue placeholder="Post Type" />
+                                                    </SelectTrigger>
+                                                </FormControl>
+                                                <SelectContent side='bottom' className='max-h-48'>
+                                                    <SelectItem value={"BASIC"}>Basic</SelectItem>
+                                                    <SelectItem value={"URGENT"}>Urgent</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                            <FormDescription >
+                                                Determine the type for your Campaign
+                                            </FormDescription>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
                         </motion.div>
                     )}
 
@@ -287,12 +323,12 @@ export default function PostForm({ countries }: { countries: string[] }) {
                             animate={{ x: 0, opacity: 1 }}
                             transition={{ duration: 0.3, ease: 'easeInOut' }}
                         >
-                            <h2 className='text-base font-semibold leading-7 text-gray-900 hidden md:block'>
+                            {/* <h2 className='text-base font-semibold leading-7 text-gray-900 hidden md:block'>
                                 Benificiary
                             </h2>
                             <p className='mt-1 text-sm leading-6 text-gray-600 hidden md:block'>
                                 Please selected the correct benificiary type.
-                            </p>
+                            </p> */}
 
                             <FormField
                                 control={form.control}
@@ -381,12 +417,15 @@ export default function PostForm({ countries }: { countries: string[] }) {
                             animate={{ x: 0, opacity: 1 }}
                             transition={{ duration: 0.3, ease: 'easeInOut' }}
                         >
-                            <h2 className='text-base font-semibold leading-7 text-gray-900 hidden md:block'>
+                            {/* <h2 className='text-base font-semibold leading-7 text-gray-900 hidden md:block'>
                                 Campaign Details
                             </h2>
                             <p className='mt-1 text-sm leading-6 text-gray-600 hidden md:block'>
                                 Fill out the campaign details.
-                            </p>
+                            </p> */}
+                            <div>
+                                
+                            </div>
 
                             <FormField
                                 control={form.control}
@@ -465,33 +504,33 @@ export default function PostForm({ countries }: { countries: string[] }) {
 
                     {currentStep === 4 && (
                         <motion.div
-                        initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        
-                    >
-                        <h2 className='text-base font-semibold leading-7 text-gray-900 hidden md:block'>
-                            Terms and Conditions
-                        </h2>
-                        <p className='mt-1 text-sm leading-6 text-gray-600 hidden md:block'>
-                            
-                        </p>
-                        <FormField
-                            control={form.control}
-                            name="document"
-                            render={({ field }) => (
-                                <FormItem className="flex flex-row items-center gap-2 mb-3">
-                                    <Checkbox/>
-                                    <FormLabel >I hereby agrees all the terms and Conditions</FormLabel>
-                                   
-                                    <FormDescription >
-                                       
-                                    </FormDescription>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                    </motion.div>
+                            initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            transition={{ duration: 0.3, ease: 'easeInOut' }}
+
+                        >
+                            <h2 className='text-base font-semibold leading-7 text-gray-900 hidden md:block'>
+                                Terms and Conditions
+                            </h2>
+                            <p className='mt-1 text-sm leading-6 text-gray-600 hidden md:block'>
+
+                            </p>
+                            <FormField
+                                control={form.control}
+                                name="document"
+                                render={({ field }) => (
+                                    <FormItem className="flex flex-row items-center gap-2 mb-3">
+                                        <Checkbox />
+                                        <FormLabel >I hereby agrees all the terms and Conditions</FormLabel>
+
+                                        <FormDescription >
+
+                                        </FormDescription>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </motion.div>
                     )}
                     {currentStep === 4 && (
                         <>
@@ -551,7 +590,7 @@ export default function PostForm({ countries }: { countries: string[] }) {
                                 d='M8.25 4.5l7.5 7.5-7.5 7.5'
                             />
                         </svg>
-                        
+
                     </Button>
                 </div>
             </div>
