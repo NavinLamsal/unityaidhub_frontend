@@ -171,6 +171,63 @@
           "primaryicons":"/category/primary/other.png",
           "id":"209"
         }
+      ],
+      "blogs":[
+        {
+          "id": 1,
+          "blog_title": "The Impact of Mindfulness on Mental Health",
+          "blogDescription": "<p>In a fast-paced world, where stress and anxiety often take center stage, the practice of mindfulness emerges as a beacon of serenity. This blog explores the profound impact of mindfulness on mental well-being.</p> <p> From understanding the basics to delving into advanced techniques, we navigate the journey toward a calmer, more centered self. Enhanced with the interactive capabilities of React Quill, we make mindfulness not just a topic to read about but an experience to engage in.</p>",
+          "image": "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg",
+          "authorName": "John Doe",
+          "category": "health",
+          "updatedAt": "2024-01-25T12:30:45Z",
+          "createdAt": "2024-01-20T08:15:00Z"
+        },
+        
+        {
+          "id": 2,
+          "blog_title": "Revolutionizing Education: The Rise of Online Learning",
+          "blogDescription": "<p>The traditional classroom has expanded its walls into the digital realm, ushering in an era of unparalleled educational accessibility. Join us on a journey as we explore the transformative power of online learning.</p><p>From the convenience of virtual classrooms to the democratization of knowledge, this blog delves into the key factors reshaping the educational landscape. Discover how online learning is revolutionizing the way we acquire knowledge and skills.</p>",
+          "image": "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg",
+          "authorName": "Jane Smith",
+          "category": "education",
+          "updatedAt": "2024-01-25T09:45:20Z",
+          "createdAt": "2024-01-15T14:00:00Z"
+        },
+        
+        {
+          "id": 3,
+          "blog_title": "Nurturing Young Minds: The Importance of Early Childhood Education",
+          "blogDescription": "<p>The early years of a child's life lay the groundwork for future development. This blog emphasizes the critical importance of early childhood education in providing a solid foundation for young minds.</p><p>From the impact of early learning experiences to the role of caregivers, we explore the factors that contribute to a child's holistic growth. Join us in understanding why investing in the early years is an investment in the future.</p> ",
+          "image": "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg",
+          "authorName": "Alice Johnson",
+          "category": "children",
+          "updatedAt": "2024-01-24T18:10:30Z",
+          "createdAt": "2024-01-18T10:45:00Z"
+        },
+        
+        {
+          "id": 4,
+          "blog_title": "Startup Success Stories: Lessons from Tech Innovators",
+          "blogDescription": "<p>Behind every successful startup is a story of innovation, perseverance, and strategic decision-making. In this blog, we dive into the success stories of tech innovators who turned their ideas into thriving businesses.</p>   <p>From overcoming challenges to seizing opportunities, we extract valuable lessons for aspiring entrepreneurs. Whether you're a startup enthusiast or a seasoned professional, this exploration into the world of tech entrepreneurship is sure to inspire.</p> ",
+          "image": "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg",
+          "authorName": "Robert Anderson",
+          "category": "startups",
+          "updatedAt": "2024-01-23T15:20:10Z",
+          "createdAt": "2024-01-16T09:30:00Z"
+        },
+        
+        {
+          "id": 5,
+          "blog_title": "The Science Behind Healthy Living",
+          "blogDescription": "<p>Wellness isn't just a lifestyle; it's a science. This blog takes you on a journey into the scientific principles that underpin a healthy and fulfilling life.</p><p>From the role of nutrition in cellular health to the physiological benefits of exercise, we unravel the mysteries of well-being. Join us in exploring how a deeper understanding of the science behind healthy living can empower you to make informed choices for a vibrant and balanced life.</p>",
+          "image": "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg",
+          "authorName": "Emily Taylor",
+          "category": "health",
+          "updatedAt": "2024-01-22T11:55:55Z",
+          "createdAt": "2024-01-14T13:20:00Z"
+        }
+        
       ]
       
 }
