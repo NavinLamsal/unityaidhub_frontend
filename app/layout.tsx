@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Header/navbar";
 import Footer from "@/components/Footer/Footer";
 import { ThemeProvider } from "@/components/HOC/theme-provider";
+import Provider from "@/components/HOC/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,7 +28,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Provider>
           {children}
+          </Provider>
         </ThemeProvider>
       </body>
     </html>

@@ -13,6 +13,7 @@ import { FaFacebookF, FaGoogle } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { Checkbox } from "../ui/checkbox";
 import Link from "next/link";
+import { RegisterAction } from "../action/registerAction";
 
 
 interface IFormInput {
@@ -35,8 +36,16 @@ const RegisterForm = () => {
         resolver: zodResolver(registervalidation)
     })
 
-    function onSubmit(values: z.infer<typeof registervalidation>) {
-        console.log(values)
+    async function onSubmit(values: z.infer<typeof registervalidation>) {
+        const formData = new FormData()
+        formData.append("name", values.name);
+        formData.append("phoneNumber", values.phoneNumber);
+        formData.append("address", values.address);
+        formData.append("email", values.email);
+        formData.append("password", values.password)
+        const res = await RegisterAction(formData);
+        if (res?.error) setErrorMessage(res.error);
+
     }
 
     type FieldName = keyof z.infer<typeof registervalidation>
@@ -329,3 +338,7 @@ const RegisterForm = () => {
 };
 
 export default RegisterForm;
+function setErrorMessage(error: string) {
+    throw new Error("Function not implemented.");
+}
+

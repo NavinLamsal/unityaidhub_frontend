@@ -29,6 +29,7 @@ import { Check, CheckCircle2, CheckIcon, ChevronsUpDown } from "lucide-react";
 import CustomFileSelector from "@/components/CampaignForm/CustomFileSelector";
 import { Checkbox } from '../ui/checkbox';
 import { CurrencyInput } from '../ui/currencyInput';
+import { CreatePostAction } from '../action/createPostAction';
 
 
 type Inputs = z.infer<typeof createPostvalidation>
@@ -77,8 +78,17 @@ export default function PostForm({ countries }: { countries: string[] }) {
         resolver: zodResolver(createPostvalidation),
     });
 
-    const processForm: SubmitHandler<Inputs> = data => {
-        console.log(data)
+    const processForm: SubmitHandler<Inputs> = async(data) => {
+        const formData = new FormData();
+        formData.append("postTitle", data.postTitle)
+        formData.append("post_type", data.post_type)
+        formData.append("category", data.category)
+        formData.append("benificiary_type", data.benificiary_type)
+        formData.append("country", data.country)
+        formData.append("target_fund", data.target_fund)
+        formData.append("postDescription", data.postDescription)
+        formData.append("document", data.document)
+        await CreatePostAction(formData) 
         form.reset()
     }
 

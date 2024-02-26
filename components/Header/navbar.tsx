@@ -9,7 +9,7 @@ import DropDownUser from "./DropDownUser";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { useTheme } from "next-themes";
 import MobileMenu from "./MobileMenu";
-
+import UserDropdown from './userDropdown';
 
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -18,6 +18,7 @@ const Navbar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [categories,setCategories] =useState(null);
   const { setTheme } = useTheme()
+  
 
 //   const {cartItems}= useSelector((state => state.cart))
 
@@ -83,6 +84,7 @@ const Navbar = () => {
         </DropdownMenu>
           </div>
         <DropDownUser/>
+        {/* <UserDropdown/> */}
         
         <MobileMenu/>
          

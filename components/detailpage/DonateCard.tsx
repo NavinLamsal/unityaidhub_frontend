@@ -1,6 +1,8 @@
 import { Button } from "../ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { LiaDonateSolid } from "react-icons/lia";
+import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "../ui/drawer";
+import Donation from "./donation";
 
 
 const DonateCard = () => {
@@ -17,29 +19,40 @@ const DonateCard = () => {
             </CardHeader>
             <CardContent className="flex flex-col gap-2">
                 <div className="grid grid-cols-2 justify-between">
-                <div className="flex flex-1  items-center">
-                    <div className="w-1/5">
-                        <LiaDonateSolid size={24} />
+                    <div className="flex flex-1  items-center">
+                        <div className="w-1/5">
+                            <LiaDonateSolid size={24} />
+                        </div>
+                        <div className="w-3/5">
+                            <div>Leah Vieri</div>
+                            <Button variant="link" className="px-0.5 text-black/60">Campaigner</Button>
+                        </div>
                     </div>
-                    <div className="w-3/5">
-                        <div>Leah Vieri</div>
-                        <Button variant="link" className="px-0.5 text-black/60">Campaigner</Button>
+                    <div className="flex flex-1  items-center">
+                        <div className="w-1/5">
+                            <LiaDonateSolid size={24} />
+                        </div>
+                        <div className="w-4/5">
+                            <div>Leah Vieri</div>
+                            <Button variant="link" className="px-0.5 text-black/60">Beneficiary</Button>
+                        </div>
                     </div>
-                </div>
-                <div className="flex flex-1  items-center">
-                    <div className="w-1/5">
-                        <LiaDonateSolid size={24} />
-                    </div>
-                    <div className="w-4/5">
-                        <div>Leah Vieri</div>
-                        <Button variant="link" className="px-0.5 text-black/60">Beneficiary</Button>
-                    </div>
-                </div>
-                    
+
                 </div>
                 <div className=" grid w-full gap-2">
-                    <Button variant="default" className="bg-Primary/80 hover:bg-Primary/50">Share</Button>
-                    <Button variant="default">Donate</Button>
+                    
+                    <Drawer>
+                        <DrawerTrigger><Button variant="default" className="bg-Primary/80 hover:bg-Primary/50 w-full">Share</Button></DrawerTrigger>
+                        <DrawerContent className="p-4 mt-10">
+                           <div>share links</div>
+                        </DrawerContent>
+                    </Drawer>
+                    <Drawer>
+                        <DrawerTrigger><Button variant="default" className="w-full">Donate</Button></DrawerTrigger>
+                        <DrawerContent className="p-4 mt-10">
+                           <Donation/>
+                        </DrawerContent>
+                    </Drawer>
                 </div>
 
                 {/* top contriutor  */}
@@ -74,12 +87,24 @@ const DonateCard = () => {
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-2 justify-between">
-                <Button variant="outline">See All</Button>
-                <Button variant="outline">Top contributors</Button>
-               
                     
+                    
+                    <Drawer>
+                        <DrawerTrigger><Button variant="outline" className="w-full">See All</Button></DrawerTrigger>
+                        <DrawerContent className="p-4 mt-10">
+                           All contributors
+                        </DrawerContent>
+                    </Drawer>
+                    <Drawer>
+                        <DrawerTrigger><Button variant="outline" className="w-full">Top contributors</Button></DrawerTrigger>
+                        <DrawerContent className="p-4 mt-10">
+                           top contributor
+                        </DrawerContent>
+                    </Drawer>
+
+
                 </div>
-                
+
             </CardContent>
         </Card>
     )

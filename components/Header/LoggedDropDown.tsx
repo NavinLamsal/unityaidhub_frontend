@@ -10,8 +10,11 @@ import { Button } from "../ui/button";
 
 
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { auth } from "@/auth";
 
-const DropDownUser = () => {
+const LoggedDropDown = async() => {
+  const session = await auth();
   
   return (
     
@@ -23,8 +26,8 @@ const DropDownUser = () => {
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-      <DropdownMenuItem><Link href='/signin'className="w-full">Sign In</Link> </DropdownMenuItem>
-      <DropdownMenuItem><Link href='/signin' className="w-full">Sign Up</Link></DropdownMenuItem>
+      <DropdownMenuItem><Link href='/signin'className="w-full">Dashboard</Link> </DropdownMenuItem>
+      <DropdownMenuItem><Link href='/signin' className="w-full">Sign Out</Link></DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
 
@@ -32,4 +35,4 @@ const DropDownUser = () => {
   );
 };
 
-export default DropDownUser;
+export default LoggedDropDown;
