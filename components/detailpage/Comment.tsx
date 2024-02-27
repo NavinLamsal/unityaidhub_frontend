@@ -1,14 +1,21 @@
-import { Heart, MessageCircle } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 import Image from "next/image";
 import { comments } from "@/db.json";
 import { extractInitials } from "@/lib/reuseableFunctions/Extractinitals";
+import { Card, CardContent, CardHeader } from "../ui/card";
 
 const Comments = () => {
+
+
+  async function submitAnswer() {
+    console.log("reply function called")
+  }
+
   return (
-    <>
+    <div className="grid gap-2">
       {comments.map((comment) => (
-        <div key={comment.id}>
-          <div className="flex pt-4 ">
+        <Card key={comment.id} className="pt-3">
+          <CardContent className=" flex flex-1 gap-4">
             {comment.creator_profile ? (
               <Image
                 src={comment.creator_profile}
@@ -23,35 +30,32 @@ const Comments = () => {
                 {extractInitials(comment.creator_name)}
               </div>
             )}
-            <div className="pl-4">
+            <div className="">
               <span className="text-secondary text-sm opacity-70">
                 {`${comment.creator_name} 
                 `}
               </span>
               <p className="my-2 text-base">{comment.content}</p>
               <div className="flex gap-4">
-                <Heart
-                  size={16}
-                  className="cursor-pointer"
-                  // onClick={() => handleLike(post.id)}
-                />
-                {comment.reactions.length}
-                <div className="flex gap-4">
-                  <MessageCircle size={16} className="cursor-pointer" />
+
+                <div className="flex gap-4 items-center cursor-pointer"
+                  onClick={submitAnswer}
+                >
+                  <MessageSquare size={16} className="cursor-pointer" />
                   {comment.replies.length}
                   <span
                     className="text-base cursor-pointer"
-                    // onClick={submitAnswer}
                   >
                     reply
                   </span>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </CardContent>
+          
+        </Card>
       ))}
-    </>
+    </div>
   );
 };
 export default Comments;
