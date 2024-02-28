@@ -9,7 +9,6 @@ import DropDownUser from "./DropDownUser";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { useTheme } from "next-themes";
 import MobileMenu from "./MobileMenu";
-import UserDropdown from './userDropdown';
 
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -84,7 +83,7 @@ const Navbar = () => {
         </DropdownMenu>
           </div>
         <DropDownUser/>
-        {/* <UserDropdown/> */}
+    
         
         <MobileMenu/>
          

@@ -42,7 +42,12 @@ const RegisterForm = () => {
         formData.append("phoneNumber", values.phoneNumber);
         formData.append("address", values.address);
         formData.append("email", values.email);
-        formData.append("password", values.password)
+        formData.append("password", values.password);
+        formData.append("profilePictureUrl", "https://cdn.pixabay.com/photo/2023/11/14/11/07/sparrow-8387465_1280.jpg")
+        formData.append("roles", "USER");
+        formData.append("activity", "ACTIVE")
+
+
         const res = await RegisterAction(formData);
         if (res?.error) setErrorMessage(res.error);
 

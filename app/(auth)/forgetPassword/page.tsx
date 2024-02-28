@@ -1,10 +1,6 @@
-import Login from "@/components/Form/Login";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogOverlay, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import React from "react";
-import { FaFacebookF, FaGoogle } from "react-icons/fa6";
 import Image from "next/image";
 import Link from "next/link";
 import ForgetPassword from "@/components/Form/ForgetPassword";
@@ -13,7 +9,7 @@ const Page = () => {
   return (
     <>
       <div className="w-full h-screen overflow-hidden">
-        <Image src={`/humanitiarian.jpg`} alt={'hands'} width={1024} height={1024} quality={100} className="h-full w-full object-cover" />
+        <Image src={`singinbackground.png`} alt={'hands'} width={1024} height={1024} quality={100} className="h-full w-full object-cover" />
 
       </div>
       <Dialog open={true} >

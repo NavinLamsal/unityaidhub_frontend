@@ -5,8 +5,6 @@ import { extractInitials } from "@/lib/reuseableFunctions/Extractinitals";
 import { Card, CardContent, CardHeader } from "../ui/card";
 
 const Comments = () => {
-
-
   async function submitAnswer() {
     console.log("reply function called")
   }

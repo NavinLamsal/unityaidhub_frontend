@@ -22,14 +22,41 @@ const fetchCountries = async (): Promise<string[]> => {
   }
 };
 
-const Page =async() => {
- const countries:string[] = await fetchCountries();
+const Page = async () => {
+  const countries: string[] = await fetchCountries();
+
+  const NGOs = [
+    {
+      id: "1",
+      name: "NGO 1"
+    },
+    {
+      id: "2",
+      name: "NGO 2"
+    }, {
+      id: "3",
+      name: "NGO 3"
+    }, {
+      id: "4",
+      name: "NGO 4"
+    }, {
+      id: "5",
+      name: "NGO 5"
+    }, {
+      id: "6",
+      name: "NGO 6"
+    }, {
+      id: "7",
+      name: "NGO 7"
+    },
+
+  ]
 
   return (
 
     <div className="container px-0">
       <div className="md:h-[90vh] md:flex w-full ">
-        <PostForm countries={countries}/>
+        <PostForm countries={countries} ngos={NGOs}/>
       </div>
     </div>
   );

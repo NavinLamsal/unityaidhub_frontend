@@ -2,15 +2,31 @@
 
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
+import { loginAction } from "./loginAction";
 
 export async function RegisterAction(formData:FormData){
     console.log("registering credentials",formData)
+    const jsonBody = Object.fromEntries(Array.from(formData.entries()));
     try{
-        // await signIn("credentials",{
-        //     email:formData.get("email"),
-        //     password:formData.get("password"),
-        //     redirectTo:"/"
-        // })
+        await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user`, {
+            method: "POST",
+            body: JSON.stringify(jsonBody),
+            headers: { "Content-Type": "application/json" },
+          }).then(async (res)=>
+          {if(res.status === 201){
+            await loginAction(formData)
+            // await signIn("credentials",{
+            //     email:formData.get("email"),
+            //     password:formData.get("password"),
+            //     redirectTo:"/"
+            // })
+          }else{
+            return
+          }
+        });
+
+          
+       
     }catch(error:unknown){
         if(error instanceof AuthError)
         {

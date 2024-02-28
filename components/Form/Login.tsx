@@ -11,6 +11,7 @@ import { Checkbox } from "../ui/checkbox";
 import { loginvalidation } from "@/lib/Validation/LoginValidation";
 import { loginAction } from "../action/loginAction";
 import { AlertTriangle } from "lucide-react";
+import { toast } from "../ui/use-toast";
 
 
 interface IFormInput {
@@ -32,6 +33,12 @@ const Login = () => {
     formData.append("password", values.password)
     const res = await loginAction(formData);
     if(res?.error) setErrorMessage(res.error);
+    // if(res?.message) {
+    //   toast({
+    //     variant:"default",
+    //     title:res.message
+    //   })
+    // }
   }
 
   return (

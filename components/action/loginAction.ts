@@ -10,6 +10,8 @@ export async function loginAction(formData:FormData){
             password:formData.get("password"),
             redirectTo:"/"
         })
+        
+        // return {message: "Logged in Sucessfully"};
     }catch(error:unknown){
         if(error instanceof AuthError)
         {

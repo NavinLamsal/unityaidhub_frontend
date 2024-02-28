@@ -50,7 +50,7 @@ async function BlogList({ blog }: { blog: any }) {
 
 
     return (
-        <div className="grid grid-cols-12 sm:px-5 gap-x-8 gap-y-16">
+        <div className="grid grid-cols-12 grid-rows-1 sm:px-5 gap-x-8 gap-y-16">
             {blog.length > 1 && blog.slice(1, blog.length).map((item: any) => (
                 <BlogCard key={item?.id} blog={item} />
             ))

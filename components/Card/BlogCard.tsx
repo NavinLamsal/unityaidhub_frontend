@@ -7,7 +7,7 @@ import React from 'react'
 const BlogCard = ({blog}:{blog:any}) => {
   return (
 
-    <Link  href={`/blog/${blog.id}`} className="flex flex-col items-start col-span-12 space-y-3 sm:col-span-6 xl:col-span-4 text-zinc-950 dark:text-zinc-50 rounded-lg">
+    <Link  href={`/blog/${blog.id}`} className="flex flex-col items-start col-span-12 space-y-3 sm:col-span-6 md:col-span-4 xl:col-span-4 text-zinc-950 dark:text-zinc-50 rounded-lg">
     <Image
         src={blog.image} alt="image" width={300} height={300} quality={100} className="object-cover w-full mb-2 overflow-hidden rounded-t-lg  shadow-sm max-h-56 btn-"/>
         <div className='px-2 pb-2 flex flex-col gap-1'>

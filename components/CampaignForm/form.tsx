@@ -58,7 +58,7 @@ const steps = [
     { id: '5', name: 'Terms & Conditions' }
 ]
 
-export default function PostForm({ countries }: { countries: string[] }) {
+export default function PostForm({ countries, ngos }: { countries: string[], ngos: { id: string; name: string; }[] }) {
     const { categories } = data
     const [previousStep, setPreviousStep] = useState(0)
     const [currentStep, setCurrentStep] = useState(0)
@@ -78,17 +78,49 @@ export default function PostForm({ countries }: { countries: string[] }) {
         resolver: zodResolver(createPostvalidation),
     });
 
-    const processForm: SubmitHandler<Inputs> = async(data) => {
+    const processForm: SubmitHandler<Inputs> = async (data) => {
+        //     const formData = new FormData();
+        //     formData.append("title", data.postTitle)
+        //     formData.append("postType", data.post_type)
+        //     formData.append("categoryId", data.category)
+        //     formData.append("benificiary_type", data.benificiary_type)
+        //     formData.append("country", data.country)
+        //     formData.append("goalAmount", data.target_fund)
+        //     formData.append("description", data.postDescription)
+        //     formData.append("document", data.document)
+        //    { data.benificiaryEmail && formData.append("benificiaryEmail", data.benificiaryEmail)}
+        //    { data.benificiaryNGO && formData.append("benificiaryNGO", data.benificiaryNGO)}
+
+        const startDate = new Date();
         const formData = new FormData();
-        formData.append("postTitle", data.postTitle)
-        formData.append("post_type", data.post_type)
-        formData.append("category", data.category)
-        formData.append("benificiary_type", data.benificiary_type)
-        formData.append("country", data.country)
-        formData.append("target_fund", data.target_fund)
-        formData.append("postDescription", data.postDescription)
-        formData.append("document", data.document)
-        await CreatePostAction(formData) 
+        formData.append("title", data.postTitle)
+        formData.append("description", data.postDescription)
+        formData.append("startDate", startDate.toISOString())
+        formData.append("endDate", startDate.toISOString())
+        formData.append("goalAmount", data.target_fund)
+        formData.append("status", "NOTVERIFIED")
+        formData.append("postType", data.post_type)
+        formData.append("categoryId", data.category)
+        { data.benificiary_type === "Someone Else" && data.benificiaryEmail && formData.append("userid", data.benificiaryEmail) }
+        { data.benificiary_type === "NGO" && data.benificiaryNGO && formData.append("userid", data.benificiaryNGO) }
+        {
+            data.benificiary_type === "myself" ?? formData.append("userid", data.benificiary_type)
+            formData.append("country", data.country)
+        }
+        { data.document && formData.append("image", data.document) }
+        // await CreatePostAction(formData)
+
+        const jsonBody = Object.fromEntries(Array.from(formData.entries()));
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
+            method: "POST",
+            body: JSON.stringify(jsonBody),
+            headers: { "Content-Type": "application/json", 
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`
+        },
+          })
+          console.log("post createion ",res)
+
+
         form.reset()
     }
 
@@ -101,7 +133,7 @@ export default function PostForm({ countries }: { countries: string[] }) {
         if (!output) return
 
         if (currentStep < steps.length - 1) {
-            if (currentStep === steps.length - 2) {
+            if (currentStep === steps.length - 1) {
                 await form.handleSubmit(processForm)()
             }
             setSubmittedSteps((prevSubmittedSteps) => [...prevSubmittedSteps, currentStep]);
@@ -179,12 +211,6 @@ export default function PostForm({ countries }: { countries: string[] }) {
                             transition={{ duration: 0.3, ease: 'easeInOut' }}
 
                         >
-                            {/* <h2 className='text-base font-semibold leading-7 text-gray-900 hidden md:block'>
-                                Category & Funding Details
-                            </h2>
-                            <p className='mt-1 text-sm leading-6 text-gray-600 hidden md:block'>
-                                Choose your campaign category and other details.
-                            </p> */}
                             <div className='grid md:grid-cols-2 gap-3'>
 
                                 <FormField
@@ -333,12 +359,6 @@ export default function PostForm({ countries }: { countries: string[] }) {
                             animate={{ x: 0, opacity: 1 }}
                             transition={{ duration: 0.3, ease: 'easeInOut' }}
                         >
-                            {/* <h2 className='text-base font-semibold leading-7 text-gray-900 hidden md:block'>
-                                Benificiary
-                            </h2>
-                            <p className='mt-1 text-sm leading-6 text-gray-600 hidden md:block'>
-                                Please selected the correct benificiary type.
-                            </p> */}
 
                             <FormField
                                 control={form.control}
@@ -391,6 +411,22 @@ export default function PostForm({ countries }: { countries: string[] }) {
                                                         </div>
                                                     </FormItem>
                                                 </div>
+                                                {form.watch("benificiary_type") === "Someone Else" &&
+                                                    <FormField
+                                                        control={form.control}
+                                                        name="benificiaryEmail"
+                                                        render={({ field }) => (
+                                                            <FormItem className='flex flex-col gap-2 mb-3'>
+                                                                <FormLabel className="text-lg">Benificiary Email</FormLabel>
+                                                                <Input type="email" {...field} />
+                                                                <FormDescription className="text-sm">
+                                                                    Provide the benificiary valid email.
+                                                                </FormDescription>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                }
                                                 <div className={`flex items-center space-x-4 rounded-md dark:bg-zinc-900 bg-zinc-200  p-4 cursor-pointer relative ${form.watch("benificiary_type") === "NGO" ? 'border-0' : 'border'} `}>
                                                     <FormItem className=" flex flex-1 space-x-3 space-y-1 ">
                                                         <div className="flex-1 space-y-1 items-center">
@@ -409,16 +445,44 @@ export default function PostForm({ countries }: { countries: string[] }) {
                                                         </div>
                                                     </FormItem>
                                                 </div>
-
-
+                                                {form.watch("benificiary_type") === "NGO" &&
+                                                    <FormField
+                                                        control={form.control}
+                                                        name="benificiaryNGO"
+                                                        render={({ field }) => (
+                                                            <FormItem className="flex flex-col gap-2 mb-3">
+                                                                <FormLabel >Select your NGOS</FormLabel>
+                                                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                                    <FormControl>
+                                                                        <SelectTrigger>
+                                                                            <SelectValue placeholder="Select NGO" />
+                                                                        </SelectTrigger>
+                                                                    </FormControl>
+                                                                    <SelectContent side='bottom' className='max-h-48'>
+                                                                        {ngos?.map((co: any) => (
+                                                                            <SelectItem
+                                                                                value={co.id}
+                                                                                key={co.name}
+                                                                            >
+                                                                                {co.name}
+                                                                            </SelectItem>
+                                                                        ))}
+                                                                    </SelectContent>
+                                                                </Select>
+                                                                <FormDescription >
+                                                                    Funds will be transfered directly to NGO
+                                                                </FormDescription>
+                                                                <FormMessage />
+                                                            </FormItem>
+                                                        )}
+                                                    />
+                                                }
                                             </RadioGroup>
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
                             />
-
-
                         </motion.div>
                     )}
                     {currentStep === 2 && (
@@ -427,16 +491,6 @@ export default function PostForm({ countries }: { countries: string[] }) {
                             animate={{ x: 0, opacity: 1 }}
                             transition={{ duration: 0.3, ease: 'easeInOut' }}
                         >
-                            {/* <h2 className='text-base font-semibold leading-7 text-gray-900 hidden md:block'>
-                                Campaign Details
-                            </h2>
-                            <p className='mt-1 text-sm leading-6 text-gray-600 hidden md:block'>
-                                Fill out the campaign details.
-                            </p> */}
-                            <div>
-                                
-                            </div>
-
                             <FormField
                                 control={form.control}
                                 name="postTitle"
@@ -562,7 +616,6 @@ export default function PostForm({ countries }: { countries: string[] }) {
                         type='button'
                         onClick={prev}
                         disabled={currentStep === 0}
-
                     >
                         <svg
                             xmlns='http://www.w3.org/2000/svg'
@@ -579,29 +632,37 @@ export default function PostForm({ countries }: { countries: string[] }) {
                             />
                         </svg>
                     </Button>
-                    <Button
-                        type='button'
-                        onClick={next}
-                        disabled={currentStep === steps.length - 1}
 
-                    >
-                        Next
-                        <svg
-                            xmlns='http://www.w3.org/2000/svg'
-                            fill='none'
-                            viewBox='0 0 24 24'
-                            strokeWidth='1.5'
-                            stroke='currentColor'
-                            className='h-6 w-6'
+                    {currentStep === steps.length - 1 ?
+                        <Button
+                            type='button'
+                            onClick={async () => await form.handleSubmit(processForm)()}
+                            disabled={currentStep < steps.length - 1}
                         >
-                            <path
-                                strokeLinecap='round'
-                                strokeLinejoin='round'
-                                d='M8.25 4.5l7.5 7.5-7.5 7.5'
-                            />
-                        </svg>
-
-                    </Button>
+                            Submit
+                        </Button> :
+                        <Button
+                            type='button'
+                            onClick={next}
+                            disabled={currentStep === steps.length - 1}
+                        >
+                            Next
+                            <svg
+                                xmlns='http://www.w3.org/2000/svg'
+                                fill='none'
+                                viewBox='0 0 24 24'
+                                strokeWidth='1.5'
+                                stroke='currentColor'
+                                className='h-6 w-6'
+                            >
+                                <path
+                                    strokeLinecap='round'
+                                    strokeLinejoin='round'
+                                    d='M8.25 4.5l7.5 7.5-7.5 7.5'
+                                />
+                            </svg>
+                        </Button>
+                    }
                 </div>
             </div>
         </section>
