@@ -53,7 +53,7 @@ const Menu = ({ showCatMenu, setShowCatMenu, categories }:any) => {
                 )}
               </li>
             ) : (
-              <li className="cursor-pointer hover:text-gray">
+              <li className="cursor-pointer hover:text-Primary">
                 <Link href={items.url}>{items.name}</Link>
               </li>
             )}

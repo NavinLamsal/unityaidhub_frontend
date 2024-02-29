@@ -7,16 +7,42 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Sidebar } from "@/components/categorypage/sidebar";
 
-
 import FeaturedList from "@/components/Browsepage/FeaturedList";
+import Link from "next/link";
+import { getPost } from "@/components/action/actions";
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
-// export const metadata: Metadata = {
-//   title: "Music App",
-//   description: "Example music app using the components.",
-// }
+export const metadata: Metadata = {
+  title: "Camapigns",
+  description: "this is the page to list campaign page",
+}
 
-export default function Page() {
-  
+ export default async function Page({
+  searchParams,
+}: {
+  searchParams?: {
+    category?: string; 
+    status?: string; 
+    sortBy?: string;
+    page?: string;
+  };
+}) {
+
+ 
+  const category = searchParams?.category || '';
+  const status = searchParams?.status || '';
+  const sortBy = searchParams?.sortBy || '';
+  const currentPage = Number(searchParams?.page) || 1;
+  const queryClient = new QueryClient()
+  await queryClient.prefetchQuery(
+  {
+    queryKey: ["posts", category, status, sortBy, currentPage],
+    queryFn: async () => {
+      return await getPost(category, status, sortBy, currentPage);
+    }
+  },
+);
+
 
   return (
     <>
@@ -43,12 +69,17 @@ export default function Page() {
           </div>
         </div>
       </div>
+
+
       <div className="container">
         <div className="block">
           <div className="">
             <div className="bg-background">
               <div className="grid lg:grid-cols-5">
-                <Sidebar className="hidden lg:block" />
+             
+              <Sidebar className="hidden lg:block" />
+                      
+                
                 <div className="col-span-3 lg:col-span-4 lg:border-l border-zinc-300">
                   <div className="h-full px-4 py-6 lg:px-8">
                     <div className="h-full space-y-6">
@@ -57,13 +88,17 @@ export default function Page() {
                           category for screen below md
                         </div>
                         <div className="ml-auto mr-4 hidden sm:block">
+                          <Link href={'/start-a-campaigning'}>
                           <Button>
-                            {/* <PlusCircledIcon className="mr-2 h-4 w-4" /> */}
                             Create Campaign
                           </Button>
+                          
+                          </Link>
                         </div>
                       </div>
+                      <HydrationBoundary state={dehydrate(queryClient)}>
                       <FeaturedList/>
+                      </HydrationBoundary>
                     </div>
                   </div>
                 </div>

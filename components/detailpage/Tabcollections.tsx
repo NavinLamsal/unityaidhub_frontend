@@ -7,6 +7,7 @@ import CommentBox from "./CommentBox";
 import { useState } from "react";
 import Comment from "@/lib/types/Comment";
 import { comments as cmt } from "@/db.json";
+import Update from "./update";
 
 
 
@@ -128,7 +129,7 @@ const DonateCard = () => {
         </Card>
       </TabsContent>
       <TabsContent value="update">
-        helloe from updates
+        <Update/>
       </TabsContent>
       <TabsContent value="comments">
         <CommentBox onSubmit={addComment}/>

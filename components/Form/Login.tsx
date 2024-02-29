@@ -1,5 +1,5 @@
 'use client'
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "../ui/input";
 import { PasswordInput } from "../ui/passwordInput";
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -9,6 +9,10 @@ import * as z from "zod";
 import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import { loginvalidation } from "@/lib/Validation/LoginValidation";
+import { loginAction } from "../action/loginAction";
+import { AlertTriangle, CheckCheck } from "lucide-react";
+import { toast } from "../ui/use-toast";
+import { useSearchParams } from "next/navigation";
 
 
 interface IFormInput {
@@ -17,13 +21,28 @@ interface IFormInput {
 }
  
 const Login = () => {
+  const searchParams = useSearchParams()
+  const callbackUrl = searchParams.get('callbackUrl')?? "";
+  console.log("callbackurl", callbackUrl)
   const form = useForm<z.infer<typeof loginvalidation>>({
     mode: "onBlur",
     resolver: zodResolver(loginvalidation)
   })
 
-  function onSubmit(values:z.infer<typeof loginvalidation>) {
-    console.log(values)
+  const [errorMessage, setErrorMessage]= useState<String| null>(null);
+  
+  async function onSubmit(values:z.infer<typeof loginvalidation>) {
+    const formData = new FormData()
+    formData.append("email", values.email)
+    formData.append("password", values.password)
+    const res = await loginAction(formData, callbackUrl);
+    if(res?.error) setErrorMessage(res.error);
+    else{
+      toast({
+        variant:"sucess",
+        title: `${<CheckCheck className="text-Primary"/>}Logged in Sucessfully`
+      })
+    }
   }
 
   return (
@@ -31,6 +50,7 @@ const Login = () => {
       <div className=" w-full">
         <Form {...form }>
           <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-3">
+           {errorMessage &&  <p className="bg-red-950 text-white mx-auto px-2 py-1 flex text-sm"><AlertTriangle/>&nbsp;{errorMessage}</p>}
           <FormField
             name="email"
             control={form.control}

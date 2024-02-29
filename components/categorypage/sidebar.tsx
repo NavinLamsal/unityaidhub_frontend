@@ -7,25 +7,60 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import data from "@/db.json";
 import { Checkbox } from "../ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
+interface FilterInputs{
+  category?: string[];
+  status?: string,
+  sortBy?: string,
+}
+
 export function Sidebar({ className }: SidebarProps) {
   const { categories } = data;
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
+
+  const categoryString = searchParams.get('category');
+  const categoryArray = categoryString ? categoryString.split(',') : [] as string[];
 
   const form = useForm({
     defaultValues: {
-      category: [] as string[],
-      status: "",
-      sortBy: "",
+      category: categoryArray,
+      status: searchParams.get('status')?.toString(),
+      sortBy: searchParams.get('sortBy')?.toString(),
     },
   });
+
+  console.log("category",searchParams.get('category'));
+
+  async function onSubmit(values: FilterInputs) {
+    const { category, status, sortBy } = values;
+    const queryParams = new URLSearchParams(searchParams);
+  
+    if (category && category.length > 0) {
+      queryParams.set('category', category.join(','));
+    }
+  
+    if (status) {
+      queryParams.set('status', status);
+    }
+  
+    if (sortBy) {
+      queryParams.set('sortBy', sortBy);
+    }
+    replace(`${pathname}?${queryParams.toString()}`);
+  }
+
 
   return (
     <div className={cn("pb-12", className)}>
       <div className="space-y-4 py-4">
         <Form {...form}>
-          <form>
+          <form onSubmit={form.handleSubmit(onSubmit)}>
             {/* Category Section */}
             <FormField
               control={form.control}
@@ -153,7 +188,7 @@ export function Sidebar({ className }: SidebarProps) {
                 )}
               />
             </div>
-          
+            <Button>Apply</Button>
           </form>
         </Form>
       </div>

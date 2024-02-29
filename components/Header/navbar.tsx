@@ -10,7 +10,6 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { useTheme } from "next-themes";
 import MobileMenu from "./MobileMenu";
 
-
 const Navbar = () => {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [showCatMenu, setShowCatMenu] = useState(false);
@@ -18,6 +17,7 @@ const Navbar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [categories,setCategories] =useState(null);
   const { setTheme } = useTheme()
+  
 
 //   const {cartItems}= useSelector((state => state.cart))
 
@@ -83,6 +83,7 @@ const Navbar = () => {
         </DropdownMenu>
           </div>
         <DropDownUser/>
+    
         
         <MobileMenu/>
          

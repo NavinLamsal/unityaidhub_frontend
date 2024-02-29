@@ -2,17 +2,29 @@
 import React from 'react'
 import FundraisingCard from '../Card/fundraisingCard'
 import Pagination from '../ui/pagination'
-import router from 'next/router';
+import { getPost } from '../action/actions';
+import { useQuery } from '@tanstack/react-query';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 const FeaturedList = () => {
+    // const {data, error , isFetched} = useQuery({
+    //   queryKey:["posts"],
+    //   queryFn: getPost,
+    // })
+
+    const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+
     const handlePageChange = (pageNumber: number) => {
-
-        router.push({
-            // pathname: router.pathname,
-            query: { ...router.query, page: pageNumber },
-        });
-
+      const queryParams = new URLSearchParams(searchParams);
+        queryParams.set('page', pageNumber.toString() );
+        replace(`${pathname}?${queryParams.toString()}`);
     };
+    // if(error) <h2>{error.message}</h2>
+    // if(data){
+    //   console.log(data.data)
+    // }
     return (
         <div>
             <div className="border-none p-0 outline-none">
@@ -37,7 +49,7 @@ const FeaturedList = () => {
                     <FundraisingCard />
                 </div>
                 <Pagination
-                    currentPage={1}
+                    currentPage={parseInt(searchParams.get("page")?? '1')}
                     totalPages={4}
                     onPageChange={handlePageChange}
                 />

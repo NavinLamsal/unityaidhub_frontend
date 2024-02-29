@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Header/navbar";
-import Footer from "@/components/Footer/Footer";
 import { ThemeProvider } from "@/components/HOC/theme-provider";
+import Provider from "@/components/HOC/Providers";
+import { Toaster } from "@/components/ui/toaster";
+import { getUser } from "@/components/action/actions";
+import { auth } from "@/auth";
+
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,7 +16,7 @@ export const metadata: Metadata = {
   description: "A fund raiser app for need  one",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -27,9 +31,16 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Provider>
           {children}
+          <Toaster />
+          </Provider>
         </ThemeProvider>
       </body>
     </html>
   );
 }
+function getAllUse(accessToken: string | undefined) {
+  throw new Error("Function not implemented.");
+}
+

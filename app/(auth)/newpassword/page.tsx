@@ -14,7 +14,7 @@ const Page = () => {
   return (
     <>
       <div className="w-full h-screen overflow-hidden">
-        <Image src={`/humanitiarian.jpg`} alt={'hands'} width={1024} height={1024} quality={100} className="h-full w-full object-cover" />
+        <Image src={`/singinbackground.png`} alt={'hands'} width={1024} height={1024} quality={100} className="h-full w-full object-cover" />
 
       </div>
       <Dialog open={true} >

@@ -21,6 +21,7 @@ import {   Select,
   SelectTrigger,
   SelectValue, } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
+import { getUser } from "@/components/action/actions"
 
 const profileFormSchema = z.object({
   username: z
@@ -169,6 +170,7 @@ export function ProfileForm() {
               )}
             />
           ))}
+         
           <Button
             type="button"
             variant="outline"

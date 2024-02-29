@@ -1,14 +1,11 @@
 'use client'
 import React, { useState } from "react";
 import { Input } from "../ui/input";
-import { PasswordInput } from "../ui/passwordInput";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../ui/form";
 import * as z from "zod";
 import { Button } from "../ui/button";
-
-
 
 
 export const emailValidation = z.object({
@@ -18,6 +15,7 @@ export const emailValidation = z.object({
         })
       .email({ message: "Invalid email format" }),
     });
+
 const ForgetPassword = () => {
     const [emailSend, setEmailSend]= useState(false);
     const [emailAddress, setEmailAddress]= useState<string>('')
@@ -37,9 +35,7 @@ const ForgetPassword = () => {
         setEmailSend(false);
         setEmailAddress('');
     }
-
   return (
-
       <div className=" w-full">
        {!emailSend && <Form {...form }>
           <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-3">

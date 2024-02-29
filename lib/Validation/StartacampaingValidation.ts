@@ -22,5 +22,21 @@ export const createPostvalidation = z.object({
   postDescription: z.string({
     required_error: "Invalid Fund.",
   }),
-  document: z.any(),
+  document: z.any().optional(),
+  // images : z.any(),
+  
+  benificiaryEmail: z.string({
+    required_error:"Invalid email"
+  })
+  .email({ message: "Invalid email format" }).optional(),
+  benificiaryNGO: z.string({
+    required_error: "NGO must be selected"
+  }).optional(),
+}).refine((data) => {
+  if (data.benificiary_type === "someone") {
+    return data.benificiaryEmail !== undefined;
+  } else if (data.benificiary_type === "NGO") {
+    return data.benificiaryNGO !== undefined;
+  }
+  return true;
 });
