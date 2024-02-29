@@ -5,6 +5,7 @@ import Navbar from "@/components/Header/navbar";
 import Footer from "@/components/Footer/Footer";
 import { ThemeProvider } from "@/components/HOC/theme-provider";
 import Provider from "@/components/HOC/Providers";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,6 +31,7 @@ export default function RootLayout({
         >
           <Provider>
           {children}
+          <Toaster />
           </Provider>
         </ThemeProvider>
       </body>

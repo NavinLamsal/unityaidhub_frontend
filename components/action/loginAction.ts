@@ -10,11 +10,9 @@ export async function loginAction(formData:FormData, callbackUrl?:string){
         await signIn("credentials",{
             email:formData.get("email"),
             password:formData.get("password"),
-            redirectTo:callbackUrl?? '/',
-            
+            redirectTo:callbackUrl?? '/', 
         })
-        
-        // return {message: "Logged in Sucessfully"};
+        return {message: "Logged in Sucessfully"};
     }catch(error:unknown){
         if(error instanceof AuthError)
         {

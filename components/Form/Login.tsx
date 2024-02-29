@@ -10,7 +10,7 @@ import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import { loginvalidation } from "@/lib/Validation/LoginValidation";
 import { loginAction } from "../action/loginAction";
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, CheckCheck } from "lucide-react";
 import { toast } from "../ui/use-toast";
 import { useSearchParams } from "next/navigation";
 
@@ -36,14 +36,13 @@ const Login = () => {
     formData.append("email", values.email)
     formData.append("password", values.password)
     const res = await loginAction(formData, callbackUrl);
-    console.log("res from loginaction", res)
     if(res?.error) setErrorMessage(res.error);
-    // if(res?.message) {
-    //   toast({
-    //     variant:"default",
-    //     title:res.message
-    //   })
-    // }
+    else{
+      toast({
+        variant:"sucess",
+        title: `${<CheckCheck className="text-Primary"/>}Logged in Sucessfully`
+      })
+    }
   }
 
   return (
