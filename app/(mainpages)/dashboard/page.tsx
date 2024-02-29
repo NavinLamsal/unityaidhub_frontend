@@ -1,10 +1,14 @@
 import { auth } from "@/auth"
 import { ProfileForm } from "./Profile-form"
 import { redirect } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { getUser } from "@/components/action/actions";
 
 export default async function SettingsProfilePage() {
   const session = await auth();
   if(!session || !session.user) redirect("api/auth/signin");
+  const userdata = await getUser();
+   console.log("userdata ",userdata)
   return (
     <div className="space-y-6">
       <div>
@@ -15,6 +19,7 @@ export default async function SettingsProfilePage() {
       </div>
       {/* <Separator /> */}
       <ProfileForm />
+     
     </div>
   )
 }

@@ -30,6 +30,7 @@ import CustomFileSelector from "@/components/CampaignForm/CustomFileSelector";
 import { Checkbox } from '../ui/checkbox';
 import { CurrencyInput } from '../ui/currencyInput';
 import { CreatePostAction } from '../action/createPostAction';
+import { useSession } from 'next-auth/react';
 
 
 type Inputs = z.infer<typeof createPostvalidation>
@@ -65,6 +66,7 @@ export default function PostForm({ countries, ngos }: { countries: string[], ngo
     const [images, setImages] = useState<File[]>([]);
     const [submittedSteps, setSubmittedSteps] = useState<number[]>([]);
     const delta = currentStep - previousStep
+    const {data:session}= useSession();
 
     const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
@@ -79,18 +81,6 @@ export default function PostForm({ countries, ngos }: { countries: string[], ngo
     });
 
     const processForm: SubmitHandler<Inputs> = async (data) => {
-        //     const formData = new FormData();
-        //     formData.append("title", data.postTitle)
-        //     formData.append("postType", data.post_type)
-        //     formData.append("categoryId", data.category)
-        //     formData.append("benificiary_type", data.benificiary_type)
-        //     formData.append("country", data.country)
-        //     formData.append("goalAmount", data.target_fund)
-        //     formData.append("description", data.postDescription)
-        //     formData.append("document", data.document)
-        //    { data.benificiaryEmail && formData.append("benificiaryEmail", data.benificiaryEmail)}
-        //    { data.benificiaryNGO && formData.append("benificiaryNGO", data.benificiaryNGO)}
-
         const startDate = new Date();
         const formData = new FormData();
         formData.append("title", data.postTitle)
@@ -106,8 +96,9 @@ export default function PostForm({ countries, ngos }: { countries: string[], ngo
         { data.benificiary_type === "NGO" && data.benificiaryNGO && formData.append("userid", data.benificiaryNGO) }
         {
             data.benificiary_type === "myself" ?? formData.append("userid", data.benificiary_type)
-            formData.append("country", data.country)
+            
         }
+        formData.append("country", data.country)
         { data.document && formData.append("image", data.document) }
         // await CreatePostAction(formData)
 
@@ -117,7 +108,7 @@ export default function PostForm({ countries, ngos }: { countries: string[], ngo
         "startDate": "2024-02-29T01:52:26.882Z",
         "endDate": "2024-02-29T01:52:26.882Z",
         "goalAmount": 78939,
-        // "currentAmount": 0,
+        "currentAmount": 0,
         // "image": [
         //   "string"
         // ],
@@ -130,14 +121,23 @@ export default function PostForm({ countries, ngos }: { countries: string[], ngo
       }
 
         const jsonBody = Object.fromEntries(Array.from(formData.entries()));
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
-            method: "POST",
-            body: JSON.stringify(body),
-            headers: { "Content-Type": "application/json", 
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`
-        },
-          })
-          console.log("post createion ",res)
+        if(session?.accessToken){
+            try{
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
+                    method: "POST",
+                    body: JSON.stringify(body),
+                    headers: { "Content-Type": "application/json", 
+                    Authorization: `Bearer ${session.accessToken}`
+                },
+                  })
+                  console.log("post createion ",res)
+            }catch(error){
+                console.log(error)
+            }
+           
+        }else{
+            console.log("error trying posting")
+        }
 
 
         form.reset()

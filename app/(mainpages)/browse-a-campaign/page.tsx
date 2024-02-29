@@ -34,10 +34,14 @@ export const metadata: Metadata = {
   const sortBy = searchParams?.sortBy || '';
   const currentPage = Number(searchParams?.page) || 1;
   const queryClient = new QueryClient()
-  await queryClient.prefetchQuery({
-    queryKey:["posts", category, status, sortBy, currentPage],
-    queryFn: getPost(category, status, sortBy, currentPage),
-  })
+  await queryClient.prefetchQuery(
+  {
+    queryKey: ["posts", category, status, sortBy, currentPage],
+    queryFn: async () => {
+      return await getPost(category, status, sortBy, currentPage);
+    }
+  },
+);
 
 
   return (
