@@ -12,6 +12,7 @@ import { loginvalidation } from "@/lib/Validation/LoginValidation";
 import { loginAction } from "../action/loginAction";
 import { AlertTriangle } from "lucide-react";
 import { toast } from "../ui/use-toast";
+import { useSearchParams } from "next/navigation";
 
 
 interface IFormInput {
@@ -20,6 +21,9 @@ interface IFormInput {
 }
  
 const Login = () => {
+  const searchParams = useSearchParams()
+  const callbackUrl = searchParams.get('callbackUrl')?? "";
+  console.log("callbackurl", callbackUrl)
   const form = useForm<z.infer<typeof loginvalidation>>({
     mode: "onBlur",
     resolver: zodResolver(loginvalidation)
@@ -31,7 +35,8 @@ const Login = () => {
     const formData = new FormData()
     formData.append("email", values.email)
     formData.append("password", values.password)
-    const res = await loginAction(formData);
+    const res = await loginAction(formData, callbackUrl);
+    console.log("res from loginaction", res)
     if(res?.error) setErrorMessage(res.error);
     // if(res?.message) {
     //   toast({

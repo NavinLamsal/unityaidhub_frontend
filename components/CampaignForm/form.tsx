@@ -101,6 +101,7 @@ export default function PostForm({ countries, ngos }: { countries: string[], ngo
         formData.append("status", "NOTVERIFIED")
         formData.append("postType", data.post_type)
         formData.append("categoryId", data.category)
+        formData.append("userId", parseInt("9").toString())
         { data.benificiary_type === "Someone Else" && data.benificiaryEmail && formData.append("userid", data.benificiaryEmail) }
         { data.benificiary_type === "NGO" && data.benificiaryNGO && formData.append("userid", data.benificiaryNGO) }
         {
@@ -110,10 +111,28 @@ export default function PostForm({ countries, ngos }: { countries: string[], ngo
         { data.document && formData.append("image", data.document) }
         // await CreatePostAction(formData)
 
+    const body ={
+        "title": formData.get("title"),
+        "description": formData.get("description"),
+        "startDate": "2024-02-29T01:52:26.882Z",
+        "endDate": "2024-02-29T01:52:26.882Z",
+        "goalAmount": 78939,
+        // "currentAmount": 0,
+        // "image": [
+        //   "string"
+        // ],
+        // "view": 0,
+        "status": "NOTVERIFIED",
+        "postType": "BASIC",
+        // "postUpdates": "",
+        "categoryId":1,
+        "userId": 1
+      }
+
         const jsonBody = Object.fromEntries(Array.from(formData.entries()));
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
             method: "POST",
-            body: JSON.stringify(jsonBody),
+            body: JSON.stringify(body),
             headers: { "Content-Type": "application/json", 
             Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN}`
         },

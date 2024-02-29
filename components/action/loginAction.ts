@@ -3,12 +3,15 @@
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
 
-export async function loginAction(formData:FormData){
+
+export async function loginAction(formData:FormData, callbackUrl?:string){
+    
     try{
         await signIn("credentials",{
             email:formData.get("email"),
             password:formData.get("password"),
-            redirectTo:"/"
+            redirectTo:callbackUrl?? '/',
+            
         })
         
         // return {message: "Logged in Sucessfully"};

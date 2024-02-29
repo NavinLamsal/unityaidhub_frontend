@@ -65,7 +65,7 @@ const credentialsConfig = CredentialsProvider({
       const data = await res.json();
       // console.log("response" ,res);
       if(data){
-        return data;
+        return {...data, accessToken: data.accessToken};
       }else{
         return null;
       }
@@ -84,16 +84,19 @@ const config = {
     signIn: "/signin",
   },
   callbacks: {
+
     jwt: async ({ token, user }) => {
-     
-      console.log(token);
-      return {...token , ...user};
+      if (user) {
+        token.accessToken = user.accessToken;
+      }
+      return token;
     },
     session: async ({ session, token }) => {
-      // session.accessToken = token.accessToken
-  
-      return session
-    },
+      if (token?.accessToken) {
+        session.accessToken = token.accessToken as string;
+      }
+      return session;
+    }
   },
 } satisfies NextAuthConfig;
 
