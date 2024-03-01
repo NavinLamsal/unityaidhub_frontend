@@ -79,12 +79,20 @@ export default function PostForm({ countries, ngos }: { countries: string[], ngo
     const form = useForm<Inputs>({
         resolver: zodResolver(createPostvalidation),
     });
+    function stripHtmlTags(text:any) {
+    return text.replace(/<[^>]*>?/gm, '');
+}
+
+// Assuming `data.postDescription` contains the HTML 
+
 
     const processForm: SubmitHandler<Inputs> = async (data) => {
         const startDate = new Date();
+        const postDescription = stripHtmlTags(data.postDescription);
+
         const formData = new FormData();
         formData.append("title", data.postTitle)
-        formData.append("description", data.postDescription)
+        formData.append("description", postDescription)
         formData.append("startDate", startDate.toISOString())
         formData.append("endDate", startDate.toISOString())
         formData.append("goalAmount", data.target_fund)
@@ -102,30 +110,31 @@ export default function PostForm({ countries, ngos }: { countries: string[], ngo
         { data.document && formData.append("image", data.document) }
         // await CreatePostAction(formData)
 
-    const body ={
-        "title": formData.get("title"),
-        "description": formData.get("description"),
-        "startDate": "2024-02-29T01:52:26.882Z",
-        "endDate": "2024-02-29T01:52:26.882Z",
-        "goalAmount": 78939,
-        "currentAmount": 0,
-        // "image": [
-        //   "string"
-        // ],
-        // "view": 0,
-        "status": "NOTVERIFIED",
-        "postType": "BASIC",
-        // "postUpdates": "",
-        "categoryId":1,
-        "userId": 1
-      }
+    // const body ={
+    //     "title": formData.get("title"),
+    //     "description": formData.get("description"),
+    //     "startDate": "2024-02-29T01:52:26.882Z",
+    //     "endDate": "2024-02-29T01:52:26.882Z",
+    //     "goalAmount": 78939,
+    //     "currentAmount": 0,
+    //     // "image": [
+    //     //   "string"
+    //     // ],
+    //     // "view": 0,
+    //     "status": "NOTVERIFIED",
+    //     "postType": "BASIC",
+    //     // "postUpdates": "",
+    //     "categoryId":1,
+    //     "userId": 1
+    //   }
 
         const jsonBody = Object.fromEntries(Array.from(formData.entries()));
         if(session?.accessToken){
             try{
                 const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
                     method: "POST",
-                    body: JSON.stringify(body),
+                    body: JSON.stringify(jsonBody),
+                    mode:'cors',
                     headers: { "Content-Type": "application/json", 
                     Authorization: `Bearer ${session.accessToken}`
                 },
@@ -331,10 +340,9 @@ export default function PostForm({ countries, ngos }: { countries: string[], ngo
                                             <FormLabel >Target Funding</FormLabel>
 
                                             <CurrencyInput
-                                                {...field}
-                                                currencyCode="NPR"
-                                                onInputChange={(value) => form.setValue('target_fund', value)}
-                                            />
+                                            currencyCode={''} {...field}
+                                            // currencyCode="NPR"
+                                            onInputChange={(value) => form.setValue('target_fund', value)}                                            />
 
                                             {/* <Input type="text" {...field} /> */}
                                             <FormDescription >
