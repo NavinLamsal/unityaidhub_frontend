@@ -13,7 +13,7 @@ import { FaFacebookF, FaGoogle } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { Checkbox } from "../ui/checkbox";
 import Link from "next/link";
-import { RegisterAction } from "../action/registerAction";
+import { RegisterAction } from "../../lib/action/registerAction";
 
 
 interface IFormInput {

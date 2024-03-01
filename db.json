@@ -1,233 +1,382 @@
 {
-    "comments": [
+  "comments": [
+    {
+      "id": "clhubp5rk0008bug8wplt65415174s1",
+      "content": "It's Homo Sapiens.",
+      "image": null,
+      "creator_name": "subscribe subscribe",
+      "creator_profile": null,
+      "userId": "clhubp5rk0008bug8wplt1000s1",
+      "postId": "clhubp5rk0008bug8wplt8002s1",
+      "createdAt": "2023-12-10T06:52:53.416Z",
+      "updatedAt": "2023-12-10T06:52:53.416Z",
+      "replies": [
         {
-          "id": "clhubp5rk0008bug8wplt65415174s1",
-          "content": "It's Homo Sapiens.",
-          "image": null,
-          "creator_name": "subscribe subscribe",
-          "creator_profile": null,
-          "userId": "clhubp5rk0008bug8wplt1000s1",
-          "postId": "clhubp5rk0008bug8wplt8002s1",
-          "createdAt": "2023-12-10T06:52:53.416Z",
-          "updatedAt": "2023-12-10T06:52:53.416Z",
-          "replies": [
-            {
-              "id": "reply1",
-              "content": "I agree!",
-              "creator_name": "another_user",
-              "userId": "clhubp5rk0008bug8wplt1001s1",
-              "createdAt": "2023-12-10T07:00:00.000Z",
-              "updatedAt": "2023-12-10T07:00:00.000Z",
-              "reactions": [
-                {
-                  "userId": "user1",
-                  "reactionType": "like",
-                  "createdAt": "2023-12-10T07:05:00.000Z"
-                }
-              ]
-            },
-            {
-              "id": "reply2",
-              "content": "No, it's Neanderthals!",
-              "creator_name": "third_user",
-              "userId": "clhubp5rk0008bug8wplt1002s1",
-              "createdAt": "2023-12-10T07:05:00.000Z",
-              "updatedAt": "2023-12-10T07:05:00.000Z",
-              "replies": [
-                {
-                  "id": "nested_reply1",
-                  "content": "Interesting point!",
-                  "creator_name": "nested_user",
-                  "userId": "clhubp5rk0008bug8wplt1003s1",
-                  "createdAt": "2023-12-10T07:10:00.000Z",
-                  "updatedAt": "2023-12-10T07:10:00.000Z",
-                  "reactions": [
-                    {
-                      "userId": "user2",
-                      "reactionType": "love",
-                      "createdAt": "2023-12-10T07:15:00.000Z"
-                    }
-                  ]
-                }
-              ]
-            }
-          ],
+          "id": "reply1",
+          "content": "I agree!",
+          "creator_name": "another_user",
+          "userId": "clhubp5rk0008bug8wplt1001s1",
+          "createdAt": "2023-12-10T07:00:00.000Z",
+          "updatedAt": "2023-12-10T07:00:00.000Z",
           "reactions": [
             {
-              "userId": "user3",
+              "userId": "user1",
               "reactionType": "like",
-              "createdAt": "2023-12-10T07:20:00.000Z"
-            },
-            {
-              "userId": "user4",
-              "reactionType": "love",
-              "createdAt": "2023-12-10T07:25:00.000Z"
+              "createdAt": "2023-12-10T07:05:00.000Z"
             }
           ]
         },
         {
-          "id": "clhubp5rk0008bug8wplt654158574s1",
-          "content": "It's Homo Sapiens.",
-          "image": null,
-          "creator_name": "subscribe subscribe",
-          "creator_profile": null,
-          "userId": "clhubp5rk0008bug8wplt1000s1",
-          "postId": "clhubp5rk0008bug8wplt8002s1",
-          "createdAt": "2023-12-10T06:52:53.417Z",
-          "updatedAt": "2023-12-10T06:52:53.417Z",
+          "id": "reply2",
+          "content": "No, it's Neanderthals!",
+          "creator_name": "third_user",
+          "userId": "clhubp5rk0008bug8wplt1002s1",
+          "createdAt": "2023-12-10T07:05:00.000Z",
+          "updatedAt": "2023-12-10T07:05:00.000Z",
           "replies": [
             {
-              "id": "reply3",
-              "content": "Interesting perspective!",
-              "creator_name": "new_user",
-              "userId": "clhubp5rk0008bug8wplt1004s1",
-              "createdAt": "2023-12-10T07:30:00.000Z",
-              "updatedAt": "2023-12-10T07:30:00.000Z",
+              "id": "nested_reply1",
+              "content": "Interesting point!",
+              "creator_name": "nested_user",
+              "userId": "clhubp5rk0008bug8wplt1003s1",
+              "createdAt": "2023-12-10T07:10:00.000Z",
+              "updatedAt": "2023-12-10T07:10:00.000Z",
               "reactions": [
                 {
-                  "userId": "user5",
-                  "reactionType": "like",
-                  "createdAt": "2023-12-10T07:35:00.000Z"
+                  "userId": "user2",
+                  "reactionType": "love",
+                  "createdAt": "2023-12-10T07:15:00.000Z"
                 }
               ]
-            }
-          ],
-          "reactions": [
-            {
-              "userId": "user6",
-              "reactionType": "like",
-              "createdAt": "2023-12-10T07:40:00.000Z"
-            },
-            {
-              "userId": "user7",
-              "reactionType": "love",
-              "createdAt": "2023-12-10T07:45:00.000Z"
             }
           ]
         }
       ],
-
-      "categories":[
+      "reactions": [
         {
-          "name":"Health",
-          "blackicons": "/category/Health.png",
-          "whiteicons":"/category/white/Health.png",
-          "primaryicons":"/category/primary/Health.png",
-          "id":"201"
+          "userId": "user3",
+          "reactionType": "like",
+          "createdAt": "2023-12-10T07:20:00.000Z"
         },
         {
-          "name":"Startups",
-          "blackicons": "/category/startups.png",
-          "whiteicons":"/category/white/startups.png",
-          "primaryicons":"/category/primary/startups.png",
-          "id":"202"
-        },
-        {
-          "name":"Animal",
-          "blackicons": "/category/animal.png",
-          "whiteicons":"/category/white/animal.png",
-          "primaryicons":"/category/primary/animal.png",
-          "id":"203"
-        },
-        {
-          "name":"Environment",
-          "blackicons": "/category/environment.png",
-          "whiteicons":"/category/white/environment.png",
-          "primaryicons":"/category/primary/environment.png",
-          "id":"204"
-        },
-        {
-          "name":"Non Profits",
-          "blackicons": "/category/nonprofits.png",
-          "whiteicons":"/category/white/nonprofit.png",
-          "primaryicons":"/category/primary/nonprofit.png",
-          "id":"205"
-        },
-        {
-          "name":"Memorial",
-          "blackicons": "/category/Memorial.png",
-          "whiteicons":"/category/white/Memorial.png",
-          "primaryicons":"/category/primary/Memorial.png",
-          "id":"206"
-        },
-        {
-          "name":"Children",
-          "blackicons": "/category/children.png",
-          "whiteicons":"/category/white/children.png",
-          "primaryicons":"/category/primary/children.png",
-          "id":"207"
-        },
-        {
-          "name":"Education",
-          "blackicons": "/category/education.png",
-          "whiteicons":"/category/white/education.png",
-          "primaryicons":"/category/primary/education.png",
-          "id":"208"
-        },
-        {
-          "name":"Other",
-          "blackicons": "/category/other.png",
-          "whiteicons":"/category/white/other.png",
-          "primaryicons":"/category/primary/other.png",
-          "id":"209"
+          "userId": "user4",
+          "reactionType": "love",
+          "createdAt": "2023-12-10T07:25:00.000Z"
         }
-      ],
-      "blogs":[
-        {
-          "id": 1,
-          "blog_title": "The Impact of Mindfulness on Mental Health",
-          "blogDescription": "<p>In a fast-paced world, where stress and anxiety often take center stage, the practice of mindfulness emerges as a beacon of serenity. This blog explores the profound impact of mindfulness on mental well-being.</p> <p> From understanding the basics to delving into advanced techniques, we navigate the journey toward a calmer, more centered self. Enhanced with the interactive capabilities of React Quill, we make mindfulness not just a topic to read about but an experience to engage in.</p>",
-          "image": "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg",
-          "authorName": "John Doe",
-          "category": "health",
-          "updatedAt": "2024-01-25T12:30:45Z",
-          "createdAt": "2024-01-20T08:15:00Z"
-        },
-        
-        {
-          "id": 2,
-          "blog_title": "Revolutionizing Education: The Rise of Online Learning",
-          "blogDescription": "<p>The traditional classroom has expanded its walls into the digital realm, ushering in an era of unparalleled educational accessibility. Join us on a journey as we explore the transformative power of online learning.</p><p>From the convenience of virtual classrooms to the democratization of knowledge, this blog delves into the key factors reshaping the educational landscape. Discover how online learning is revolutionizing the way we acquire knowledge and skills.</p>",
-          "image": "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg",
-          "authorName": "Jane Smith",
-          "category": "education",
-          "updatedAt": "2024-01-25T09:45:20Z",
-          "createdAt": "2024-01-15T14:00:00Z"
-        },
-        
-        {
-          "id": 3,
-          "blog_title": "Nurturing Young Minds: The Importance of Early Childhood Education",
-          "blogDescription": "<p>The early years of a child's life lay the groundwork for future development. This blog emphasizes the critical importance of early childhood education in providing a solid foundation for young minds.</p><p>From the impact of early learning experiences to the role of caregivers, we explore the factors that contribute to a child's holistic growth. Join us in understanding why investing in the early years is an investment in the future.</p> ",
-          "image": "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg",
-          "authorName": "Alice Johnson",
-          "category": "children",
-          "updatedAt": "2024-01-24T18:10:30Z",
-          "createdAt": "2024-01-18T10:45:00Z"
-        },
-        
-        {
-          "id": 4,
-          "blog_title": "Startup Success Stories: Lessons from Tech Innovators",
-          "blogDescription": "<p>Behind every successful startup is a story of innovation, perseverance, and strategic decision-making. In this blog, we dive into the success stories of tech innovators who turned their ideas into thriving businesses.</p>   <p>From overcoming challenges to seizing opportunities, we extract valuable lessons for aspiring entrepreneurs. Whether you're a startup enthusiast or a seasoned professional, this exploration into the world of tech entrepreneurship is sure to inspire.</p> ",
-          "image": "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg",
-          "authorName": "Robert Anderson",
-          "category": "startups",
-          "updatedAt": "2024-01-23T15:20:10Z",
-          "createdAt": "2024-01-16T09:30:00Z"
-        },
-        
-        {
-          "id": 5,
-          "blog_title": "The Science Behind Healthy Living",
-          "blogDescription": "<p>Wellness isn't just a lifestyle; it's a science. This blog takes you on a journey into the scientific principles that underpin a healthy and fulfilling life.</p><p>From the role of nutrition in cellular health to the physiological benefits of exercise, we unravel the mysteries of well-being. Join us in exploring how a deeper understanding of the science behind healthy living can empower you to make informed choices for a vibrant and balanced life.</p>",
-          "image": "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg",
-          "authorName": "Emily Taylor",
-          "category": "health",
-          "updatedAt": "2024-01-22T11:55:55Z",
-          "createdAt": "2024-01-14T13:20:00Z"
-        }
-        
       ]
-      
+    },
+    {
+      "id": "clhubp5rk0008bug8wplt654158574s1",
+      "content": "It's Homo Sapiens.",
+      "image": null,
+      "creator_name": "subscribe subscribe",
+      "creator_profile": null,
+      "userId": "clhubp5rk0008bug8wplt1000s1",
+      "postId": "clhubp5rk0008bug8wplt8002s1",
+      "createdAt": "2023-12-10T06:52:53.417Z",
+      "updatedAt": "2023-12-10T06:52:53.417Z",
+      "replies": [
+        {
+          "id": "reply3",
+          "content": "Interesting perspective!",
+          "creator_name": "new_user",
+          "userId": "clhubp5rk0008bug8wplt1004s1",
+          "createdAt": "2023-12-10T07:30:00.000Z",
+          "updatedAt": "2023-12-10T07:30:00.000Z",
+          "reactions": [
+            {
+              "userId": "user5",
+              "reactionType": "like",
+              "createdAt": "2023-12-10T07:35:00.000Z"
+            }
+          ]
+        }
+      ],
+      "reactions": [
+        {
+          "userId": "user6",
+          "reactionType": "like",
+          "createdAt": "2023-12-10T07:40:00.000Z"
+        },
+        {
+          "userId": "user7",
+          "reactionType": "love",
+          "createdAt": "2023-12-10T07:45:00.000Z"
+        }
+      ]
+    }
+  ],
+
+  "categories": [
+    {
+      "name": "Health",
+      "blackicons": "/category/Health.png",
+      "whiteicons": "/category/white/Health.png",
+      "primaryicons": "/category/primary/Health.png",
+      "id": "201"
+    },
+    {
+      "name": "Startups",
+      "blackicons": "/category/startups.png",
+      "whiteicons": "/category/white/startups.png",
+      "primaryicons": "/category/primary/startups.png",
+      "id": "202"
+    },
+    {
+      "name": "Animal",
+      "blackicons": "/category/animal.png",
+      "whiteicons": "/category/white/animal.png",
+      "primaryicons": "/category/primary/animal.png",
+      "id": "203"
+    },
+    {
+      "name": "Environment",
+      "blackicons": "/category/environment.png",
+      "whiteicons": "/category/white/environment.png",
+      "primaryicons": "/category/primary/environment.png",
+      "id": "204"
+    },
+    {
+      "name": "Non Profits",
+      "blackicons": "/category/nonprofits.png",
+      "whiteicons": "/category/white/nonprofit.png",
+      "primaryicons": "/category/primary/nonprofit.png",
+      "id": "205"
+    },
+    {
+      "name": "Memorial",
+      "blackicons": "/category/Memorial.png",
+      "whiteicons": "/category/white/Memorial.png",
+      "primaryicons": "/category/primary/Memorial.png",
+      "id": "206"
+    },
+    {
+      "name": "Children",
+      "blackicons": "/category/children.png",
+      "whiteicons": "/category/white/children.png",
+      "primaryicons": "/category/primary/children.png",
+      "id": "207"
+    },
+    {
+      "name": "Education",
+      "blackicons": "/category/education.png",
+      "whiteicons": "/category/white/education.png",
+      "primaryicons": "/category/primary/education.png",
+      "id": "208"
+    },
+    {
+      "name": "Other",
+      "blackicons": "/category/other.png",
+      "whiteicons": "/category/white/other.png",
+      "primaryicons": "/category/primary/other.png",
+      "id": "209"
+    }
+  ],
+  "pages": [
+    {
+      "id": 19,
+      "title": "About Unity Aid Hub ",
+      "slug": "about-unity-aid-hub-",
+      "imageUrl": [],
+      "content": "insert⟨ Welcome to  ⟩\ninsert⟨ Unity Aid Hub ⟩ + {italic: true}\ninsert⟨ , a crowdfunding platform dedicated to bringing communities together for positive change. At Unity Aid Hub, we believe in the power of collective action to create meaningful impact. Our platform provides a space for individuals, organizations, and communities to come together, share their stories, and support causes they care about.⏎⏎ ⟩\ninsert⟨ Our Mission ⟩ + {bold: true}\ninsert⟨ ⏎Our mission is to empower people to make a difference. We strive to connect those in need with those who can help, fostering a sense of unity and compassion. Through our platform, we aim to create a more inclusive and caring world.⏎⏎ ⟩\ninsert⟨ How It Works ⟩ + {bold: true}\ninsert⟨ ⏎Unity Aid Hub allows users to create fundraising campaigns for a variety of causes, including medical expenses, community projects, educational initiatives, and more. Users can easily set up a campaign, share their story, and receive donations from supporters. Our platform provides tools and resources to help campaigners reach their fundraising goals.⏎⏎Our Values⏎Community: We believe in the strength of community and the impact it can have on individuals and society as a whole. ⟩\ninsert⟨ ⏎ ⟩ + {list: bullet}\ninsert⟨ Transparency: We are committed to transparency in all our operations, ensuring that donors and campaigners alike have full visibility into how funds are used. ⟩\ninsert⟨ ⏎ ⟩ + {list: bullet}\ninsert⟨ Empowerment: We empower individuals to take action and make a difference in the causes they care about. ⟩\ninsert⟨ ⏎ ⟩ + {list: bullet}\ninsert⟨ Impact: We measure our success by the positive impact we create in the lives of those we serve. ⟩\ninsert⟨ ⏎ ⟩ + {list: bullet}\ninsert⟨ ⏎Get Involved⏎Whether you're looking to start a campaign, support a cause, or simply learn more about Unity Aid Hub, we invite you to join us in our mission to create a better world for all. Together, we can make a difference. Unity in action, aid in unity!⏎⏎ ⟩\ninsert⟨ Thank you for being a part of Unity Aid Hub. ⟩ + {italic: true}\ninsert⟨ ⏎⏎Contact Us to learn more or get involved. ⟩\ninsert⟨ ⏎ ⟩ + {header: 1}",
+      "createdAt": "2024-02-29T15:42:38.090Z",
+      "updatedAt": "2024-02-29T15:42:38.090Z"
+    },
+
+    {
+      "id": 20,
+      "title": "Privacy Policy",
+      "slug": "privacy-policy",
+      "imageUrl": [],
+      "content": "insert⟨ We at  ⟩\ninsert⟨ Unity Aid Hub ⟩ + {bold: true}\ninsert⟨  value the trust you place in us. It's our priority to maintain the highest standards for secure transactions and user information privacy. Please take a moment to review the following statement to understand our information gathering and dissemination practices. ⟩\ninsert⟨ ⏎⏎ ⟩ + {align: justify}\ninsert⟨ This Privacy Policy is published in compliance with relevant regulations, including in The Privacy Act, 2075 (2018) of Nepal,  ⟩\ninsert⟨ ⏎ ⟩ + {align: justify}\ninsert⟨ Collection of Personally Identifiable Information and Other Information     ⟩\ninsert⟨ ⏎ ⟩ + {align: justify, list: bullet}\ninsert⟨ When you use our platform, we may collect and store your personal information provided by you from time to time. This information is essential for providing you with a safe, efficient, smooth, and customized experience. We collect personal information necessary for achieving these objectives. ⟩\ninsert⟨ ⏎ ⟩ + {align: justify}\ninsert⟨ You can browse our platform without revealing any personal information. However, once you provide your personal information, you are not anonymous to us. We may automatically track certain information about you based on your behavior on our platform. This information is used for internal research to better understand and serve our users. ⟩\ninsert⟨ ⏎ ⟩ + {align: justify}\ninsert⟨ We may use cookies and similar technologies to enhance your experience on our platform. You have the option to decline cookies, although this may limit certain features of the platform. ⟩\ninsert⟨ ⏎ ⟩ + {align: justify}\ninsert⟨ Use of Personal Information ⟩\ninsert⟨ ⏎ ⟩ + {align: justify, list: bullet}\ninsert⟨ We use personal information to provide the services you request and to improve our product offerings. We may also use your information to resolve disputes, troubleshoot problems, ensure a safe service, and customize your experience. Additionally, we may use demographic and profile data to analyze user activity on our platform. ⟩\ninsert⟨ ⏎ ⟩ + {align: justify}\ninsert⟨ Sharing of Personal Information ⟩\ninsert⟨ ⏎ ⟩ + {align: justify, list: bullet}\ninsert⟨ We do not share sensitive personal data or information, such as passwords or financial details, with third parties unless required by law. However, we may share personal information with third-party vendors or affiliates to provide services, detect and prevent illegal activities, or facilitate joint services as requested by users. ⟩\ninsert⟨ ⏎ ⟩ + {align: justify}\ninsert⟨ We may also disclose personal information if required by law or to protect our rights, property, or safety, or those of our users. ⟩\ninsert⟨ ⏎ ⟩ + {align: justify}\ninsert⟨ In the event of a merger, acquisition, or reorganization, personal information may be shared with the involved entities, subject to this privacy policy. ⟩\ninsert⟨ ⏎ ⟩ + {align: justify}\ninsert⟨ Links to Other Sites ⟩\ninsert⟨ ⏎ ⟩ + {align: justify, list: bullet}\ninsert⟨ Our platform may contain links to other websites or apps. We are not responsible for the privacy practices or content of these linked sites. ⟩\ninsert⟨ ⏎ ⟩ + {align: justify}\ninsert⟨ Security Precautions ⟩\ninsert⟨ ⏎ ⟩ + {align: justify, list: bullet}\ninsert⟨ We have implemented stringent security measures to protect user information from unauthorized access, loss, or alteration. Our hosting infrastructure and transaction affiliates adhere to industry-standard security protocols. ⟩\ninsert⟨ ⏎ ⟩ + {align: justify}\ninsert⟨ In the event of a security breach, users are encouraged to contact us immediately so that appropriate measures can be taken. ⟩\ninsert⟨ ⏎ ⟩ + {align: justify}\ninsert⟨ Review of Information / Account Deactivation ⟩\ninsert⟨ ⏎ ⟩ + {align: justify, list: bullet}\ninsert⟨ Users may review and amend their information at any time by accessing their accounts. We provide options to opt-out of receiving non-essential communications and to deactivate accounts. ⟩\ninsert⟨ ⏎ ⟩ + {align: justify}\ninsert⟨ Advertisements ⟩\ninsert⟨ ⏎ ⟩ + {align: justify, list: bullet}\ninsert⟨ Third-party advertising companies may serve ads on our platform. These companies may collect non-personal information about user visits to provide relevant ads. ⟩\ninsert⟨ ⏎ ⟩ + {align: justify}\ninsert⟨ Your Consent ⟩\ninsert⟨ ⏎ ⟩ + {align: justify, list: bullet}\ninsert⟨ By using our platform and providing your information, you consent to the collection and use of your information in accordance with this Privacy Policy. ⟩\ninsert⟨ ⏎ ⟩ + {align: justify}\ninsert⟨ Retention of Information ⟩\ninsert⟨ ⏎ ⟩ + {align: justify, list: bullet}\ninsert⟨ Information provided to Unity Aid Hub is processed, stored, and retained securely. Our servers and web hosts comply with industry-standard security protocols. ⟩\ninsert⟨ ⏎⏎⏎ ⟩ + {align: justify}\ninsert⟨ For any grievances or concerns regarding privacy issues, you may contact us ⟩\ninsert⟨ ⏎⏎ ⟩ + {align: justify}\ninsert⟨ Unity Aid Hub ⟩ + {bold: true}\ninsert⟨ ⏎ ⟩ + {align: justify, header: 1}",
+      "createdAt": "2024-02-29T16:23:27.592Z",
+      "updatedAt": "2024-02-29T16:23:27.592Z"
+    },
+
+    {
+      "id": 21,
+      "title": "Terms of Use",
+      "slug": "terms-of-use",
+      "imageUrl": [],
+      "content": "insert⟨ Agreement to Terms ⟩ + {bold: true}\ninsert⟨ ⏎⏎These Terms of Use (\"Terms\") govern your access to and use of Unity Aid Hub (\"Platform\"). By accessing or using the Platform, you agree to be bound by these Terms and our Privacy Policy. If you do not agree to these Terms, you may not use the Platform.⏎⏎ ⟩\ninsert⟨ Use of the Platform ⟩ + {bold: true}\ninsert⟨ ⏎⏎You must be at least 18 years old to use the Platform. You agree to use the Platform only for lawful purposes and in accordance with these Terms. You are responsible for ensuring that your use of the Platform complies with all applicable laws and regulations.⏎⏎ ⟩\ninsert⟨ User Accounts ⟩ + {bold: true}\ninsert⟨ ⏎⏎To access certain features of the Platform, you may be required to create an account. You agree to provide accurate, current, and complete information during the registration process and to update such information to keep it accurate, current, and complete. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.⏎⏎ ⟩\ninsert⟨ Intellectual Property Rights ⟩ + {bold: true}\ninsert⟨ ⏎⏎The Platform and its content, including but not limited to text, graphics, logos, images, and software, are protected by copyright, trademark, and other intellectual property laws. You may not modify, copy, reproduce, republish, upload, post, transmit, or distribute any portion of the Platform or its content without the prior written consent of Unity Aid Hub.⏎⏎ ⟩\ninsert⟨ User Content ⟩ + {bold: true}\ninsert⟨ ⏎⏎You retain ownership of any content you submit to the Platform (\"User Content\"). By submitting User Content, you grant Unity Aid Hub a worldwide, non-exclusive, royalty-free, sublicensable, and transferable license to use, reproduce, distribute, prepare derivative works of, display, and perform the User Content in connection with the Platform.⏎⏎ ⟩\ninsert⟨ Prohibited Conduct ⟩ + {bold: true}\ninsert⟨ ⏎⏎You agree not to:⏎⏎Use the Platform in any way that violates any applicable law or regulation. ⟩\ninsert⟨ ⏎ ⟩ + {list: ordered}\ninsert⟨ Use the Platform to harm, harass, or intimidate others. ⟩\ninsert⟨ ⏎ ⟩ + {list: ordered}\ninsert⟨ Use the Platform to transmit any viruses or other malicious code. ⟩\ninsert⟨ ⏎ ⟩ + {list: ordered}\ninsert⟨ Attempt to gain unauthorized access to any portion of the Platform. ⟩\ninsert⟨ ⏎ ⟩ + {list: ordered}\ninsert⟨ Use any automated means to access the Platform or collect data from the Platform. ⟩\ninsert⟨ ⏎ ⟩ + {list: ordered}\ninsert⟨ ⏎ ⟩\ninsert⟨ Termination ⟩ + {bold: true}\ninsert⟨ ⏎⏎We reserve the right to suspend or terminate your access to the Platform at any time for any reason without notice or liability.⏎⏎ ⟩\ninsert⟨ Disclaimer of Warranties ⟩ + {bold: true}\ninsert⟨ ⏎⏎The Platform is provided on an \"as is\" and \"as available\" basis without any warranties of any kind. We do not warrant that the Platform will be error-free or uninterrupted, or that any defects will be corrected.⏎⏎ ⟩\ninsert⟨ Limitation of Liability ⟩ + {bold: true}\ninsert⟨ ⏎⏎To the fullest extent permitted by law, Unity Aid Hub shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Platform.⏎⏎ ⟩\ninsert⟨ Governing Law ⟩ + {bold: true}\ninsert⟨ ⏎⏎These Terms shall be governed by and construed in accordance with the laws of Nepal, without regard to its conflict of law principles.⏎⏎ ⟩\ninsert⟨ Changes to Terms ⟩ + {bold: true}\ninsert⟨ ⏎⏎We may revise these Terms from time to time in our sole discretion. The most current version of the Terms will govern your use of the Platform and will be available on the Platform. By continuing to access or use the Platform after any revisions become effective, you agree to be bound by the revised Terms.⏎⏎ ⟩\ninsert⟨ Contact Us ⟩ + {bold: true}\ninsert⟨ ⏎⏎If you have any questions about these Terms, please contact us at  ⟩\ninsert⟨ unityaidhub@gmail.com ⟩ + {underline: true, italic: true}\ninsert⟨ .⏎ ⟩",
+      "createdAt": "2024-02-29T16:37:03.917Z",
+      "updatedAt": "2024-02-29T16:37:03.917Z"
+    }
+  ],
+  "blog":[
+    { 
+      "id":1,
+      "title": "Exploring the Wonders of Nature: A Journey Through National Parks",
+      "description": "Embark on a breathtaking journey through some of the world's most stunning national parks. Discover the beauty of towering cliffs, colorful landscapes, and diverse ecosystems as you explore iconic destinations like Yosemite, Yellowstone, and the Grand Canyon. Learn about the importance of conservation efforts and the role we play in preserving these natural wonders for future generations.",
+      "imageUrl": [
+        "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg"
+      ],
+      "author": "Jane Smith",
+      "categoryId": 201,
+      "updatedAt": "2024-01-25T12:30:45Z",
+      "createdAt": "2024-01-20T08:15:00Z"
+    },
+    {
+      "id":2,
+      "title": "The Power of Positive Thinking: Transforming Your Life with Optimism",
+      "description": "Unlock the potential of positive thinking and transform your life with the power of optimism. Dive into the science behind positive psychology and discover practical techniques to cultivate a positive mindset. From reframing negative thoughts to practicing gratitude and visualization, learn how to overcome obstacles, build resilience, and thrive in all areas of your life.",
+      "imageUrl": [
+        "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg"
+      ],
+      "author": "Michael Johnson",
+      "categoryId": 201,
+      "updatedAt": "2024-01-25T09:45:20Z",
+      "createdAt": "2024-01-15T14:00:00Z"
+    },
+    {
+      "id":3,
+      "title": "Unlocking Creativity: Embracing Your Inner Artist",
+      "description": "Unleash your creative potential and embrace your inner artist with confidence. Explore various artistic mediums, from painting and drawing to writing and photography, as you embark on a journey of self-expression and discovery. Learn how to overcome creative blocks, tap into your intuition, and unleash your imagination to create art that reflects your unique perspective and voice.",
+      "imageUrl": [
+        "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg"
+      ],
+      "author": "Sarah Lee",
+      "categoryId": 202,
+      "updatedAt": "2024-01-25T09:45:20Z",
+      "createdAt": "2024-01-15T14:00:00Z"
+    },
+    {
+      "id":4,
+      "title": "The Science of Sleep: Understanding the Importance of Rest",
+      "description": "Delve into the fascinating world of sleep science and gain insights into the importance of quality rest for optimal health and well-being. Explore the stages of sleep, the role of circadian rhythms, and common sleep disorders as you learn practical tips for improving sleep hygiene and maximizing your sleep efficiency. Discover how prioritizing rest can enhance your cognitive function, mood, and overall quality of life.",
+      "imageUrl": [
+        "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg"
+      ],
+      "author": "David Brown",
+      "categoryId": 205,
+      "updatedAt": "2024-01-23T15:20:10Z",
+      "createdAt": "2024-01-16T09:30:00Z"
+    },
+    {
+      "id":5,
+      "title": "The Joy of Cooking: Exploring Culinary Delights from Around the World",
+      "description": "Embark on a culinary adventure and explore the rich tapestry of flavors, textures, and aromas from diverse cuisines around the world. From spicy street food to elegant desserts, discover mouthwatering recipes and culinary traditions that will tantalize your taste buds and ignite your passion for cooking. Learn how to master new techniques, experiment with exotic ingredients, and create memorable meals that celebrate the art of gastronomy.",
+      "imageUrl": [
+        "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg"
+      ],
+      "author": "Emily Wilson",
+      "categoryId": 206,
+      "updatedAt": "2024-01-23T15:20:10Z",
+      "createdAt": "2024-01-16T09:30:00Z"
+    },
+    {
+      "id":6,
+      "title": "Mastering the Art of Public Speaking: Overcoming Stage Fright",
+      "description": "Master the art of public speaking and conquer stage fright with confidence. Explore proven techniques for effective communication, from crafting compelling speeches to delivering dynamic presentations. Learn how to manage anxiety, engage your audience, and leave a lasting impression as you hone your public speaking skills and become a more confident and persuasive communicator.",
+      "imageUrl": [
+        "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg"
+      ],
+      "author": "Alex Carter",
+      "categoryId": 207,
+      "updatedAt": "2024-01-23T15:20:10Z",
+      "createdAt": "2024-01-16T09:30:00Z"
+    },
+    {
+      "id":7,
+      "title": "The Magic of Music: Exploring the Healing Power of Sound",
+      "description": "Experience the transformative power of music as you journey through its healing and therapeutic effects. Discover how music can soothe the soul, reduce stress, and promote relaxation in times of turmoil and uncertainty. From classical melodies to modern compositions, explore the diverse world of music therapy and learn how to harness its healing potential to enhance your physical, emotional, and spiritual well-being.",
+      "imageUrl": [
+        "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg"
+      ],
+      "author": "Sophia Davis",
+      "categoryId": 208,
+      "updatedAt": "2024-01-23T15:20:10Z",
+      "createdAt": "2024-01-16T09:30:00Z"
+    },
+    {
+      "id":8,
+      "title": "The Adventure Begins: Planning Your Ultimate Backpacking Trip",
+      "description": "Embark on the adventure of a lifetime and plan your ultimate backpacking trip with confidence. From choosing the right gear to mapping out your route, discover essential tips and resources to ensure a safe and memorable journey. Whether you're trekking through remote wilderness or exploring vibrant cities, prepare to embrace the spirit of adventure and create lasting memories along the way.",
+      "imageUrl": [
+        "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg"
+      ],
+      "author": "Daniel Evans",
+      "categoryId": 209,
+      "updatedAt": "2024-01-23T15:20:10Z",
+      "createdAt": "2024-01-16T09:30:00Z"
+    },
+    {
+      "id":9,
+      "title": "The Art of Minimalism: Simplify Your Life and Find Inner Peace",
+      "description": "Embrace the philosophy of minimalism and discover the transformative power of living with less. Explore practical strategies for decluttering your space, simplifying your schedule, and prioritizing what truly matters in life. From cultivating mindfulness to fostering gratitude, learn how embracing minimalism can lead to greater clarity, contentment, and inner peace in a chaotic world.",
+      "imageUrl": [
+        "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg"
+      ],
+      "author": "Olivia Martinez",
+      "categoryId": 201,
+      "updatedAt": "2024-01-23T15:20:10Z",
+      "createdAt": "2024-01-16T09:30:00Z"
+    },
+    {
+      "id":10,
+      "title": "The Science of Happiness: Cultivating Joy in Everyday Life",
+      "description": "Unlock the secrets to lasting happiness and cultivate joy in your everyday life. Explore the science of well-being and discover evidence-based strategies for increasing happiness and fulfillment. From practicing gratitude and savoring positive experiences to nurturing meaningful relationships and pursuing your passions, learn how to create a life filled with purpose, meaning, and joy.",
+      "imageUrl": [
+        "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg"
+      ],
+      "author": "Matthew Taylor",
+      "categoryId": 201,
+      "updatedAt": "2024-01-23T15:20:10Z",
+      "createdAt": "2024-01-16T09:30:00Z"
+    },
+    {
+      "id": 11,
+      "title": "The Impact of Mindfulness on Mental Health",
+      "description": "<p>In a fast-paced world, where stress and anxiety often take center stage, the practice of mindfulness emerges as a beacon of serenity. This blog explores the profound impact of mindfulness on mental well-being.</p> <p> From understanding the basics to delving into advanced techniques, we navigate the journey toward a calmer, more centered self. Enhanced with the interactive capabilities of React Quill, we make mindfulness not just a topic to read about but an experience to engage in.</p>",
+      "imageUrl":[ "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg"],
+      "author": "John Doe",
+      "categoryId": 201,
+      "updatedAt": "2024-01-25T12:30:45Z",
+      "createdAt": "2024-01-20T08:15:00Z"
+    },
+
+    {
+      "id": 12,
+      "title": "Revolutionizing Education: The Rise of Online Learning",
+      "description": "<p>The traditional classroom has expanded its walls into the digital realm, ushering in an era of unparalleled educational accessibility. Join us on a journey as we explore the transformative power of online learning.</p><p>From the convenience of virtual classrooms to the democratization of knowledge, this blog delves into the key factors reshaping the educational landscape. Discover how online learning is revolutionizing the way we acquire knowledge and skills.</p>",
+      "imageUrl":[ "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg"],
+      "author": "Jane Smith",
+      "categoryId": 202,
+      "updatedAt": "2024-01-25T09:45:20Z",
+      "createdAt": "2024-01-15T14:00:00Z"
+    },
+
+    {
+      "id": 13,
+      "title": "Nurturing Young Minds: The Importance of Early Childhood Education",
+      "description": "<p>The early years of a child's life lay the groundwork for future development. This blog emphasizes the critical importance of early childhood education in providing a solid foundation for young minds.</p><p>From the impact of early learning experiences to the role of caregivers, we explore the factors that contribute to a child's holistic growth. Join us in understanding why investing in the early years is an investment in the future.</p> ",
+      "imageUrl":[ "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg"],
+      "author": "Alice Johnson",
+      "categoryId": 203,
+      "updatedAt": "2024-01-24T18:10:30Z",
+      "createdAt": "2024-01-18T10:45:00Z"
+    },
+
+    {
+      "id":14,
+      "title": "Startup Success Stories: Lessons from Tech Innovators",
+      "description": "<p>Behind every successful startup is a story of innovation, perseverance, and strategic decision-making. In this blog, we dive into the success stories of tech innovators who turned their ideas into thriving businesses.</p>   <p>From overcoming challenges to seizing opportunities, we extract valuable lessons for aspiring entrepreneurs. Whether you're a startup enthusiast or a seasoned professional, this exploration into the world of tech entrepreneurship is sure to inspire.</p> ",
+      "imageUrl":[ "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg"],
+      "author": "Robert Anderson",
+      "categoryId": 204,
+      "updatedAt": "2024-01-23T15:20:10Z",
+      "createdAt": "2024-01-16T09:30:00Z"
+    },
+    {
+      "id": 15,
+      "title": "The Science Behind Healthy Living",
+      "description": "<p>Wellness isn't just a lifestyle; it's a science. This blog takes you on a journey into the scientific principles that underpin a healthy and fulfilling life.</p><p>From the role of nutrition in cellular health to the physiological benefits of exercise, we unravel the mysteries of well-being. Join us in exploring how a deeper understanding of the science behind healthy living can empower you to make informed choices for a vibrant and balanced life.</p>",
+      "imageUrl":[ "https://cdn.pixabay.com/photo/2023/09/29/10/20/sunset-8283538_1280.jpg"],
+      "author": "Emily Taylor",
+      "categoryId": 208,
+      "updatedAt": "2024-01-22T11:55:55Z",
+      "createdAt": "2024-01-14T13:20:00Z"
+    }
+  ]
+  
 }

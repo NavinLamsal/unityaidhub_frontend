@@ -2,7 +2,7 @@ import { auth } from "@/auth"
 import { ProfileForm } from "./Profile-form"
 import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { getUser } from "@/components/action/actions";
+import { getUser } from "@/lib/action/actions";
 
 export default async function SettingsProfilePage() {
   const session = await auth();

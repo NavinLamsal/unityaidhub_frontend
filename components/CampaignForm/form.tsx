@@ -29,8 +29,9 @@ import { Check, CheckCircle2, CheckIcon, ChevronsUpDown } from "lucide-react";
 import CustomFileSelector from "@/components/CampaignForm/CustomFileSelector";
 import { Checkbox } from '../ui/checkbox';
 import { CurrencyInput } from '../ui/currencyInput';
-import { CreatePostAction } from '../action/createPostAction';
+import { CreatePostAction } from '../../lib/action/createPostAction';
 import { useSession } from 'next-auth/react';
+import { Textarea } from '../ui/textarea';
 
 
 type Inputs = z.infer<typeof createPostvalidation>
@@ -96,7 +97,6 @@ export default function PostForm({ countries, ngos }: { countries: string[], ngo
         { data.benificiary_type === "NGO" && data.benificiaryNGO && formData.append("userid", data.benificiaryNGO) }
         {
             data.benificiary_type === "myself" ?? formData.append("userid", data.benificiary_type)
-            
         }
         formData.append("country", data.country)
         { data.document && formData.append("image", data.document) }
@@ -123,7 +123,7 @@ export default function PostForm({ countries, ngos }: { countries: string[], ngo
         const jsonBody = Object.fromEntries(Array.from(formData.entries()));
         if(session?.accessToken){
             try{
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post`, {
                     method: "POST",
                     body: JSON.stringify(body),
                     headers: { "Content-Type": "application/json", 
@@ -509,6 +509,7 @@ export default function PostForm({ countries, ngos }: { countries: string[], ngo
                             initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
                             transition={{ duration: 0.3, ease: 'easeInOut' }}
+                            className='max-w-lg'
                         >
                             <FormField
                                 control={form.control}
@@ -533,7 +534,10 @@ export default function PostForm({ countries, ngos }: { countries: string[], ngo
                                         <FormDescription className="text-sm">
                                             Describe about benificiary for your campaign
                                         </FormDescription>
-                                        <RichTextEditor {...field} className="bg-white dark:bg-zinc-950 rounded-md " placeholder="Explain about benificiary..." />
+                                        <Textarea
+                                        cols={25}
+                                        {...field} className="bg-white dark:bg-zinc-950 rounded-md w-96 " placeholder="Explain about benificiary..."
+                                        />
                                         <FormMessage />
                                     </FormItem>
                                 )}

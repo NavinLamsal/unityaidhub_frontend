@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/HOC/theme-provider";
 import Provider from "@/components/HOC/Providers";
 import { Toaster } from "@/components/ui/toaster";
-import { getUser } from "@/components/action/actions";
+import { getUser } from "@/lib/action/actions";
 import { auth } from "@/auth";
 
 

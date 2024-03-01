@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui
 import { LiaDonateSolid } from "react-icons/lia";
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "../ui/drawer";
 import Donation from "./donation";
+import SocialShareList from "./SocialShareList";
 
 
 const DonateCard = () => {
@@ -40,13 +41,8 @@ const DonateCard = () => {
 
                 </div>
                 <div className=" grid w-full gap-2">
-                    
-                    <Drawer>
-                        <DrawerTrigger><Button variant="default" className="bg-Primary/80 hover:bg-Primary/50 w-full">Share</Button></DrawerTrigger>
-                        <DrawerContent className="p-4 mt-10">
-                           <div>share links</div>
-                        </DrawerContent>
-                    </Drawer>
+                <SocialShareList/>
+                 
                     <Drawer>
                         <DrawerTrigger><Button variant="default" className="w-full">Donate</Button></DrawerTrigger>
                         <DrawerContent className="p-4 mt-10">

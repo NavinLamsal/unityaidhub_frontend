@@ -1,6 +1,5 @@
 "use client"
 
-// import { Icons } from "@/components/icons"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -12,8 +11,8 @@ import {
 } from "@/components/ui/card"
 import { Facebook, GithubIcon } from "lucide-react"
 import { FaGoogle } from "react-icons/fa6";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
+import { Input } from "../../ui/input";
+import { Label } from "../../ui/label";
 
 
 

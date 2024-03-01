@@ -6,6 +6,35 @@ import DonateCard from "@/components/detailpage/DonateCard";
 import Tabcollections from "@/components/detailpage/Tabcollections";
 
 
+import type { Metadata, ResolvingMetadata } from 'next'
+
+type Props = {
+  params: { id: string }
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+// export async function generateMetadata(
+//   { params, searchParams }: Props,
+//   parent: ResolvingMetadata
+// ): Promise<Metadata> {
+//   // read route params
+//   const id = params.id
+
+//   // fetch data
+//   const product = await fetch(`https://.../${id}`).then((res) => res.json())
+
+//   // optionally access and extend (rather than replace) parent metadata
+//   const previousImages = (await parent).openGraph?.images || []
+
+//   return {
+//     title: product.title,
+//     openGraph: {
+//       images: ['/some-specific-page-image.jpg', ...previousImages],
+//     },
+//   }
+// }
+
+
 const PostDetailPage = () => {
   return (
     <div className="container my-5 dark:bg-darkPrimary">
@@ -32,9 +61,9 @@ const PostDetailPage = () => {
           <div className="md:w-7/12 lg:w-8/12">
             <Carousel />
             <div className=" flex md:hidden my-4">
-            <DonateCard />
+              <DonateCard />
             </div>
-            <Tabcollections/>
+            <Tabcollections />
           </div>
           <div className="hidden md:block md:w-5/12 lg:w-4/12">
             <DonateCard />
@@ -46,3 +75,33 @@ const PostDetailPage = () => {
 };
 
 export default PostDetailPage;
+
+// export async function generateMetadata({ params }: { params: { id: string } }, parent: ResolvingMetadata) {
+//   // const post = await getPostById(params.id);
+//   // return getMetadata(posts);
+// }
+
+const getMetadata = (post: any) => {
+  return {
+    title: post.title,
+    description: post.description,
+    openGraph: {
+      type: "website",
+      url: `https://yourdomain.com/posts/${post.id}`,
+      title: post.title,
+      description: post.description,
+      images: [
+        {
+          url: post.coverImage,
+          width: 800,
+          height: 600,
+          alt: post.title,
+        },
+      ],
+      locale: "en_US",
+    },
+    twitter: {
+      cardType: "summary_large_image",
+    }
+  }
+}

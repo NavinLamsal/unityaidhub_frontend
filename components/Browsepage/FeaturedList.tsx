@@ -2,7 +2,7 @@
 import React from 'react'
 import FundraisingCard from '../Card/fundraisingCard'
 import Pagination from '../ui/pagination'
-import { getPost } from '../action/actions';
+import { getPost } from '../../lib/action/actions';
 import { useQuery } from '@tanstack/react-query';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
