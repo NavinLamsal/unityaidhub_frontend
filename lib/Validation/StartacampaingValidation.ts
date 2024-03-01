@@ -17,10 +17,10 @@ export const createPostvalidation = z.object({
     required_error: "Please select a benificiary.",
   }),
   postTitle: z.string({
-    required_error: "Invalid Fund.",
+    required_error: "Invalid Title.",
   }),
   postDescription: z.string({
-    required_error: "Invalid Fund.",
+    required_error: "Invalid Description.",
   }),
   document: z.any().optional(),
   // images : z.any(),

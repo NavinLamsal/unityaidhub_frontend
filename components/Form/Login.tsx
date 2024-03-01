@@ -9,7 +9,7 @@ import * as z from "zod";
 import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import { loginvalidation } from "@/lib/Validation/LoginValidation";
-import { loginAction } from "../action/loginAction";
+import { loginAction } from "../../lib/action/loginAction";
 import { AlertTriangle, CheckCheck } from "lucide-react";
 import { toast } from "../ui/use-toast";
 import { useSearchParams } from "next/navigation";

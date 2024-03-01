@@ -9,7 +9,7 @@ import { Sidebar } from "@/components/categorypage/sidebar";
 
 import FeaturedList from "@/components/Browsepage/FeaturedList";
 import Link from "next/link";
-import { getPost } from "@/components/action/actions";
+import { getPost } from "@/lib/action/actions";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
 export const metadata: Metadata = {
