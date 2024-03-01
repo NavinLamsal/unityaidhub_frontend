@@ -63,9 +63,6 @@ async function PageDetail({ slug  }: { slug: string }) {
 
 const Page = async ({ params }: { params: { slug: string } }) => {
     const { slug } = params;
-    
-  
-
     return (
         <div className="grid dark:text-white text-zinc-950">
             <Suspense fallback={<div><Loading /></div>}>
