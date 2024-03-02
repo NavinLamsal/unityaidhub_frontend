@@ -3,6 +3,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import FundraisingCard from "../Card/fundraisingCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Posts } from "@/lib/types/Posts";
 
 const responsive = {
     superLargeDesktop:{
@@ -66,7 +67,7 @@ const ButtonGroup = ({ next, previous, goToSlide, ...rest }: any) => {
   );
 };
 
-const RelatedProducts = () => {
+const RelatedProducts = ({post}:{post:Posts[]}) => {
   return (
     <div className="container max-[700px]:translate-y-5 mb-10 mx-auto">
       <div className="flex relative flex-col-reverse justify-center max-w-7xl  mb-3 ">
@@ -87,14 +88,10 @@ const RelatedProducts = () => {
           // centerMode={true}
           partialVisible={true}
         >
-          <FundraisingCard />
-          <FundraisingCard />
-          <FundraisingCard />
-          <FundraisingCard />
-          <FundraisingCard />
-          <FundraisingCard />
-          <FundraisingCard />
-          <FundraisingCard />
+          {post.slice(0,10).map((data)=>(
+            <FundraisingCard key={data.title} post={data}/>
+
+          ))}
         </Carousel>
       </div>
     </div>

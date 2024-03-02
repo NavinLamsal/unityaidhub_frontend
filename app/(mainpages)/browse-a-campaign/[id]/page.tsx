@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { PiSirenFill } from "react-icons/pi";
 import { IoIosInformationCircleOutline } from "react-icons/io";
 import Carousel from '@/components/detailpage/Carousel'
@@ -7,6 +7,8 @@ import Tabcollections from "@/components/detailpage/Tabcollections";
 
 
 import type { Metadata, ResolvingMetadata } from 'next'
+import { getPost, getPostdetail } from "@/lib/action/actions";
+import { Posts } from "@/lib/types/Posts";
 
 type Props = {
   params: { id: string }
@@ -34,8 +36,34 @@ type Props = {
 //   }
 // }
 
+export async function generateStaticParams() {
+ async function getPostsIds() {
+    try {
+      const data:Posts[] = await fetch("http://localhost:8000/posts").then(
+        (res) => res.json()
+      );
+      const postIds = data.map((post: Posts) => post.id.toString())
+      return postIds as string[];
+    } catch (error) {
+      console.log(error)
+      return [] as string[];
+    }
+  }
 
-const PostDetailPage = () => {
+
+  const post:string[] = await getPostsIds();
+
+  return post.map((page) => ({
+      id: page,
+  })
+  )
+}
+
+
+const PostDetail = async ({ id }: { id: string  }) => {
+
+  const data:Posts = await getPostdetail(id);
+
   return (
     <div className="container my-5 dark:bg-darkPrimary">
       <div className="flex flex-col">
@@ -54,19 +82,19 @@ const PostDetailPage = () => {
             <IoIosInformationCircleOutline size={30} className="dark:text-white text-Primary " />
           </div>
 
-          <h1 className="sm:text-2xl text-xl text-center font-semibold leading-none tracking-tight my-5">My Little Boy Can’t Breathe, And I’m Helpless. Please Save Him For Me.</h1>
+          <h1 className="sm:text-2xl text-xl text-center font-semibold leading-none tracking-tight my-5">{data.title}</h1>
         </div>
 
         <div className="flex md:flex-row flex-col gap-3 mt-5">
           <div className="md:w-7/12 lg:w-8/12">
-            <Carousel />
+            <Carousel images={data.image}/>
             <div className=" flex md:hidden my-4">
-              <DonateCard />
+              <DonateCard post={data}/>
             </div>
-            <Tabcollections />
+            <Tabcollections post={data}/>
           </div>
           <div className="hidden md:block md:w-5/12 lg:w-4/12">
-            <DonateCard />
+            <DonateCard post={data}/>
           </div>
         </div>
       </div>
@@ -74,7 +102,17 @@ const PostDetailPage = () => {
   );
 };
 
-export default PostDetailPage;
+const Page = async ({ params }: { params: { id: string } }) => {
+  const { id } = params;
+  return (
+      <div className="grid dark:text-white text-zinc-950">
+          <Suspense fallback={<div>Loading...</div>}>
+              <PostDetail id={id} />
+          </Suspense>
+      </div>
+  );
+};
+export default Page;
 
 // export async function generateMetadata({ params }: { params: { id: string } }, parent: ResolvingMetadata) {
 //   // const post = await getPostById(params.id);

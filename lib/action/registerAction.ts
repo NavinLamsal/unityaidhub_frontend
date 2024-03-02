@@ -1,6 +1,5 @@
 "use server"
 
-import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
 import { loginAction } from "./loginAction";
 
@@ -24,9 +23,6 @@ export async function RegisterAction(formData:FormData){
             return
           }
         });
-
-          
-       
     }catch(error:unknown){
         if(error instanceof AuthError)
         {

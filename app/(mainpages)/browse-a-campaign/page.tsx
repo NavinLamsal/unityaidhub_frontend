@@ -1,4 +1,3 @@
-import FundraisingCard from "@/components/Card/fundraisingCard";
 import React from "react";
 
 import { Metadata } from "next";
@@ -9,7 +8,7 @@ import { Sidebar } from "@/components/categorypage/sidebar";
 
 import FeaturedList from "@/components/Browsepage/FeaturedList";
 import Link from "next/link";
-import { getPost } from "@/lib/action/actions";
+import { getCategory, getPost } from "@/lib/action/actions";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
 export const metadata: Metadata = {
@@ -28,7 +27,6 @@ export const metadata: Metadata = {
   };
 }) {
 
- 
   const category = searchParams?.category || '';
   const status = searchParams?.status || '';
   const sortBy = searchParams?.sortBy || '';
@@ -42,6 +40,8 @@ export const metadata: Metadata = {
     }
   },
 );
+
+const categorieslist = await getCategory()
 
 
   return (
@@ -69,15 +69,13 @@ export const metadata: Metadata = {
           </div>
         </div>
       </div>
-
-
       <div className="container">
         <div className="block">
           <div className="">
             <div className="bg-background">
               <div className="grid lg:grid-cols-5">
              
-              <Sidebar className="hidden lg:block" />
+              <Sidebar className="hidden lg:block" categoriesList={categorieslist} />
                       
                 
                 <div className="col-span-3 lg:col-span-4 lg:border-l border-zinc-300">
