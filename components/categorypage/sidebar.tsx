@@ -8,8 +8,11 @@ import data from "@/db.json";
 import { Checkbox } from "../ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Category } from "@/lib/types/Category";
 
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
+  categoriesList: Category[];
+}
 
 interface FilterInputs{
   category?: string[];
@@ -17,8 +20,8 @@ interface FilterInputs{
   sortBy?: string,
 }
 
-export function Sidebar({ className }: SidebarProps) {
-  const { categories } = data;
+export function Sidebar({ className, categoriesList }: SidebarProps) {
+  const categories = categoriesList?? [] as Category[];
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
@@ -56,6 +59,21 @@ export function Sidebar({ className }: SidebarProps) {
   }
 
 
+  function resetFilter(): void {
+    form.reset({
+      category: [],
+      status: '',
+      sortBy: '',
+    });
+  
+    const queryParams = new URLSearchParams(searchParams);
+    queryParams.delete('category');
+    queryParams.delete('status');
+    queryParams.delete('sortBy');
+  
+    replace(pathname);
+  }
+
   return (
     <div className={cn("pb-12", className)}>
       <div className="space-y-4 py-4">
@@ -78,14 +96,14 @@ export function Sidebar({ className }: SidebarProps) {
                       >
                         <FormControl>
                           <Checkbox
-                            checked={form.watch().category.includes(item.id)}
+                            checked={form.watch().category.includes(item.id.toString())}
                             onCheckedChange={(checked) => {
                               const currentCategories =
                                 form.watch().category || [];
                               const updatedCategories = checked
-                                ? [...currentCategories, item.id]
+                                ? [...currentCategories, item.id.toString()]
                                 : currentCategories.filter(
-                                    (value: string) => value !== item.id
+                                    (value: string) => value !== item.id.toString()
                                   );
                               form.setValue("category", updatedCategories);
                             }}
@@ -117,7 +135,7 @@ export function Sidebar({ className }: SidebarProps) {
                         defaultValue={field.value}
                         className="flex flex-col space-y-1"
                       >
-                        {[ "urgent", "tax benefits", "completed"].map(
+                        {[ "BASIC", "URGENT"].map(
                           (status) => (
                             <FormItem
                               key={status}
@@ -161,7 +179,7 @@ export function Sidebar({ className }: SidebarProps) {
                         defaultValue={field.value}
                         className="flex flex-col space-y-1"
                       >
-                        {["latest", "published date", "alphabetic order"].map(
+                        {["latest", "published date"].map(
                           (sortBy) => (
                             <FormItem
                               key={sortBy}
@@ -188,7 +206,10 @@ export function Sidebar({ className }: SidebarProps) {
                 )}
               />
             </div>
-            <Button>Apply</Button>
+            <div className="flex gap-2 flex-1 flex-row justify-start px-6 py-2">
+            <Button type="reset" onClick={()=>resetFilter()} variant={"default_outline"}>Clear</Button>
+            <Button type="submit">Apply</Button>
+            </div>
           </form>
         </Form>
       </div>

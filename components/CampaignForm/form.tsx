@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from "next/image";
 
@@ -9,12 +9,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { createPostvalidation } from '@/lib/Validation/StartacampaingValidation'
 
-
-import data from "@/db.json"
-
 import { cn } from "@/lib/utils"
-
-import RichTextEditor from "@/components/RichTextEditor/Richtexteditor";
 
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -32,9 +27,95 @@ import { CurrencyInput } from '../ui/currencyInput';
 import { CreatePostAction } from '../../lib/action/createPostAction';
 import { useSession } from 'next-auth/react';
 import { Textarea } from '../ui/textarea';
+import { Category } from '@/lib/types/Category';
+import axios from "axios";
+import axiosInstance from '@/lib/axios/axios';
 
 
 type Inputs = z.infer<typeof createPostvalidation>
+
+const fetchCountries = async (): Promise<string[]> => {
+    try {
+      const response = await fetch("https://restcountries.com/v3.1/all?fields=name", {
+        method: 'GET',
+        redirect: 'follow'
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const result = await response.json();
+  
+      return result.map((country: any) => country?.name?.common);
+    } catch (error) {
+      console.error('Error fetching countries:', error);
+      return [] as string[];
+    }
+  };
+
+
+// const getCategory = async (): Promise<Category[]> => {
+//   try {
+//     const response = await axios.get("http://localhost:3001/category", {
+//       headers: {
+//         'Content-Type': 'application/json', // Adjust the content type as needed
+//         // Add any other headers you need
+//       },
+//     });
+
+//     if (!response.data || !response.data.ok) {
+//       throw new Error('Network response was not ok');
+//     }
+//     console.log("axios category", response)
+//     const result = response.data.data as Category[] ; // Adjust based on the response structure
+
+//     return result as Category[];
+//   } catch (error) {
+//     console.error('Error fetching category:', error);
+//     return [] as Category[];
+//   }
+// };
+
+
+const categories = [
+    {
+      "id": 1,
+      "name": "title 1",
+      "darkImage": "string",
+      "lightImage": "string",
+      "primaryImage": "string",
+      "createdAt": "2024-02-29T01:55:37.927Z",
+      "updatedAt": "2024-02-29T01:55:37.927Z"
+    },
+    {
+      "id": 2,
+      "name": "title 2",
+      "darkImage": "string",
+      "lightImage": "string",
+      "primaryImage": "string",
+      "createdAt": "2024-02-29T02:42:06.966Z",
+      "updatedAt": "2024-02-29T02:42:06.966Z"
+    },
+    {
+      "id": 3,
+      "name": "Health",
+      "darkImage": "https://cdn.pixabay.com/photo/2020/03/29/15/35/coronavirus-4981176_960_720.png",
+      "lightImage": "https://cdn.pixabay.com/photo/2020/03/29/15/35/coronavirus-4981176_960_720.png",
+      "primaryImage": "https://cdn.pixabay.com/photo/2020/03/29/15/35/coronavirus-4981176_960_720.png",
+      "createdAt": "2024-03-01T14:04:58.908Z",
+      "updatedAt": "2024-03-01T14:04:58.908Z"
+    },
+    {
+      "id": 4,
+      "name": "Education",
+      "darkImage": "https://media.istockphoto.com/id/1428677007/vector/woman-and-man-with-laptops-sitting-on-books-online-education-concept.jpg?s=1024x1024&w=is&k=20&c=YgejBDWb7U2-9-0dnKBnGwtr2dmgYdYlECmZB8LVNQM=",
+      "lightImage": "https://media.istockphoto.com/id/1428677007/vector/woman-and-man-with-laptops-sitting-on-books-online-education-concept.jpg?s=1024x1024&w=is&k=20&c=YgejBDWb7U2-9-0dnKBnGwtr2dmgYdYlECmZB8LVNQM=",
+      "primaryImage": "https://media.istockphoto.com/id/1428677007/vector/woman-and-man-with-laptops-sitting-on-books-online-education-concept.jpg?s=1024x1024&w=is&k=20&c=YgejBDWb7U2-9-0dnKBnGwtr2dmgYdYlECmZB8LVNQM=",
+      "createdAt": "2024-03-01T14:06:39.012Z",
+      "updatedAt": "2024-03-01T14:06:39.012Z"
+    }
+  ]
 
 const steps = [
     {
@@ -60,18 +141,30 @@ const steps = [
     { id: '5', name: 'Terms & Conditions' }
 ]
 
-export default function PostForm({ countries, ngos }: { countries: string[], ngos: { id: string; name: string; }[] }) {
-    const { categories } = data
+export default function PostForm({  ngos, category}: {  ngos: { id: string; name: string; }[] , category:Category[]}) {
     const [previousStep, setPreviousStep] = useState(0)
     const [currentStep, setCurrentStep] = useState(0)
     const [images, setImages] = useState<File[]>([]);
     const [submittedSteps, setSubmittedSteps] = useState<number[]>([]);
     const delta = currentStep - previousStep
     const {data:session}= useSession();
+    const [countries, setCountries] = useState<string[]>([])
+
+    useEffect(() => {
+        const fetchcountry = async () => {
+            try {
+                const countries: string[] = await fetchCountries();
+                setCountries(countries); // You can use the fetched countries here
+               
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+       fetchcountry();
+    }, []);
 
     const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
-            //convert `FileList` to `File[]`
             const _files = Array.from(e.target.files);
             setImages(_files);
         }
@@ -81,9 +174,14 @@ export default function PostForm({ countries, ngos }: { countries: string[], ngo
         resolver: zodResolver(createPostvalidation),
     });
 
+    function stripHtmlTags(text:any) {
+        return text.replace(/<[^>]*>?/gm, '');
+    }
+
     const processForm: SubmitHandler<Inputs> = async (data) => {
         const startDate = new Date();
         const formData = new FormData();
+
         formData.append("title", data.postTitle)
         formData.append("description", data.postDescription)
         formData.append("startDate", startDate.toISOString())
@@ -102,42 +200,92 @@ export default function PostForm({ countries, ngos }: { countries: string[], ngo
         { data.document && formData.append("image", data.document) }
         // await CreatePostAction(formData)
 
-    const body ={
-        "title": formData.get("title"),
-        "description": formData.get("description"),
-        "startDate": "2024-02-29T01:52:26.882Z",
-        "endDate": "2024-02-29T01:52:26.882Z",
-        "goalAmount": 78939,
-        "currentAmount": 0,
-        // "image": [
-        //   "string"
-        // ],
-        // "view": 0,
-        "status": "NOTVERIFIED",
-        "postType": "BASIC",
-        // "postUpdates": "",
-        "categoryId":1,
-        "userId": 1
-      }
+        const body ={
+            "title": formData.get("title"),
+            "description": formData.get("description"),
+            "goalAmount": 72893,
+            // "image": [
+            //   "string"
+            // ],
+            "status": "NOTVERIFIED",
+            "postType": formData.get("postType"),
+            "postUpdates": "",
+            "categoryId": 4,
+            "userId": 9
+          }
+
 
         const jsonBody = Object.fromEntries(Array.from(formData.entries()));
         if(session?.accessToken){
-            try{
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/post`, {
-                    method: "POST",
-                    body: JSON.stringify(body),
-                    headers: { "Content-Type": "application/json", 
-                    Authorization: `Bearer ${session.accessToken}`
-                },
-                  })
-                  console.log("post createion ",res)
-            }catch(error){
-                console.log(error)
-            }
+            // try{
+            //     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
+            //         method: "POST",
+            //         body: JSON.stringify(body),
+            //         mode:'no-cors',
+            //         headers: { "Content-Type": "application/json", 
+            //         Authorization: `Bearer ${session.accessToken}`
+            //     },
+            //       })
+            //       console.log("post createion ",res)
+            // }catch(error){
+            //     console.log(error)
+            // }
+            const headers = {
+                Authorization: `Bearer "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjksImlhdCI6MTcwOTM2MjIyMywiZXhwIjoxNzA5MzYyNTIzfQ.eKi50W6vmjj7Vk6qsfFYwp1fS4jxQHFaoZsDdBa091k"`,
+                "Content-Type": "application/json",
+              };
+        
+              try {
+                const response = await axios.post(
+                  "http://localhost:3001/posts",
+                  {
+                    body:JSON.stringify(body),
+                    headers: headers,
+                  }
+                );
+        
+               
+              } catch (error) {
+                console.error("Error fetching country data:", error);
+              }
+            
            
         }else{
             console.log("error trying posting")
         }
+
+        // if (session?.accessToken) {
+        //     try {
+        //       const body = {
+        //         "title": formData.get("title"),
+        //         "description": formData.get("description"),
+        //         "goalAmount": 72893,
+        //         // "image": [
+        //         //   "string"
+        //         // ],
+        //         "status": "NOTVERIFIED",
+        //         "postType": formData.get("postType"),
+        //         "postUpdates": "",
+        //         "categoryId": 4,
+        //         "userId": 9
+        //       };
+        //       const res = await axios.post(
+        //         `${process.env.NEXT_PUBLIC_API_URL}/posts`,
+        //         body,
+        //         {
+        //           headers: {
+        //             "Content-Type": "application/json",
+        //             Authorization: `Bearer ${session.accessToken}`
+        //           }
+        //         }
+        //       );
+        //       console.log("post creation", res);
+        //     } catch (error) {
+        //       console.log(error);
+        //     }
+        //   } else {
+        //     console.log("error trying posting");
+        //   }
 
 
         form.reset()
@@ -245,10 +393,9 @@ export default function PostForm({ countries, ngos }: { countries: string[], ngo
                                                     </SelectTrigger>
                                                 </FormControl>
                                                 <SelectContent side='bottom' className='max-h-48'>
-                                                    {categories.map((cat) => (
-                                                        <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
+                                                    {category.map((cat) => (
+                                                        <SelectItem key={cat.name} value={cat.id.toString()}>{cat.name}</SelectItem>
                                                     ))}
-
                                                 </SelectContent>
                                             </Select>
                                             <FormDescription>
@@ -331,9 +478,12 @@ export default function PostForm({ countries, ngos }: { countries: string[], ngo
                                             <FormLabel >Target Funding</FormLabel>
 
                                             <CurrencyInput
+                                                // {...field}
+                                                // currencyCode="NPR"
+                                                // onInputChange={(value) => form.setValue('target_fund', value)}
                                                 {...field}
                                                 currencyCode="NPR"
-                                                onInputChange={(value) => form.setValue('target_fund', value)}
+                                                onInputChange={(value) => form.setValue('target_fund', value)} 
                                             />
 
                                             {/* <Input type="text" {...field} /> */}

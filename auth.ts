@@ -49,6 +49,7 @@ const config = {
       if(token.email){
         session.email = token.email;
       }
+      console.log("session",session);
       return session;
     }
   },

@@ -3,47 +3,13 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const images = [
-  {
-    link: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg',
-    id: 1
-  },
-  {
-    link: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg',
-    id: 1
-  },
-  {
-    link: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg',
-    id: 1
-  },
-  {
-    link: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg',
-    id: 1
-  },
-  {
-    link: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg',
-    id: 1
-  },
-  {
-    link: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg',
-    id: 1
-  },
-  {
-    link: 'http://demo.woothemes.com/woocommerce/wp-content/uploads/sites/56/2013/06/T_4_front.jpg',
-    id: 1
-  },
-]
-const video = [
-  {
-    id: 10,
-    link: 'https://www.w3schools.com/tags/movie.mp4',
-  }
-]
+
 
 type assets = {
   id: number,
   link: string,
-  type: string
+  type: string,
+  name: string
 }
 
 const Video = ({ src, poster, ...props }: any) => {
@@ -67,9 +33,29 @@ const Video = ({ src, poster, ...props }: any) => {
   );
 };
 
-const Carousel = () => {
+const Carousel = ({images}:{images:string[]}) => {
+  const imageAssets = images.map((url, index) => ({
+    link:url,
+    id: index + 1,
+    type: 'image',
+    name: `Image ${index + 1}`, // Add a name property for each image
+  }));
 
-  const carouselassets = [...video.map(video => ({ ...video, type: 'video' })), ...images.map(image => ({ ...image, type: 'image' }))];
+  // Assuming you have a prop named 'videos' containing an array of video links
+  const videoLinks: string[] = []; // Replace this with your actual prop containing video links
+
+  // Convert the video URLs into video assets
+  const videoAssets = videoLinks.map((url, index) => ({
+    link:url,
+    id: index + 1,
+    type: 'video',
+    name: `Video ${index + 1}`, // Add a name property for each video
+  }));
+
+  // Concatenate imageAssets and videoAssets into a single array
+  const carouselassets = [...imageAssets, ...videoAssets];
+
+  // const carouselassets = [...video.map(video => ({ ...video, type: 'video' })), ...images.map(image => ({ ...image, type: 'image' }))];
   const [selectedMedia, setSelectedMedia] = useState(carouselassets[0]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -101,7 +87,7 @@ const Carousel = () => {
                 width={1024}
                 height={1024}
                 quality={100}
-                alt="big image"
+                alt={selectedMedia.name}
                 className=" h-72 object-contain"
 
               />
@@ -130,7 +116,7 @@ const Carousel = () => {
                     width={250}
                     height={250}
                     quality={60}
-                    alt="small"
+                    alt={asset.name}
                     className="h-16 w-16 object-cover"
                     onClick={() => handleMediaClick(asset, index)}
                   />) : (

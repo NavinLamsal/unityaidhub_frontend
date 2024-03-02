@@ -4,8 +4,10 @@ import React from 'react'
 import data from "@/db.json"
 
 
-const Categories = () => {
+const Categories = async() => {
+
   const {categories}= data
+  
   return (
     <div className='mt-24 container '>
       <h1 className='text-xl sm:text-2xl md:text-3xl text-center font-semibold px-3 tracking-wider'>Causes you can raise funds for</h1>
