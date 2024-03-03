@@ -36,23 +36,23 @@ type Inputs = z.infer<typeof createPostvalidation>
 
 const fetchCountries = async (): Promise<string[]> => {
     try {
-      const response = await fetch("https://restcountries.com/v3.1/all?fields=name", {
-        method: 'GET',
-        redirect: 'follow'
-      });
-  
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-  
-      const result = await response.json();
-  
-      return result.map((country: any) => country?.name?.common);
+        const response = await fetch("https://restcountries.com/v3.1/all?fields=name", {
+            method: 'GET',
+            redirect: 'follow'
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const result = await response.json();
+
+        return result.map((country: any) => country?.name?.common);
     } catch (error) {
-      console.error('Error fetching countries:', error);
-      return [] as string[];
+        console.error('Error fetching countries:', error);
+        return [] as string[];
     }
-  };
+};
 
 
 // const getCategory = async (): Promise<Category[]> => {
@@ -80,42 +80,42 @@ const fetchCountries = async (): Promise<string[]> => {
 
 const categories = [
     {
-      "id": 1,
-      "name": "title 1",
-      "darkImage": "string",
-      "lightImage": "string",
-      "primaryImage": "string",
-      "createdAt": "2024-02-29T01:55:37.927Z",
-      "updatedAt": "2024-02-29T01:55:37.927Z"
+        "id": 1,
+        "name": "title 1",
+        "darkImage": "string",
+        "lightImage": "string",
+        "primaryImage": "string",
+        "createdAt": "2024-02-29T01:55:37.927Z",
+        "updatedAt": "2024-02-29T01:55:37.927Z"
     },
     {
-      "id": 2,
-      "name": "title 2",
-      "darkImage": "string",
-      "lightImage": "string",
-      "primaryImage": "string",
-      "createdAt": "2024-02-29T02:42:06.966Z",
-      "updatedAt": "2024-02-29T02:42:06.966Z"
+        "id": 2,
+        "name": "title 2",
+        "darkImage": "string",
+        "lightImage": "string",
+        "primaryImage": "string",
+        "createdAt": "2024-02-29T02:42:06.966Z",
+        "updatedAt": "2024-02-29T02:42:06.966Z"
     },
     {
-      "id": 3,
-      "name": "Health",
-      "darkImage": "https://cdn.pixabay.com/photo/2020/03/29/15/35/coronavirus-4981176_960_720.png",
-      "lightImage": "https://cdn.pixabay.com/photo/2020/03/29/15/35/coronavirus-4981176_960_720.png",
-      "primaryImage": "https://cdn.pixabay.com/photo/2020/03/29/15/35/coronavirus-4981176_960_720.png",
-      "createdAt": "2024-03-01T14:04:58.908Z",
-      "updatedAt": "2024-03-01T14:04:58.908Z"
+        "id": 3,
+        "name": "Health",
+        "darkImage": "https://cdn.pixabay.com/photo/2020/03/29/15/35/coronavirus-4981176_960_720.png",
+        "lightImage": "https://cdn.pixabay.com/photo/2020/03/29/15/35/coronavirus-4981176_960_720.png",
+        "primaryImage": "https://cdn.pixabay.com/photo/2020/03/29/15/35/coronavirus-4981176_960_720.png",
+        "createdAt": "2024-03-01T14:04:58.908Z",
+        "updatedAt": "2024-03-01T14:04:58.908Z"
     },
     {
-      "id": 4,
-      "name": "Education",
-      "darkImage": "https://media.istockphoto.com/id/1428677007/vector/woman-and-man-with-laptops-sitting-on-books-online-education-concept.jpg?s=1024x1024&w=is&k=20&c=YgejBDWb7U2-9-0dnKBnGwtr2dmgYdYlECmZB8LVNQM=",
-      "lightImage": "https://media.istockphoto.com/id/1428677007/vector/woman-and-man-with-laptops-sitting-on-books-online-education-concept.jpg?s=1024x1024&w=is&k=20&c=YgejBDWb7U2-9-0dnKBnGwtr2dmgYdYlECmZB8LVNQM=",
-      "primaryImage": "https://media.istockphoto.com/id/1428677007/vector/woman-and-man-with-laptops-sitting-on-books-online-education-concept.jpg?s=1024x1024&w=is&k=20&c=YgejBDWb7U2-9-0dnKBnGwtr2dmgYdYlECmZB8LVNQM=",
-      "createdAt": "2024-03-01T14:06:39.012Z",
-      "updatedAt": "2024-03-01T14:06:39.012Z"
+        "id": 4,
+        "name": "Education",
+        "darkImage": "https://media.istockphoto.com/id/1428677007/vector/woman-and-man-with-laptops-sitting-on-books-online-education-concept.jpg?s=1024x1024&w=is&k=20&c=YgejBDWb7U2-9-0dnKBnGwtr2dmgYdYlECmZB8LVNQM=",
+        "lightImage": "https://media.istockphoto.com/id/1428677007/vector/woman-and-man-with-laptops-sitting-on-books-online-education-concept.jpg?s=1024x1024&w=is&k=20&c=YgejBDWb7U2-9-0dnKBnGwtr2dmgYdYlECmZB8LVNQM=",
+        "primaryImage": "https://media.istockphoto.com/id/1428677007/vector/woman-and-man-with-laptops-sitting-on-books-online-education-concept.jpg?s=1024x1024&w=is&k=20&c=YgejBDWb7U2-9-0dnKBnGwtr2dmgYdYlECmZB8LVNQM=",
+        "createdAt": "2024-03-01T14:06:39.012Z",
+        "updatedAt": "2024-03-01T14:06:39.012Z"
     }
-  ]
+]
 
 const steps = [
     {
@@ -141,13 +141,13 @@ const steps = [
     { id: '5', name: 'Terms & Conditions' }
 ]
 
-export default function PostForm({  ngos, category}: {  ngos: { id: string; name: string; }[] , category:Category[]}) {
+export default function PostForm({ ngos, category }: { ngos: { id: string; name: string; }[], category: Category[] }) {
     const [previousStep, setPreviousStep] = useState(0)
     const [currentStep, setCurrentStep] = useState(0)
     const [images, setImages] = useState<File[]>([]);
     const [submittedSteps, setSubmittedSteps] = useState<number[]>([]);
     const delta = currentStep - previousStep
-    const {data:session}= useSession();
+    const { data: session } = useSession();
     const [countries, setCountries] = useState<string[]>([])
 
     useEffect(() => {
@@ -155,12 +155,12 @@ export default function PostForm({  ngos, category}: {  ngos: { id: string; name
             try {
                 const countries: string[] = await fetchCountries();
                 setCountries(countries); // You can use the fetched countries here
-               
+
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
         };
-       fetchcountry();
+        fetchcountry();
     }, []);
 
     const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -174,7 +174,7 @@ export default function PostForm({  ngos, category}: {  ngos: { id: string; name
         resolver: zodResolver(createPostvalidation),
     });
 
-    function stripHtmlTags(text:any) {
+    function stripHtmlTags(text: any) {
         return text.replace(/<[^>]*>?/gm, '');
     }
 
@@ -198,97 +198,46 @@ export default function PostForm({  ngos, category}: {  ngos: { id: string; name
         }
         formData.append("country", data.country)
         { data.document && formData.append("image", data.document) }
-        // await CreatePostAction(formData)
-
-        const body ={
-            "title": formData.get("title"),
-            "description": formData.get("description"),
-            "goalAmount": 72893,
-            // "image": [
-            //   "string"
-            // ],
-            "status": "NOTVERIFIED",
-            "postType": formData.get("postType"),
-            "postUpdates": "",
-            "categoryId": 4,
-            "userId": 9
-          }
-
+        await CreatePostAction(formData)
 
         const jsonBody = Object.fromEntries(Array.from(formData.entries()));
-        if(session?.accessToken){
-            // try{
-            //     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
-            //         method: "POST",
-            //         body: JSON.stringify(body),
-            //         mode:'no-cors',
-            //         headers: { "Content-Type": "application/json", 
-            //         Authorization: `Bearer ${session.accessToken}`
-            //     },
-            //       })
-            //       console.log("post createion ",res)
-            // }catch(error){
-            //     console.log(error)
-            // }
-            const headers = {
-                Authorization: `Bearer "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjksImlhdCI6MTcwOTM2MjIyMywiZXhwIjoxNzA5MzYyNTIzfQ.eKi50W6vmjj7Vk6qsfFYwp1fS4jxQHFaoZsDdBa091k"`,
-                "Content-Type": "application/json",
-              };
-        
-              try {
-                const response = await axios.post(
-                  "http://localhost:3001/posts",
-                  {
-                    body:JSON.stringify(body),
-                    headers: headers,
-                  }
-                );
-        
-               
-              } catch (error) {
-                console.error("Error fetching country data:", error);
-              }
-            
-           
-        }else{
-            console.log("error trying posting")
-        }
 
         // if (session?.accessToken) {
-        //     try {
-        //       const body = {
-        //         "title": formData.get("title"),
-        //         "description": formData.get("description"),
-        //         "goalAmount": 72893,
-        //         // "image": [
-        //         //   "string"
-        //         // ],
-        //         "status": "NOTVERIFIED",
-        //         "postType": formData.get("postType"),
-        //         "postUpdates": "",
-        //         "categoryId": 4,
-        //         "userId": 9
-        //       };
-        //       const res = await axios.post(
-        //         `${process.env.NEXT_PUBLIC_API_URL}/posts`,
-        //         body,
-        //         {
-        //           headers: {
-        //             "Content-Type": "application/json",
-        //             Authorization: `Bearer ${session.accessToken}`
-        //           }
-        //         }
-        //       );
-        //       console.log("post creation", res);
+        //     try {  
+        //         const wa = JSON.stringify({
+        //             "title": "Error suscipit elit",
+        //             "description": "Sunt laudantium comjj",
+        //             "goalAmount": "72893",
+        //             "status": "NOTVERIFIED",
+        //             "postType": "URGENT",
+        //             "postUpdates": "",
+        //             "categoryId": 4,
+        //             "userId": 9
+        //         });
+
+        //         const res = await fetch(`http://localhost:3001/posts`, {
+        //             method: "POST",
+        //             headers: {
+        //                 "Content-Type": "application/json",
+        //                 "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwLCJpYXQiOjE3MDk0NTU4MTUsImV4cCI6MTcwOTQ1NjExNX0.NMZkHFQnWVW0O0OBlBlu07DihgXRoP84yc-8dt6in_Y`
+        //             },
+        //             mode: 'no-cors',
+        //             body: wa,
+        //         }).then((res)=>{console.log(res)});
+
+        //         console.log("post createion ", wa)
+                
+
+
         //     } catch (error) {
-        //       console.log(error);
+        //         console.error("Error fetching country data:", error);
         //     }
-        //   } else {
-        //     console.log("error trying posting");
-        //   }
 
 
-        form.reset()
+        // } else {
+        //     console.log("error trying posting")
+        // }
+        // form.reset()
     }
 
     type FieldName = keyof Inputs
@@ -483,7 +432,7 @@ export default function PostForm({  ngos, category}: {  ngos: { id: string; name
                                                 // onInputChange={(value) => form.setValue('target_fund', value)}
                                                 {...field}
                                                 currencyCode="NPR"
-                                                onInputChange={(value) => form.setValue('target_fund', value)} 
+                                                onInputChange={(value) => form.setValue('target_fund', value)}
                                             />
 
                                             {/* <Input type="text" {...field} /> */}
@@ -685,8 +634,8 @@ export default function PostForm({  ngos, category}: {  ngos: { id: string; name
                                             Describe about benificiary for your campaign
                                         </FormDescription>
                                         <Textarea
-                                        cols={25}
-                                        {...field} className="bg-white dark:bg-zinc-950 rounded-md w-96 " placeholder="Explain about benificiary..."
+                                            cols={25}
+                                            {...field} className="bg-white dark:bg-zinc-950 rounded-md w-96 " placeholder="Explain about benificiary..."
                                         />
                                         <FormMessage />
                                     </FormItem>

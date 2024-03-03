@@ -28,7 +28,6 @@ export async function getPost(
     if(category !== ""){
       const categoryIds = category.split(',').map(id => parseInt(id.trim()));
       filteredData = filteredData.filter((post: Posts) => categoryIds.includes(post.categoryId));
-     
     }
     if(status !==""){
       filteredData = filteredData.filter((post: Posts) => post.status === status);
@@ -87,7 +86,7 @@ export async function getUser() {
       });
       const data = await response.json();
       const user = data.find((u: any) => u.email === email);
-      console.log("user",user);
+      // console.log("user",user);
       return user;
     } catch (error) {
       return { error: error };
