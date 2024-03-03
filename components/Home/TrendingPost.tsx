@@ -67,7 +67,8 @@ const ButtonGroup = ({ next, previous, goToSlide, ...rest }: any) => {
   );
 };
 
-const RelatedProducts = ({post}:{post:Posts[]}) => {
+// const RelatedProducts = ({post}:{post:Posts[]}) => {
+const RelatedProducts = () => {
   return (
     <div className="container max-[700px]:translate-y-5 mb-10 mx-auto">
       <div className="flex relative flex-col-reverse justify-center max-w-7xl  mb-3 ">
@@ -88,10 +89,15 @@ const RelatedProducts = ({post}:{post:Posts[]}) => {
           // centerMode={true}
           partialVisible={true}
         >
-          {post.slice(0,10).map((data)=>(
+          {/* {post.slice(0,10).map((data)=>(
             <FundraisingCard key={data.title} post={data}/>
+          ))} */}
+          <FundraisingCard />
+          <FundraisingCard />
+          <FundraisingCard />
+          <FundraisingCard />
+          <FundraisingCard />
 
-          ))}
         </Carousel>
       </div>
     </div>
