@@ -9,6 +9,7 @@ import { Checkbox } from "../ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Category } from "@/lib/types/Category";
+import Image from "next/image";
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   categoriesList: Category[];
@@ -111,6 +112,7 @@ export function Sidebar({ className, categoriesList }: SidebarProps) {
                         </FormControl>
                         <FormLabel className="font-normal">
                           {item.name}
+                        
                         </FormLabel>
                       </FormItem>
                     ))}

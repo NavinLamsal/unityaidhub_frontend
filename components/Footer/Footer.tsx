@@ -133,38 +133,35 @@ const Footer = () => {
           <div className="flex flex-col-reverse md:grid md:grid-cols-5">
             <div className="flex flex-col items-start gap-4 md:col-span-2">
               <div className="hidden md:block">
-              <Image
-              src={`/Logo/landscape.png`}
-              alt="logo"
-              width={750}
-              height={750}
-              quality={100}
-              className="h-16 w-auto dark:hidden"
-            />
-            <Image
-              src={`/Logo/landscapewhite.png`}
-              alt="logo"
-              width={750}
-              height={750}
-              quality={100}
-              className="h-16 w-auto hidden dark:block"
-            />
+                <Image
+                  src={`/Logo/landscape.png`}
+                  alt="logo"
+                  width={750}
+                  height={750}
+                  quality={100}
+                  className="h-16 w-auto dark:hidden"
+                />
+                <Image
+                  src={`/Logo/landscapewhite.png`}
+                  alt="logo"
+                  width={750}
+                  height={750}
+                  quality={100}
+                  className="h-16 w-auto hidden dark:block"
+                />
               </div>
 
               <div className="flex flex-row flex-1  gap-1">
                 <Link href="#" target="_blank" className="cursor-pointer">
-                  <FaSquareFacebook
-                    size="36px"
-                    className="text-darkPrimary dark:text-white"
-                  />
+                <Image src={'/payment/Khalti.png'} alt="esewa" height={26} width={50} quality={100} />
                 </Link>
                 <Link href="#" target="_blank" className="cursor-pointer">
-                  <FaSquareXTwitter
-                    size="37px"
-                    className="text-darkPrimary dark:text-white"
-                  />
+                <Image src={'/payment/esewa.png'} alt="esewa" height={44} width={70} quality={100} />
                 </Link>
-                payment
+                <Link href="#" target="_blank" className="cursor-pointer">
+                <Image src={'/payment/stripe.png'} alt="esewa" height={24} width={50} quality={100} />
+                </Link>
+               
               </div>
             </div>
             <div className="grid sm:grid-cols-2 md:col-span-3">
@@ -296,27 +293,22 @@ const Footer = () => {
               </div>
               {/* large screen payments  */}
               <div className="flex flex-row flex-1  gap-1 items-end">
-                <Link href="#" target="_blank" className="cursor-pointer">
-                  <FaSquareFacebook
-                    size="36px"
-                    className="text-darkPrimary dark:text-white"
-                  />
+              <Link href="#" target="_blank" className="cursor-pointer">
+                <Image src={'/payment/Khalti.png'} alt="esewa" height={26} width={50} quality={100} />
                 </Link>
                 <Link href="#" target="_blank" className="cursor-pointer">
-                  <FaSquareXTwitter
-                    size="37px"
-                    className="text-darkPrimary dark:text-white"
-                  />
+                <Image src={'/payment/esewa.png'} alt="esewa" height={44} width={70} quality={100} />
                 </Link>
-                payment
+                <Link href="#" target="_blank" className="cursor-pointer">
+                <Image src={'/payment/stripe.png'} alt="esewa" height={24} width={50} quality={100} />
+                </Link>
               </div>
-
             </div>
           </div>
         </div>
       </div>
       <div className=" border-t-2 border-darkPrimary/30 dark:border-white/30 flex items-center p-4 w-full">
-         <p className=" w-full text-center">Copyright &copy; 2023 Unity Aid Hub</p>
+        <p className=" w-full text-center">Copyright &copy; 2023 Unity Aid Hub</p>
       </div>
     </footer>
   );

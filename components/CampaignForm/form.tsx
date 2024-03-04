@@ -54,69 +54,6 @@ const fetchCountries = async (): Promise<string[]> => {
     }
 };
 
-
-// const getCategory = async (): Promise<Category[]> => {
-//   try {
-//     const response = await axios.get("http://localhost:3001/category", {
-//       headers: {
-//         'Content-Type': 'application/json', // Adjust the content type as needed
-//         // Add any other headers you need
-//       },
-//     });
-
-//     if (!response.data || !response.data.ok) {
-//       throw new Error('Network response was not ok');
-//     }
-//     console.log("axios category", response)
-//     const result = response.data.data as Category[] ; // Adjust based on the response structure
-
-//     return result as Category[];
-//   } catch (error) {
-//     console.error('Error fetching category:', error);
-//     return [] as Category[];
-//   }
-// };
-
-
-const categories = [
-    {
-        "id": 1,
-        "name": "title 1",
-        "darkImage": "string",
-        "lightImage": "string",
-        "primaryImage": "string",
-        "createdAt": "2024-02-29T01:55:37.927Z",
-        "updatedAt": "2024-02-29T01:55:37.927Z"
-    },
-    {
-        "id": 2,
-        "name": "title 2",
-        "darkImage": "string",
-        "lightImage": "string",
-        "primaryImage": "string",
-        "createdAt": "2024-02-29T02:42:06.966Z",
-        "updatedAt": "2024-02-29T02:42:06.966Z"
-    },
-    {
-        "id": 3,
-        "name": "Health",
-        "darkImage": "https://cdn.pixabay.com/photo/2020/03/29/15/35/coronavirus-4981176_960_720.png",
-        "lightImage": "https://cdn.pixabay.com/photo/2020/03/29/15/35/coronavirus-4981176_960_720.png",
-        "primaryImage": "https://cdn.pixabay.com/photo/2020/03/29/15/35/coronavirus-4981176_960_720.png",
-        "createdAt": "2024-03-01T14:04:58.908Z",
-        "updatedAt": "2024-03-01T14:04:58.908Z"
-    },
-    {
-        "id": 4,
-        "name": "Education",
-        "darkImage": "https://media.istockphoto.com/id/1428677007/vector/woman-and-man-with-laptops-sitting-on-books-online-education-concept.jpg?s=1024x1024&w=is&k=20&c=YgejBDWb7U2-9-0dnKBnGwtr2dmgYdYlECmZB8LVNQM=",
-        "lightImage": "https://media.istockphoto.com/id/1428677007/vector/woman-and-man-with-laptops-sitting-on-books-online-education-concept.jpg?s=1024x1024&w=is&k=20&c=YgejBDWb7U2-9-0dnKBnGwtr2dmgYdYlECmZB8LVNQM=",
-        "primaryImage": "https://media.istockphoto.com/id/1428677007/vector/woman-and-man-with-laptops-sitting-on-books-online-education-concept.jpg?s=1024x1024&w=is&k=20&c=YgejBDWb7U2-9-0dnKBnGwtr2dmgYdYlECmZB8LVNQM=",
-        "createdAt": "2024-03-01T14:06:39.012Z",
-        "updatedAt": "2024-03-01T14:06:39.012Z"
-    }
-]
-
 const steps = [
     {
         id: '1',
@@ -133,15 +70,10 @@ const steps = [
         name: 'Campaign Details',
         fields: ['postTitle', 'postDescription', 'start_date', 'end_date']
     },
-    {
-        id: '4',
-        name: 'Document Upload',
-        fields: ['document']
-    },
-    { id: '5', name: 'Terms & Conditions' }
+    { id: '4', name: 'Terms & Conditions' }
 ]
 
-export default function PostForm({ ngos, category }: { ngos: { id: string; name: string; }[], category: Category[] }) {
+export default function PostForm({ ngos, category, userId }: { ngos: { id: string; name: string; }[], category: Category[], userId:number}) {
     const [previousStep, setPreviousStep] = useState(0)
     const [currentStep, setCurrentStep] = useState(0)
     const [images, setImages] = useState<File[]>([]);
@@ -161,6 +93,7 @@ export default function PostForm({ ngos, category }: { ngos: { id: string; name:
             }
         };
         fetchcountry();
+        console.log("user Id", userId)
     }, []);
 
     const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -179,64 +112,7 @@ export default function PostForm({ ngos, category }: { ngos: { id: string; name:
     }
 
     const processForm: SubmitHandler<Inputs> = async (data) => {
-        const startDate = new Date();
-        const formData = new FormData();
-
-        formData.append("title", data.postTitle)
-        formData.append("description", data.postDescription)
-        formData.append("startDate", startDate.toISOString())
-        formData.append("endDate", startDate.toISOString())
-        formData.append("goalAmount", data.target_fund)
-        formData.append("status", "NOTVERIFIED")
-        formData.append("postType", data.post_type)
-        formData.append("categoryId", data.category)
-        formData.append("userId", parseInt("9").toString())
-        { data.benificiary_type === "Someone Else" && data.benificiaryEmail && formData.append("userid", data.benificiaryEmail) }
-        { data.benificiary_type === "NGO" && data.benificiaryNGO && formData.append("userid", data.benificiaryNGO) }
-        {
-            data.benificiary_type === "myself" ?? formData.append("userid", data.benificiary_type)
-        }
-        formData.append("country", data.country)
-        { data.document && formData.append("image", data.document) }
-        await CreatePostAction(formData)
-
-        const jsonBody = Object.fromEntries(Array.from(formData.entries()));
-
-        // if (session?.accessToken) {
-        //     try {  
-        //         const wa = JSON.stringify({
-        //             "title": "Error suscipit elit",
-        //             "description": "Sunt laudantium comjj",
-        //             "goalAmount": "72893",
-        //             "status": "NOTVERIFIED",
-        //             "postType": "URGENT",
-        //             "postUpdates": "",
-        //             "categoryId": 4,
-        //             "userId": 9
-        //         });
-
-        //         const res = await fetch(`http://localhost:3001/posts`, {
-        //             method: "POST",
-        //             headers: {
-        //                 "Content-Type": "application/json",
-        //                 "Authorization": `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEwLCJpYXQiOjE3MDk0NTU4MTUsImV4cCI6MTcwOTQ1NjExNX0.NMZkHFQnWVW0O0OBlBlu07DihgXRoP84yc-8dt6in_Y`
-        //             },
-        //             mode: 'no-cors',
-        //             body: wa,
-        //         }).then((res)=>{console.log(res)});
-
-        //         console.log("post createion ", wa)
-                
-
-
-        //     } catch (error) {
-        //         console.error("Error fetching country data:", error);
-        //     }
-
-
-        // } else {
-        //     console.log("error trying posting")
-        // }
+        await CreatePostAction(data, userId)
         // form.reset()
     }
 
@@ -645,50 +521,9 @@ export default function PostForm({ ngos, category }: { ngos: { id: string; name:
 
                         </motion.div>
                     )}
+                    
+
                     {currentStep === 3 && (
-                        <motion.div
-                            initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        >
-                            <h2 className='text-base font-semibold leading-7 text-gray-900 hidden md:block'>
-                                Documents
-                            </h2>
-                            <p className='mt-1 text-sm leading-6 text-gray-600 hidden md:block'>
-                                Upload the Supporting documents for the campaign.
-                            </p>
-
-                            <FormField
-                                control={form.control}
-                                name="document"
-                                render={({ field }) => (
-                                    <FormItem className='flex flex-col gap-2 mb-3 '>
-                                        <FormLabel className="">Upload the Documents</FormLabel>
-                                        <FormDescription className="">
-                                            Choose a suitable Title for your campaign
-                                        </FormDescription>
-                                        <CustomFileSelector accept="image/png, image/jpeg" onChange={handleFileSelected} />
-                                        <Button type="submit" >Upload</Button>
-                                        <FormMessage />
-                                        <div className="grid grid-cols-12 gap-2 my-2">
-                                            {images.map((image) => {
-                                                const src = URL.createObjectURL(image);
-                                                return (
-                                                    <div className="relative aspect-video md:col-span-6 col-span-12" key={image.name}>
-                                                        <Image src={src} alt={image.name} className="object-fit h-60 w-auto mx-auto" height={500} width={500} quality={100} />
-                                                    </div>
-                                                );
-                                            })}
-                                        </div>
-                                    </FormItem>
-                                )}
-                            />
-
-
-                        </motion.div>
-                    )}
-
-                    {currentStep === 4 && (
                         <motion.div
                             initial={{ x: delta >= 0 ? '50%' : '-50%', opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
