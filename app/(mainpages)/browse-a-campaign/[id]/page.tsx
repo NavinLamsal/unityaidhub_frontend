@@ -7,8 +7,10 @@ import Tabcollections from "@/components/detailpage/Tabcollections";
 
 
 import type { Metadata, ResolvingMetadata } from 'next'
-import { getPost, getPostdetail } from "@/lib/action/actions";
+import { getPostdetail } from "@/lib/action/actions";
 import { Posts } from "@/lib/types/Posts";
+import { getUser } from "@/lib/action/getUserData";
+import { User } from "@/lib/types/User";
 
 type Props = {
   params: { id: string }
@@ -63,6 +65,7 @@ export async function generateStaticParams() {
 const PostDetail = async ({ id }: { id: string  }) => {
 
   const data:Posts = await getPostdetail(id);
+  const user:User = await getUser()
 
   return (
     <div className="container my-5 dark:bg-darkPrimary">
@@ -89,12 +92,12 @@ const PostDetail = async ({ id }: { id: string  }) => {
           <div className="md:w-7/12 lg:w-8/12">
             <Carousel images={data.image}/>
             <div className=" flex md:hidden my-4">
-              <DonateCard post={data}/>
+              <DonateCard post={data} userId ={user.id}/>
             </div>
             <Tabcollections post={data}/>
           </div>
           <div className="hidden md:block md:w-5/12 lg:w-4/12">
-            <DonateCard post={data}/>
+            <DonateCard post={data} userId ={user.id}/>
           </div>
         </div>
       </div>

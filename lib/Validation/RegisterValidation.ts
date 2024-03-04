@@ -2,7 +2,7 @@ import { ZodEffects, z } from "zod";
 
 const phoneUtil = require('google-libphonenumber').PhoneNumberUtil.getInstance();
 
-const isValidPhoneNumber = (phoneNumber:string) => {
+export const isValidPhoneNumber = (phoneNumber:string) => {
   try {
     const parsedPhoneNumber = phoneUtil.parseAndKeepRawInput(phoneNumber);
     return phoneUtil.isValidNumber(parsedPhoneNumber);

@@ -43,7 +43,7 @@ const DonateCard = ({ post }: { post: Posts }) => {
     <Tabs defaultValue="about" className="w-full my-4 shadow-lg drop-shadow-xl shadow-black/30 rounded-b-md ">
       <TabsList className="flex w-full justify-start border-b-2 rounded-none border-Primary/60 overflow-x-auto">
         <TabsTrigger value="about">About</TabsTrigger>
-        {post.documents && <TabsTrigger value="document">Documents</TabsTrigger>}
+        {post?.documents && post?.documents !== undefined && <TabsTrigger value="document">Documents</TabsTrigger>}
         <TabsTrigger value="update">Updates</TabsTrigger>
         <TabsTrigger value="comments">Comments</TabsTrigger>
       </TabsList>
@@ -57,7 +57,7 @@ const DonateCard = ({ post }: { post: Posts }) => {
           </CardContent>
         </Card>
       </TabsContent>
-      {post.documents &&
+      {post?.documents && post?.documents !== undefined &&
         <TabsContent value="document">
           <Card className="border-0 shadow-none bg-transparent">
             <CardHeader>

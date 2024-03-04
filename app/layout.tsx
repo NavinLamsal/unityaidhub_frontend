@@ -4,8 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/HOC/theme-provider";
 import Provider from "@/components/HOC/Providers";
 import { Toaster } from "@/components/ui/toaster";
-import { getUser } from "@/lib/action/actions";
 import { auth } from "@/auth";
+import { getUser } from "@/lib/action/getUserData";
 
 
 
@@ -21,6 +21,9 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+  const user = await getUser();
+  console.log("user from layout", user)
 
   return (
     <html lang="en">

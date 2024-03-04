@@ -5,20 +5,14 @@ import { Button } from "../ui/button";
 import Link from "next/link";
 import { Posts } from "@/lib/types/Posts";
 
-const FundraisingCard = ({post}:{post?:Posts}) => {
+const PostsCard = ({post}:{post?:Posts}) => {
 
-  // let percentageAchieved = 0;
-  // if(post?.goalAmount)
-  //   percentageAchieved = (post?.currentAmount?? 0 / post.goalAmount?? 0) * 100 ;
-  // const categoryList:Category[] = await getCategory()
-  // // }
-  // const category = categoryList.find((u: Category) => u.id === (post?.categoryId || 0));
+ 
 
  const percentagecalualate = 10;
 
   return (
-  
-    <Link href={`/browse-a-campaign/${post?.id}`} className="bg-zinc-50 max-w-[300px] flex flex-col flex-shrink m-4 pb-2 dark:bg-zinc-700 cursor-pointer rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-900 shadow-lg drop-shadow-lg  ">
+    <Link href={`/dashboard/myPosts/${post?.id}`} className="bg-zinc-50 max-w-[300px] flex flex-col flex-shrink m-4 pb-2 dark:bg-zinc-700 cursor-pointer rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-900 shadow-lg drop-shadow-lg  ">
       <div className="relative rounded-t-md overflow-hidden">
         <Image
           src={post?.image[0] as string}
@@ -63,27 +57,8 @@ const FundraisingCard = ({post}:{post?:Posts}) => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-2 justify-between px-2 pb-2 w-full  gap-2 ">
-        <Link href={`/browse-a-campaign/${post?.id}`}>
-        <Button
-        suppressHydrationWarning
-          variant="default_outline"
-          className=" w-full font-bold bg-Primary text-zinc-50 hover:bg-zinc-700/5 border border-Primary hover:border-black dark:bg-zinc-50 dark:text-black dark:hover:bg-zinc-900/5   hover:text-black  dark:hover:text-white dark:border-zinc-50 dark:hover:border-zinc-50"
-        >
-          Donate
-        </Button>
-        
-        </Link>
-        <Link href={`/browse-a-campaign/${post?.id}`}>
-        <Button
-        suppressHydrationWarning
-        variant="outline" className="border w-full border-zinc-900 bg-white/5 hover:border-Primary hover:bg-Primary hover:text-zinc-50 dark:border-zinc-50 dark:bg-zinc-700/0 dark:hover:bg-zinc-50 dark:hover:text-black">
-          Share
-        </Button>
-        </Link>
-      </div>
     </Link>
   );
 };
 
-export default FundraisingCard;
+export default PostsCard;
