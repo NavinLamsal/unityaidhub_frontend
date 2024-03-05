@@ -22,13 +22,14 @@ export const createPostvalidation = z.object({
   postDescription: z.string({
     required_error: "Invalid Description.",
   }),
-  document: z.any().optional(),
-  // images : z.any(),
-  
+  // document: z.any().optional(),
+  terms:z.string({
+    required_error: "You must comply with our terms and services.",
+  }),
   benificiaryEmail: z.string({
     required_error:"Invalid email"
   })
-  .email({ message: "Invalid email format" }).optional(),
+   .email({ message: "Invalid email format" }).optional(),
   benificiaryNGO: z.string({
     required_error: "NGO must be selected"
   }).optional(),

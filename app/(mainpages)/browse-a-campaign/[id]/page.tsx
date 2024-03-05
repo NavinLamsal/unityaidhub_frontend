@@ -61,7 +61,6 @@ export async function generateStaticParams() {
   )
 }
 
-
 const PostDetail = async ({ id }: { id: string  }) => {
 
   const data:Posts = await getPostdetail(id);

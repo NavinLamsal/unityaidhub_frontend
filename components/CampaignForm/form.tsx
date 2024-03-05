@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from "next/image";
 
-import { z } from 'zod'
+import { isValid, z } from 'zod'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler } from 'react-hook-form'
@@ -30,6 +30,7 @@ import { Textarea } from '../ui/textarea';
 import { Category } from '@/lib/types/Category';
 import axios from "axios";
 import axiosInstance from '@/lib/axios/axios';
+import Link from 'next/link';
 
 
 type Inputs = z.infer<typeof createPostvalidation>
@@ -537,32 +538,47 @@ export default function PostForm({ ngos, category, userId }: { ngos: { id: strin
 
                             </p>
                             <FormField
-                                control={form.control}
-                                name="document"
-                                render={({ field }) => (
-                                    <FormItem className="flex flex-row items-center gap-2 mb-3">
-                                        <Checkbox />
-                                        <FormLabel >I hereby agrees all the terms and Conditions</FormLabel>
-
-                                        <FormDescription >
-
-                                        </FormDescription>
-                                        <FormMessage />
+                            name="terms"
+                            control={form.control}
+                            defaultValue={"false"}
+                            render={({ field }) => (
+                                <div className="flex flex-col">
+                                    <FormItem className="flex flex-1 items-center gap-2">
+                                        <FormControl>
+                                            <input
+                                                type="checkbox"
+                                                {...field}
+                                                id="termsandpolicy"
+                                                value={"true"}
+                                                onChange={(e) => field.onChange(e.target.checked ? 'true' : 'false')}
+                                                checked={field.value === 'true'} // Check if the value is 'true' string
+                                            />
+                                        </FormControl>
+                                        <FormLabel className="flex flex-1 text-sm">I agree with &nbsp;<Link href="/user-aggrement" className="p-0 m-0 text-Primary cursor-pointer">Post Creation Agreement</Link> &nbsp;and &nbsp;<Link href="/privacy-policy" className="p-0 m-0 text-Primary cursor-pointer">Privacy policy</Link></FormLabel>
                                     </FormItem>
-                                )}
-                            />
-                        </motion.div>
-                    )}
-                    {currentStep === 4 && (
-                        <>
+                                    <FormMessage />
+                                </div>
+                            )}
+                        />
+                        {currentStep === 3 && form.watch("terms") === "true" &&(
+                        <motion.div
+                            initial={{ x: 0, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            transition={{ duration: 0.3, ease: 'easeInOut' }}
+                            className='mt-3'
+                        >
                             <h2 className='text-base font-semibold leading-7 text-gray-900'>
                                 Complete
                             </h2>
-                            <p className='mt-1 text-sm leading-6 text-gray-600'>
-                                Thank you for your submission.
+                            <p className='mt-1 text-sm leading-6 text-gray-600 max-w-sm text-justify'>
+                                You can now Submit your Post we will contact you via your email for further documents and verification.
+                                we will only contact you via &nbsp;<span className='font-bold'>unityaidhub@gmail.com</span>&nbsp;so stay away from spams. 
                             </p>
-                        </>
+                        </motion.div>
                     )}
+                        </motion.div>
+                    )}
+                    
                 </form>
             </Form>
 
