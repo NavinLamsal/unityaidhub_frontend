@@ -133,7 +133,14 @@ const DonateCard = async ({ post, userId }: { post: Posts, userId: number }) => 
                     <Drawer>
                         <DrawerTrigger><Button variant="outline" className="w-full">See All</Button></DrawerTrigger>
                         <DrawerContent className="p-4 mt-10">
-                            All contributors
+                            {post.donations && post.donations.length > 0 ? (
+                            <><div>{post.donations[post.donations.length - 1].User.name}</div>
+                                <div className="font-semibold">{amount.currency}&nbsp;{post.donations[post.donations.length - 1].amount}</div>
+                            </>
+
+                        ) : (
+                            <div className="text-xs">No donations available -Latest Contributor</div>
+                        )}
                         </DrawerContent>
                     </Drawer>
                     <Drawer>

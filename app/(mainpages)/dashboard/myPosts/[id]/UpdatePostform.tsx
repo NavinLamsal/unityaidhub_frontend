@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Image from "next/image";
 
-import { z } from 'zod'
+import { set, z } from 'zod'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm, SubmitHandler } from 'react-hook-form'
@@ -14,8 +14,6 @@ import data from "@/db.json"
 
 import { cn } from "@/lib/utils"
 
-import RichTextEditor from "@/components/RichTextEditor/Richtexteditor";
-
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -25,17 +23,20 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from "@/components/ui/command";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/card-radio-group";
 
-import { Check, CheckCircle2, CheckIcon, ChevronsUpDown } from "lucide-react";
+import { Check, ChevronsUpDown } from "lucide-react";
 import CustomFileSelector from "@/components/CampaignForm/CustomFileSelector";
 import { Checkbox } from '../../../../../components/ui/checkbox';
 import { CurrencyInput } from '../../../../../components/ui/currencyInput';
-import { CreatePostAction } from '../../../../../lib/action/createPostAction';
 import { useSession } from 'next-auth/react';
 import { Textarea } from '../../../../../components/ui/textarea';
 import { Posts } from '@/lib/types/Posts';
+import { UpdatePostvalidation } from '@/lib/Validation/UpdatePostValidation';
+import { Category } from '@/lib/types/Category';
+import { UpdatePost } from '@/lib/action/UpdatePost';
+// import { uploadCloudinary } from '@/lib/action/CloudinaryUpload';
 
 
-type Inputs = z.infer<typeof createPostvalidation>
+type Inputs = z.infer<typeof UpdatePostvalidation>
 
 const fetchCountries = async (): Promise<string[]> => {
     try {
@@ -59,63 +60,156 @@ const fetchCountries = async (): Promise<string[]> => {
 
 const ngos = [
     {
-      id: "1",
-      name: "NGO 1"
+        id: "1",
+        name: "NGO 1"
     },
     {
-      id: "2",
-      name: "NGO 2"
+        id: "2",
+        name: "NGO 2"
     }, {
-      id: "3",
-      name: "NGO 3"
+        id: "3",
+        name: "NGO 3"
     }, {
-      id: "4",
-      name: "NGO 4"
+        id: "4",
+        name: "NGO 4"
     }, {
-      id: "5",
-      name: "NGO 5"
+        id: "5",
+        name: "NGO 5"
     }, {
-      id: "6",
-      name: "NGO 6"
+        id: "6",
+        name: "NGO 6"
     }, {
-      id: "7",
-      name: "NGO 7"
+        id: "7",
+        name: "NGO 7"
     },
 
-  ]
+]
 
+interface linksarr {
+   
+    url: string;
+}
 
 // export default function UpdatePostForm({ countries, ngos }: { countries: string[], ngos: { id: string; name: string; }[] }) {
-export default function UpdatePostForm({post}:{post:Posts}) {
-    console.log("postprops",post)
-    const { categories } = data
-    const [previousStep, setPreviousStep] = useState(0)
-    const [currentStep, setCurrentStep] = useState(0)
+export default function UpdatePostForm({ post, category }: { post: Posts, category:Category[] }) {
+    
     const [images, setImages] = useState<File[]>([]);
-    const [submittedSteps, setSubmittedSteps] = useState<number[]>([]);
-    const delta = currentStep - previousStep
+    const [documents, setdocuments] = useState<File[]>([]);
+    const [imageLinks, setImageLinks] = useState<linksarr[]>([]);
+    const [documentsLinks, setdocumentsLinks] = useState<linksarr[]>([]);
     const { data: session } = useSession();
     const [countries, setCountries] = useState<string[]>([])
+
+    const defaultValues: Partial<Inputs> = {
+        userId:post.User.id,
+        postId:post.id,
+        category: post.categoryId.toString(),
+        country: post.country,
+        target_fund: post.goalAmount,
+        post_type: post.postType,
+        //   benificiary_type:post.
+        postTitle: post.title,
+        postDescription: post.description,
+        document: post.documents,
+        Image: post.image
+    }
+
+    const uploadCloudinary = async (
+        file: File
+      ): Promise<{url: string }> => {
+          console.log("inside uploading function")
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", "avelf4lq");
+        const response:any = await fetch(
+          "https://api.cloudinary.com/v1_1/dsrapcvkq/image/upload",
+          { method: "POST", body: formData }
+        );
+        
+        const data = await response.json();
+        const imgUrl = await data.secure_url;
+        console.log("img url: ", imgUrl);
+        return {url: data?.secure_url };
+    };
+      
+
+
+    
+
+    // imagess 
+    const handleImageFileSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            //convert `FileList` to `File[]`
+            const _files = Array.from(e.target.files);
+            console.log("files from images", _files)
+            setImages(_files);
+        }
+    };
+     // images 
+     const handleImageUploading = async () => {
+        console.log("handling images")
+        try {
+            console.log("handling images try")
+            let arr = []
+            for (let i = 0; i < images.length; i++) {
+                
+                console.log("type of images", typeof images[i]);
+                
+                const data = await uploadCloudinary(images[i])
+                arr.push(data)
+            }
+           setImageLinks(arr);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
 
     const handleFileSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             //convert `FileList` to `File[]`
             const _files = Array.from(e.target.files);
-            setImages(_files);
+            setdocuments(_files);
         }
     };
 
+    const handleDocumentUploading = async () => {
+        console.log("handling documents")
+        try {
+            console.log("inside try")
+            let arr = []
+            for (let i = 0; i < documents.length; i++) {
+                const data = await uploadCloudinary(documents[i])
+                arr.push(data)
+            }
+            setdocumentsLinks(arr)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+   
+
     const form = useForm<Inputs>({
-        resolver: zodResolver(createPostvalidation),
+        resolver: zodResolver(UpdatePostvalidation),
+        defaultValues
     });
 
     const processForm: SubmitHandler<Inputs> = async (data) => {
-        console.log(data);
-        // await CreatePostAction(formData)
+
+        await UpdatePost(data, imageLinks, documentsLinks)
 
         form.reset()
     }
 
+    useEffect(() => {
+         handleImageUploading();
+        
+      }, [images]);
+
+    useEffect(() => {
+         handleDocumentUploading();
+      }, [documents]);
 
     useEffect(() => {
         const fetchcountry = async () => {
@@ -137,6 +231,8 @@ export default function UpdatePostForm({post}:{post:Posts}) {
     return (
         <Form {...form} >
             <form className='max-w-2xl' onSubmit={form.handleSubmit(processForm)}>
+            <input type="hidden" {...form.register('userId')} value={post.User.id} />
+            <input type="hidden" {...form.register('postId')} value={post.id} />
                 <FormField
                     control={form.control}
                     name="postTitle"
@@ -182,8 +278,8 @@ export default function UpdatePostForm({post}:{post:Posts}) {
                                         </SelectTrigger>
                                     </FormControl>
                                     <SelectContent side='bottom' className='max-h-48'>
-                                        {categories.map((cat) => (
-                                            <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
+                                        {category.map((cat) => (
+                                            <SelectItem key={cat.id} value={cat.id.toString()}>{cat.name}</SelectItem>
                                         ))}
 
                                     </SelectContent>
@@ -221,92 +317,91 @@ export default function UpdatePostForm({post}:{post:Posts}) {
                     />
                 </div>
                 <div className='grid md:grid-cols-2 gap-4'>
-                <FormField
-                            control={form.control}
-                            name="country"
-                            render={({ field }) => (
-                                <FormItem className="flex flex-col gap-2 mb-3">
-                                    <FormLabel >Country</FormLabel>
-                                    <Popover>
-                                        <PopoverTrigger asChild className="w-full ">
-                                            <FormControl>
-                                                <Button
-                                                    variant="outline"
-                                                    role="combobox"
-                                                    className={cn(
-                                                        "justify-between w-full border-zinc-950 dark:border-zinc-50",
-                                                        !field.value && "text-muted-foreground"
-                                                    )}
-                                                >
-                                                    {field.value
-                                                        ? countries?.find(
-                                                            (co: any) => co === field.value
-                                                        )
-                                                        : "Select Country"}
-                                                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                                                </Button>
-                                            </FormControl>
-                                        </PopoverTrigger>
-                                        <PopoverContent align='end' className="p-1 w-full max-h-60">
-                                            <ScrollArea className=" max-h-56 ">
-                                                <Command >
-                                                    <CommandInput placeholder="Select Country" />
-                                                    <CommandEmpty>Country not found.</CommandEmpty>
-                                                    <CommandGroup>
-                                                        {countries?.map((co: any) => (
-                                                            <CommandItem
-                                                                value={co}
-                                                                key={co}
-                                                                onSelect={() => {
-                                                                    form.setValue("country", co)
-                                                                }}
-                                                            >
-                                                                <Check
-                                                                    className={cn(
-                                                                        "mr-2 h-4 w-4",
-                                                                        co === field.value
-                                                                            ? "opacity-100"
-                                                                            : "opacity-0"
-                                                                    )}
-                                                                />
-                                                                {co}
-                                                            </CommandItem>
-                                                        ))}
-                                                    </CommandGroup>
-                                                </Command>
+                    <FormField
+                        control={form.control}
+                        name="country"
+                        render={({ field }) => (
+                            <FormItem className="flex flex-col gap-2 mb-3">
+                                <FormLabel >Country</FormLabel>
+                                <Popover>
+                                    <PopoverTrigger asChild className="w-full ">
+                                        <FormControl>
+                                            <Button
+                                                variant="outline"
+                                                role="combobox"
+                                                className={cn(
+                                                    "justify-between w-full border-zinc-950 dark:border-zinc-50",
+                                                    !field.value && "text-muted-foreground"
+                                                )}
+                                            >
+                                                {field.value
+                                                    ? countries?.find(
+                                                        (co: any) => co === field.value
+                                                    )
+                                                    : "Select Country"}
+                                                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                            </Button>
+                                        </FormControl>
+                                    </PopoverTrigger>
+                                    <PopoverContent align='end' className="p-1 w-full max-h-60">
+                                        <ScrollArea className=" max-h-56 ">
+                                            <Command >
+                                                <CommandInput placeholder="Select Country" />
+                                                <CommandEmpty>Country not found.</CommandEmpty>
+                                                <CommandGroup>
+                                                    {countries?.map((co: any) => (
+                                                        <CommandItem
+                                                            value={co}
+                                                            key={co}
+                                                            onSelect={() => {
+                                                                form.setValue("country", co)
+                                                            }}
+                                                        >
+                                                            <Check
+                                                                className={cn(
+                                                                    "mr-2 h-4 w-4",
+                                                                    co === field.value
+                                                                        ? "opacity-100"
+                                                                        : "opacity-0"
+                                                                )}
+                                                            />
+                                                            {co}
+                                                        </CommandItem>
+                                                    ))}
+                                                </CommandGroup>
+                                            </Command>
 
-                                            </ScrollArea>
-                                        </PopoverContent>
-                                    </Popover>
-                                    <FormDescription >
-                                        This country will be used to dispaly where benificiary belongs to
-                                    </FormDescription>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                <FormField
-                    control={form.control}
-                    name="target_fund"
-                    defaultValue={'0'}
-                    render={({ field }) => (
-                        <FormItem className="flex flex-col gap-2 mb-3">
-                            <FormLabel >Target Funding</FormLabel>
+                                        </ScrollArea>
+                                    </PopoverContent>
+                                </Popover>
+                                <FormDescription >
+                                    This country will be used to dispaly where benificiary belongs to
+                                </FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="target_fund"
+                        render={({ field }) => (
+                            <FormItem className="flex flex-col gap-2 mb-3">
+                                <FormLabel >Target Funding</FormLabel>
 
-                            <CurrencyInput
-                                {...field}
-                                currencyCode="NPR"
-                                onInputChange={(value) => form.setValue('target_fund', value)}
-                            />
+                                <CurrencyInput
+                                    {...field}
+                                    currencyCode="NPR"
+                                    onInputChange={(value) => form.setValue('target_fund', value)}
+                                />
 
-                            {/* <Input type="text" {...field} /> */}
-                            <FormDescription >
-                                How much do you expect to raise
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+                                {/* <Input type="text" {...field} /> */}
+                                <FormDescription >
+                                    How much do you expect to raise
+                                </FormDescription>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
                 </div>
 
                 <FormField
@@ -434,75 +529,80 @@ export default function UpdatePostForm({post}:{post:Posts}) {
                             </FormItem>
                         )}
                     />
-                   
-                }
 
-                <div className='grid gap-5 my-4'>
-                <FormField
-                    control={form.control}
-                    name="document"
-                    render={({ field }) => (
-                        <FormItem className='flex flex-col gap-2 mb-3 '>
-                            <FormLabel className="">Upload the Documents</FormLabel>
-                            <FormDescription className="">
-                                Upload the supporting documents for the Post
-                            </FormDescription>
-                            <CustomFileSelector accept="image/png, image/jpeg" onChange={handleFileSelected} />
-                            <Button type="submit" >Upload</Button>
-                            <FormMessage />
-                            <div className="grid grid-cols-12 gap-2 my-2">
-                                {images.map((image) => {
-                                    const src = URL.createObjectURL(image);
-                                    return (
-                                        <div className="relative aspect-video md:col-span-6 col-span-12" key={image.name}>
-                                            <Image src={src} alt={image.name} className="object-fit h-60 w-auto mx-auto" height={500} width={500} quality={100} />
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="document"
-                    render={({ field }) => (
-                        <FormItem className='flex flex-col gap-2 mb-3 '>
-                            <FormLabel className="">Upload the Images</FormLabel>
-                            <FormDescription className="">
-                                Upload the supporting images for the Post
-                            </FormDescription>
-                            <CustomFileSelector accept="image/png, image/jpeg" onChange={handleFileSelected} />
-                            <Button type="submit" >Upload</Button>
-                            <FormMessage />
-                            <div className="grid grid-cols-12 gap-2 my-2">
-                                {images.map((image) => {
-                                    const src = URL.createObjectURL(image);
-                                    return (
-                                        <div className="relative aspect-video md:col-span-6 col-span-12" key={image.name}>
-                                            <Image src={src} alt={image.name} className="object-fit h-60 w-auto mx-auto" height={500} width={500} quality={100} />
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </FormItem>
-                    )}
-                />
+                }
+                <div className='grid md:grid-cols-2 gap-5 mt-10'>
+                    <FormField
+                        control={form.control}
+                        name="Image"
+                        render={({ field }) => (
+                            <FormItem className='flex flex-col gap-2 mb-3 '>
+                                <FormLabel className="">Upload the Images</FormLabel>
+                                <FormDescription className="">
+                                    Upload the supporting Images for the Post
+                                </FormDescription>
+                                <div className="flex flex-1 justify-between">
+                                    <CustomFileSelector accept="image/png, image/jpeg" onChange={handleImageFileSelected} />
+                                    <Button type="button" onClick={() => handleImageUploading()} >Upload</Button>
+                                </div>
+                                <FormMessage />
+                                <div className="grid grid-cols-12 gap-2 my-2 md:hidden">
+                                    {images.map((image) => {
+                                        const src = URL.createObjectURL(image);
+                                        return (
+                                            <div className="relative aspect-video md:col-span-6 col-span-12" key={image.name}>
+                                                <Image src={src} alt={image.name} className="object-fit h-60 w-auto mx-auto" height={500} width={500} quality={100} />
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="document"
+                        render={({ field }) => (
+                            <FormItem className='flex flex-col gap-2 mb-3 '>
+                                <FormLabel className="">Upload the Documents</FormLabel>
+                                <FormDescription className="">
+                                    Upload the supporting documents images for the Post
+                                </FormDescription>
+                                <div className='flex flex-1 justify-between'>
+                                    <CustomFileSelector accept="image/png, image/jpeg" onChange={handleFileSelected} />
+                                    <Button type="button" onClick={() => handleDocumentUploading()} >Upload</Button>
+                                </div>
+                                <FormMessage />
+                                <div className="grid grid-cols-12 gap-2 my-2">
+                                    {documents.map((image) => {
+                                        const src = URL.createObjectURL(image);
+                                        return (
+                                            <div className="relative aspect-video md:col-span-6 col-span-12" key={image.name}>
+                                                <Image src={src} alt={image.name} className="object-fit h-60 w-auto mx-auto" height={500} width={500} quality={100} />
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </FormItem>
+                        )}
+                    />
+                    <div>
+                        <div className="md:grid-cols-12 gap-2 my-2 hidden md:grid">
+                            {images.map((image) => {
+                                const src = URL.createObjectURL(image);
+                                return (
+                                    <div className="relative aspect-video md:col-span-6 col-span-12" key={image.name}>
+                                        <Image src={src} alt={image.name} className="object-fit h-60 w-auto mx-auto" height={500} width={500} quality={100} />
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+
+
                 </div>
+
                 
-                <FormField
-                    control={form.control}
-                    name="document"
-                    render={({ field }) => (
-                        <FormItem className="flex flex-row items-center gap-2 mb-3">
-                            <Checkbox />
-                            <FormLabel >I hereby agrees all the terms and Conditions</FormLabel>
-                            <FormDescription >
-                            </FormDescription>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
                 <Button type='submit'>Update</Button>
             </form>
         </Form>

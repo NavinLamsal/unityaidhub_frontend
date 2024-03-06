@@ -22,7 +22,7 @@ export async function getPost(
   page: number = 1
 ) {
   try {
-    const data = await fetch("http://localhost:3001/posts/verified").then(
+    const data = await fetch("http://localhost:3001/posts/verified",{ next: { revalidate: 600 } }).then(
       (res) => res.json()
     );
 
@@ -76,7 +76,7 @@ export async function getPostdetail(id: string) {
 // get category
 export async function getCategory() {
   try {
-    const data = await fetch(`http://localhost:3001/category`).then((res) =>
+    const data = await fetch(`http://localhost:3001/category`,{ next: { revalidate: 600 } }).then((res) =>
     res.json()
     );
     console.log("category fetch", data)

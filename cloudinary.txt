@@ -1,0 +1,40 @@
+
+npm i @cloudinary/url-gen @cloudinary/react
+
+import {Cloudinary} from "@cloudinary/url-gen";
+
+const App = () => {
+  const cld = new Cloudinary({cloud: {cloudName: 'dsrapcvkq'}});
+};
+
+
+dependencies:
+  cloudinary_flutter: ^1.0.0
+  cloudinary_url_gen: ^1.0.0
+
+
+cloudinary = CloudinaryObject.fromCloudName(cloudName: '<cloud_name>');
+
+
+npm install cloudinary
+
+import {v2 as cloudinary} from 'cloudinary';
+          
+cloudinary.config({ 
+  cloud_name: 'dsrapcvkq', 
+  api_key: '792875889462574', 
+  api_secret: 'cEtCiu1qOLhE2v7HVGqnNcK0dkE' 
+});
+
+
+Cloud name=dsrapcvkq
+
+API key=792875889462574
+
+API secret=cEtCiu1qOLhE2v7HVGqnNcK0dkE
+
+API environment variable=CLOUDINARY_URL=cloudinary://792875889462574:cEtCiu1qOLhE2v7HVGqnNcK0dkE@dsrapcvkq
+
+
+
+

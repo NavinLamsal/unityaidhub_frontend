@@ -101,7 +101,7 @@ const RegisterForm = () => {
                     transition={{ duration: 0.5, ease: 'easeInOut' }}
                     className=" flex flex-col gap-2">
                     <div className="grid grid-cols-2 gap-6">
-                        <Button variant="outline">
+                        {/* <Button variant="outline">
                             <FaFacebookF className="mr-2 h-4 w-4" />
 
                             Facebook
@@ -109,9 +109,9 @@ const RegisterForm = () => {
                         <Button variant="outline">
                             <FaGoogle className="mr-2 h-4 w-4" />
                             Google
-                        </Button>
+                        </Button> */}
                     </div>
-                    <div className="relative">
+                    {/* <div className="relative">
                         <div className="absolute inset-0 flex items-center">
                             <span className="w-full border-t" />
                         </div>
@@ -120,7 +120,7 @@ const RegisterForm = () => {
                                 Or continue with
                             </span>
                         </div>
-                    </div>
+                    </div> */}
                 </motion.div>
             }
             <Form {...form}>

@@ -37,9 +37,12 @@ export const metadata: Metadata = {
     queryKey: ["posts", category, status, sortBy, currentPage],
     queryFn: async () => {
       return await getPost(category, status, sortBy, currentPage);
-    }
+    },
+    staleTime: 1000,
   },
 );
+
+
 
 const categorieslist = await getCategory()
 

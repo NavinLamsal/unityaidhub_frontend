@@ -36,9 +36,6 @@ const DonateCard = ({ post }: { post: Posts }) => {
     ]);
   };
 
-
-
-
   return (
     <Tabs defaultValue="about" className="w-full my-4 shadow-lg drop-shadow-xl shadow-black/30 rounded-b-md ">
       <TabsList className="flex w-full justify-start border-b-2 rounded-none border-Primary/60 overflow-x-auto">

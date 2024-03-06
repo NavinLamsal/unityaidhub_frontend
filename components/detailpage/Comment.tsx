@@ -3,6 +3,7 @@ import Image from "next/image";
 import { comments } from "@/db.json";
 import { extractInitials } from "@/lib/reuseableFunctions/Extractinitals";
 import { Card, CardContent, CardHeader } from "../ui/card";
+import Comment from "@/lib/types/Comment";
 
 const Comments = () => {
   async function submitAnswer() {

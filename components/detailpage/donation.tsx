@@ -20,7 +20,6 @@ const Donation = ({ post, userId }: { post: Posts, userId: number }) => {
         resolver: zodResolver(Donationvalidation)
     })
 
-
     async function onSubmit(values: z.infer<typeof Donationvalidation>) {
         const postid= post.id;
         await DonationAction(values, postid, userId);
@@ -48,8 +47,10 @@ const Donation = ({ post, userId }: { post: Posts, userId: number }) => {
 
         return (
             <div className='mt-10 w-3/5 place-self-center '>
+                <div className='grid gap-5 my-4'>
                 <h1> You are Supporting {post.title}</h1>
-                <p>Your donation will benefit benificiary name </p>
+                <p>Your donation will benefit benificiary {post.User.name} </p>
+                </div>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-3">
                         <FormField
@@ -62,7 +63,7 @@ const Donation = ({ post, userId }: { post: Posts, userId: number }) => {
 
                                     <CurrencyInput
                                         {...field}
-                                        currencyCode="NPR"
+                                        currencyCode="USD"
                                         onInputChange={(value) => form.setValue("Donation_amount", value)}
                                     />
                                     <FormMessage />
@@ -84,10 +85,10 @@ const Donation = ({ post, userId }: { post: Posts, userId: number }) => {
                                             defaultValue={field.value}
                                             className="flex flex-col space-y-1"
                                         >
-                                            <div className=' flex flex-row justify-evenly'>
+                                            <div className=' flex flex-row justify-start'>
 
 
-                                                <div className={`flex items-center space-x-4 rounded-md dark:bg-zinc-900 bg-zinc-200  p-4 cursor-pointer relative ${form.watch("paymentMethod") === "esewa" ? 'border' : 'border-0'} `}>
+                                                {/* <div className={`flex items-center space-x-4 rounded-md dark:bg-zinc-900 bg-zinc-200  p-4 cursor-pointer relative ${form.watch("paymentMethod") === "esewa" ? 'border' : 'border-0'} `}>
                                                     <FormItem className=" flex flex-1 space-x-3 space-y-1 ">
                                                         <div className="flex-1 space-y-1 items-center">
                                                             <div>
@@ -116,7 +117,7 @@ const Donation = ({ post, userId }: { post: Posts, userId: number }) => {
 
                                                         </div>
                                                     </FormItem>
-                                                </div>
+                                                </div> */}
                                                 <div className={`flex items-center space-x-4 rounded-md dark:bg-zinc-900 bg-zinc-200  p-4 cursor-pointer relative ${form.watch("paymentMethod") === "STRIPE" ? 'border' : 'border-0'} `}>
                                                     <FormItem className=" flex flex-1 space-x-3 space-y-1 ">
                                                         <div className="flex-1 space-y-1 items-center">
