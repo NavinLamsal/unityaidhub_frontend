@@ -1,4 +1,5 @@
 import PostsCard from "@/components/Card/PostsCard";
+import VerifiedPostsCard from "@/components/Card/VerifiedPostcard";
 import FundraisingCard from "@/components/Card/fundraisingCard";
 import { getUser } from "@/lib/action/getUserData";
 import { getUserDetail } from "@/lib/action/userDetail";
@@ -31,7 +32,11 @@ export default async function campaingPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 ">
               {
                 userDetail.post.map((post: Posts) => (
-                  <PostsCard key={post.id} post={post} />
+                  <>
+                  {post.status === "VERIFIED" && <VerifiedPostsCard key={post.id} post={post}/>}
+                  {post.status === "NOTVERIFIED" && <PostsCard key={post.id} post={post} />}
+                  
+                  </>
                 ))
               }
             </div>

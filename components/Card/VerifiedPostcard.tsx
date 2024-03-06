@@ -4,20 +4,13 @@ import { FaLocationDot } from "react-icons/fa6";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { Posts } from "@/lib/types/Posts";
+import { CheckCircle2Icon } from "lucide-react";
 
-const FundraisingCard = ({post}:{post?:Posts}) => {
-
-  // let percentageAchieved = 0;
-  // if(post?.goalAmount)
-  //   percentageAchieved = (post?.currentAmount?? 0 / post.goalAmount?? 0) * 100 ;
-  // const categoryList:Category[] = await getCategory()
-  // // }
-  // const category = categoryList.find((u: Category) => u.id === (post?.categoryId || 0));
+const VerifiedPostsCard = ({post}:{post?:Posts}) => {
 
  const percentagecalualate = 10;
 
   return (
-  
     <Link href={`/browse-a-campaign/${post?.id}`} className="bg-zinc-50 max-w-[300px] flex flex-col flex-shrink m-4 pb-2 dark:bg-zinc-700 cursor-pointer rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-900 shadow-lg drop-shadow-lg  ">
       <div className="relative rounded-t-md overflow-hidden">
         <Image
@@ -31,6 +24,9 @@ const FundraisingCard = ({post}:{post?:Posts}) => {
         <div className="absolute bottom-2 bg-red-700 text-white text-xs left-0 px-2 py-0.5 rounded-r-md">
           {/* {category ? category.name : ""} */}
         </div>
+        <div className="absolute top-2 bg-white text-white text-xs left-0 px-2 py-0.5 rounded-r-md">
+          <CheckCircle2Icon className="text-Primary" size={24}/>
+        </div>
         <div className="absolute bottom-1 right-0 flex items-center text-xs font-medium rounded-r-md text-black bg-Secondary/30 dark:bg-zinc-400/70 px-1 py-0.5">
           <FaLocationDot size={16} />
           {post?.country}
@@ -41,17 +37,7 @@ const FundraisingCard = ({post}:{post?:Posts}) => {
           {post?.title}
         </h1>
         <div className="flex flex-col gap-4 my-0.5">
-          <div className="flex gap-2 items-center">
-            <Image
-              src={"/sampleProfile.jpg"}
-              alt="profile"
-              width={32}
-              height={32}
-              quality={100}
-              className="h-5 w-5 rounded-full object-cover"
-            />
-            <p className="text-xs font-light">by:&nbsp;{post?.User.name}</p>
-          </div>
+        
           <div className="mt-0.5 mb-1">
             <p className="text-xs font-light">
               <span className="text-sm font-medium">${post?.currentAmount == null ? '0':post?.currentAmount} raised</span>
@@ -63,27 +49,8 @@ const FundraisingCard = ({post}:{post?:Posts}) => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-2 justify-between px-2 pb-2 w-full  gap-2 ">
-        <Link href={`/browse-a-campaign/${post?.id}`}>
-        <Button
-        suppressHydrationWarning
-          variant="default_outline"
-          className=" w-full font-bold bg-Primary text-zinc-50 hover:bg-zinc-700/5 border border-Primary hover:border-black dark:bg-zinc-50 dark:text-black dark:hover:bg-zinc-900/5   hover:text-black  dark:hover:text-white dark:border-zinc-50 dark:hover:border-zinc-50"
-        >
-          Donate
-        </Button>
-        
-        </Link>
-        <Link href={`/browse-a-campaign/${post?.id}`}>
-        <Button
-        suppressHydrationWarning
-        variant="outline" className="border w-full border-zinc-900 bg-white/5 hover:border-Primary hover:bg-Primary hover:text-zinc-50 dark:border-zinc-50 dark:bg-zinc-700/0 dark:hover:bg-zinc-50 dark:hover:text-black">
-          Share
-        </Button>
-        </Link>
-      </div>
     </Link>
   );
 };
 
-export default FundraisingCard;
+export default VerifiedPostsCard;

@@ -41,7 +41,6 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, CurrencyInputProps>(
 
         useEffect(() => {
             const debounceTimeout = setTimeout(() => {
-                console.log(props.value)
                 const formattedAmount = formatCurrency(String(props.value));
             onInputChange(formattedAmount);
               }, 2000);
@@ -61,7 +60,6 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, CurrencyInputProps>(
                 style: 'currency',
                 currency: selectedCurrency,
             }).format(numericAmount);
-            console.log(formattedAmount)
 
             return formattedAmount;
         };

@@ -82,7 +82,7 @@ export async function DonationAction(data: z.infer<typeof Donationvalidation>, p
       "remarks": donateamount.currency,
       "postId": postId,
       "userId": userId,
-      "payment": "KHALTI"
+      "payment": data.paymentMethod
     }
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/donations`, {
       method: "POST",

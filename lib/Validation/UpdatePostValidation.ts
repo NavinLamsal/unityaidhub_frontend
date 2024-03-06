@@ -1,8 +1,21 @@
+
+
 import { z } from "zod";
 
-export const createPostvalidation = z.object({
+export const UpdatePostvalidation = z.object({
+  userId:z.number(),
+  postId:z.number(),
+  postTitle: z.string({
+    required_error: "Invalid Title.",
+  }),
+  postDescription: z.string({
+    required_error: "Invalid Description.",
+  }),
   category: z.string({
     required_error: "Please select a category.",
+  }),
+  post_type: z.string({
+    required_error: "Select the Type for the Campaign",
   }),
   country: z.string({
     required_error: "Please select a country.",
@@ -10,22 +23,11 @@ export const createPostvalidation = z.object({
   target_fund: z.string({
     required_error: "Invalid Fund.",
   }),
-  post_type: z.string({
-    required_error: "Select the Type for the Campaign",
-  }),
   benificiary_type: z.string({
     required_error: "Please select a benificiary.",
   }),
-  postTitle: z.string({
-    required_error: "Invalid Title.",
-  }),
-  postDescription: z.string({
-    required_error: "Invalid Description.",
-  }),
-  // document: z.any().optional(),
-  terms:z.string({
-    required_error: "You must comply with our terms and services.",
-  }),
+  document: z.any().optional(),
+  Image: z.any().optional(),
   benificiaryEmail: z.string({
     required_error:"Invalid email"
   })

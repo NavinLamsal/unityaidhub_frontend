@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "./auth";
 
-const protectedRoutes = ["/start-a-campaigning", "/dashboard"]; // add other protected routes as needed
+const protectedRoutes = ["/start-a-campaigning", "/dashboard*"]; // add other protected routes as needed
 
 export const middleware = async (req: NextRequest) => {
   const session = await auth();
